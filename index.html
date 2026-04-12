@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ray | Developer</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--accent); }
+    header p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 8px;
+    }
+
+    /* Clock */
+    .clock-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      margin: 28px 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .clock-time {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 2rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--green);
+    }
+    .clock-label { color: var(--muted); font-size: 0.85rem; }
+
+    /* Sections */
+    section { padding: 32px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .project-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .project-card p { color: var(--muted); font-size: 0.9rem; }
+    .project-card .tag {
+      display: inline-block;
+      background: rgba(88,166,255,0.1);
+      color: var(--accent);
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    /* Skills */
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .skill:hover { color: var(--text); border-color: var(--accent); }
+
+    /* Links */
+    .links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .links a:hover { border-color: var(--accent); background: rgba(88,166,255,0.06); }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* Canvas bg */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .projects { grid-template-columns: 1fr; }
+      .clock-time { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="container">
+  <header>
+    <h1>ray<span>.</span></h1>
+    <p>developer &middot; builder &middot; learning by shipping</p>
+    <div class="clock-box">
+      <div>
+        <div class="clock-time" id="clock">--:--:--</div>
+      </div>
+      <div class="clock-label">live via<br>javascript</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Hermes Agent</h3>
+        <p>AI agent framework with multi-platform messaging, tool orchestration, and autonomous workflows.</p>
+        <span class="tag">AI / Python</span>
+      </div>
+      <div class="project-card">
+        <h3>TrumpRx</h3>
+        <p>Pharmaceutical pricing transparency platform tracking real-time drug costs across US markets.</p>
+        <span class="tag">Web / Data</span>
+      </div>
+      <div class="project-card">
+        <h3>Field Theory</h3>
+        <p>Bookmark sync and content curation pipeline from X/Twitter to Telegram channels.</p>
+        <span class="tag">Automation</span>
+      </div>
+      <div class="project-card">
+        <h3>MiniPC Lab</h3>
+        <p>Self-hosted infrastructure running Tailscale mesh networking, smart home automation, and dev servers.</p>
+        <span class="tag">DevOps / IoT</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <span class="skill">JavaScript</span>
+      <span class="skill">Python</span>
+      <span class="skill">TypeScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Node.js</span>
+      <span class="skill">Next.js</span>
+      <span class="skill">Docker</span>
+      <span class="skill">Linux</span>
+      <span class="skill">Git</span>
+      <span class="skill">Tailwind CSS</span>
+      <span class="skill">MongoDB</span>
+      <span class="skill">PostgreSQL</span>
+      <span class="skill">Tailscale</span>
+      <span class="skill">CI/CD</span>
+      <span class="skill">ML/AI</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Links</h2>
+    <div class="links">
+      <a href="https://github.com/1RB" target="_blank">GitHub</a>
+      <a href="https://t.me/raysterminal" target="_blank">Telegram</a>
+    </div>
+  </section>
+
+  <footer>
+    built with vanilla javascript &middot; hosted on github pages
+  </footer>
+</div>
+
+<script>
+// Live clock
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// Animated particle background
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const PARTICLE_COUNT = 40;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 2 + 1
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#58a6ff';
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // draw lines between close particles
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 150) {
+        ctx.strokeStyle = 'rgba(88,166,255,' + (1 - dist / 150) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
