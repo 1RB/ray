@@ -3,298 +3,428 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ray | Developer</title>
+  <title>ray - curated dev resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --green: #3fb950;
+      --bg: #FAF8F4;
+      --fg: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #c44d2b;
+      --border: #e5e0d8;
+      --surface: #f0ece6;
+      --tag-bg: #eae5dd;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--sans);
       background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
+      color: var(--fg);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    ::selection { background: var(--accent); color: white; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
     /* Header */
     header {
+      padding: 80px 0 60px;
       border-bottom: 1px solid var(--border);
-      padding: 48px 0 32px;
     }
-    header h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+    .masthead {
+      font-family: var(--serif);
+      font-size: 4.5rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 12px;
     }
-    header h1 span { color: var(--accent); }
-    header p {
+    .masthead em { font-style: italic; color: var(--accent); }
+    .tagline {
+      font-size: 1.05rem;
       color: var(--muted);
-      font-size: 1.1rem;
-      margin-top: 8px;
+      max-width: 460px;
+      line-height: 1.6;
     }
-
-    /* Clock */
-    .clock-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 28px;
-      margin: 28px 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .clock-time {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 2rem;
-      font-variant-numeric: tabular-nums;
-      color: var(--green);
-    }
-    .clock-label { color: var(--muted); font-size: 0.85rem; }
-
-    /* Sections */
-    section { padding: 32px 0; border-bottom: 1px solid var(--border); }
-    section:last-of-type { border-bottom: none; }
-    h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    h2::before {
-      content: '';
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    /* Projects */
-    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 20px;
-      transition: border-color 0.2s;
-    }
-    .project-card:hover { border-color: var(--accent); }
-    .project-card h3 { font-size: 1rem; margin-bottom: 6px; }
-    .project-card p { color: var(--muted); font-size: 0.9rem; }
-    .project-card .tag {
-      display: inline-block;
-      background: rgba(88,166,255,0.1);
-      color: var(--accent);
-      font-size: 0.75rem;
-      padding: 2px 10px;
-      border-radius: 20px;
-      margin-top: 10px;
-    }
-
-    /* Skills */
-    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
-    .skill {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.9rem;
+    .meta-line {
+      margin-top: 20px;
+      font-size: 0.8rem;
       color: var(--muted);
-      transition: all 0.2s;
-      cursor: default;
+      font-family: var(--mono);
+      letter-spacing: 0.02em;
     }
-    .skill:hover { color: var(--text); border-color: var(--accent); }
-
-    /* Links */
-    .links { display: flex; gap: 16px; flex-wrap: wrap; }
-    .links a {
-      color: var(--accent);
+    .meta-line a {
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.95rem;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: all 0.2s;
+      border-bottom: 1px solid var(--border);
     }
-    .links a:hover { border-color: var(--accent); background: rgba(88,166,255,0.06); }
+    .meta-line a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Section */
+    section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* Entry */
+    .entry { margin-bottom: 36px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .entry-title a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .entry-title a:hover { color: var(--accent); border-color: var(--accent); }
+    .entry-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .entry-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      background: var(--tag-bg);
+      color: var(--muted);
+      padding: 2px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.02em;
+    }
+    .tag.install {
+      background: var(--fg);
+      color: var(--bg);
+      cursor: pointer;
+    }
+    .source {
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    /* Quote block */
+    .quote {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+      margin: 32px 0;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
     /* Footer */
     footer {
-      padding: 32px 0;
-      color: var(--muted);
-      font-size: 0.8rem;
+      padding: 48px 0 80px;
       text-align: center;
     }
-
-    /* Canvas bg */
-    #bg-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      opacity: 0.15;
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: var(--mono);
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
-      .projects { grid-template-columns: 1fr; }
-      .clock-time { font-size: 1.5rem; }
+      .masthead { font-size: 3rem; }
+      header { padding: 48px 0 40px; }
+      section { padding: 36px 0; }
     }
+
+    /* Subtle animation */
+    .entry { opacity: 0; transform: translateY(12px); animation: fadeUp 0.5s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .entry:nth-child(1) { animation-delay: 0.05s; }
+    .entry:nth-child(2) { animation-delay: 0.1s; }
+    .entry:nth-child(3) { animation-delay: 0.15s; }
+    .entry:nth-child(4) { animation-delay: 0.2s; }
+    .entry:nth-child(5) { animation-delay: 0.25s; }
+    .entry:nth-child(6) { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
-
-<canvas id="bg-canvas"></canvas>
-
 <div class="container">
-  <header>
-    <h1>ray<span>.</span></h1>
-    <p>developer &middot; builder &middot; learning by shipping</p>
-    <div class="clock-box">
-      <div>
-        <div class="clock-time" id="clock">--:--:--</div>
-      </div>
-      <div class="clock-label">live via<br>javascript</div>
-    </div>
-  </header>
 
-  <section>
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Hermes Agent</h3>
-        <p>AI agent framework with multi-platform messaging, tool orchestration, and autonomous workflows.</p>
-        <span class="tag">AI / Python</span>
-      </div>
-      <div class="project-card">
-        <h3>TrumpRx</h3>
-        <p>Pharmaceutical pricing transparency platform tracking real-time drug costs across US markets.</p>
-        <span class="tag">Web / Data</span>
-      </div>
-      <div class="project-card">
-        <h3>Field Theory</h3>
-        <p>Bookmark sync and content curation pipeline from X/Twitter to Telegram channels.</p>
-        <span class="tag">Automation</span>
-      </div>
-      <div class="project-card">
-        <h3>MiniPC Lab</h3>
-        <p>Self-hosted infrastructure running Tailscale mesh networking, smart home automation, and dev servers.</p>
-        <span class="tag">DevOps / IoT</span>
-      </div>
-    </div>
-  </section>
+<header>
+  <div class="masthead"><em>ray</em></div>
+  <p class="tagline">Curated JavaScript tools, components, and resources from the timeline. Things worth building with.</p>
+  <div class="meta-line">
+    <a href="https://t.me/raysterminal">t.me/raysterminal</a> &middot;
+    <a href="https://github.com/1RB">github</a> &middot;
+    updated april 2026
+  </div>
+</header>
 
-  <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <span class="skill">JavaScript</span>
-      <span class="skill">Python</span>
-      <span class="skill">TypeScript</span>
-      <span class="skill">React</span>
-      <span class="skill">Node.js</span>
-      <span class="skill">Next.js</span>
-      <span class="skill">Docker</span>
-      <span class="skill">Linux</span>
-      <span class="skill">Git</span>
-      <span class="skill">Tailwind CSS</span>
-      <span class="skill">MongoDB</span>
-      <span class="skill">PostgreSQL</span>
-      <span class="skill">Tailscale</span>
-      <span class="skill">CI/CD</span>
-      <span class="skill">ML/AI</span>
-    </div>
-  </section>
+<section>
+  <div class="section-label">Components & UI</div>
 
-  <section>
-    <h2>Links</h2>
-    <div class="links">
-      <a href="https://github.com/1RB" target="_blank">GitHub</a>
-      <a href="https://t.me/raysterminal" target="_blank">Telegram</a>
+  <div class="entry">
+    <div class="entry-title"><a href="https://spell.sh" target="_blank">Spell UI</a></div>
+    <p class="entry-desc">Highly refined UI components. Copy, paste, and ship. Crafted for modern interfaces by a 16-year-old dev.</p>
+    <div class="entry-meta">
+      <span class="tag">react</span>
+      <span class="tag">components</span>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    built with vanilla javascript &middot; hosted on github pages
-  </footer>
+  <div class="entry">
+    <div class="entry-title"><a href="https://www.cult-ui.com" target="_blank">Cult UI</a></div>
+    <p class="entry-desc">Shadcn-compatible component library with a ton of useful, well-designed components.</p>
+    <div class="entry-meta">
+      <span class="tag">shadcn</span>
+      <span class="tag">tailwind</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://bazza.dev/craft/2026/hit-area" target="_blank">hit-area</a></div>
+    <p class="entry-desc">Tailwind classes to fix interaction dead zones. Uses pseudo-elements to expand hit areas without messing up your layout.</p>
+    <div class="entry-meta">
+      <span class="tag install">npx shadcn@latest add bazza.dev/r/hit-area</span>
+      <span class="tag">tailwind</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://sileo.aaryan.design" target="_blank">Sileo</a></div>
+    <p class="entry-desc">Smooth iOS-inspired toast component. Clean animations, minimal setup.</p>
+    <div class="entry-meta">
+      <span class="tag install">npm i sileo</span>
+      <span class="tag">react</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://boneyard.vercel.app/" target="_blank">Boneyard</a></div>
+    <p class="entry-desc">Pixel-perfect skeleton loading screens auto-extracted from your real DOM. Zero configuration, zero layout shift.</p>
+    <div class="entry-meta">
+      <span class="tag install">npm install boneyard-js</span>
+      <span class="tag">loading</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://chanhdai.com/components/theme-toggle-effect" target="_blank">Theme Toggle with View Transitions</a></div>
+    <p class="entry-desc">Smooth dark/light mode animations with one line of JS. Uses SVG masks, clip-paths, gradients, even GIFs for the transition effect. Used by Drizzle ORM.</p>
+    <div class="entry-meta">
+      <span class="tag">view transitions</span>
+      <span class="tag">css</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Libraries</div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://cobe.vercel.app/" target="_blank">Cobe</a></div>
+    <p class="entry-desc">Stunning 5kb WebGL globe library for landing pages. Ultra-light, customizable, and smooth as hell. By Shuding.</p>
+    <div class="entry-meta">
+      <span class="tag install">npm i cobe</span>
+      <span class="tag">webgl</span>
+      <span class="tag">5kb</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://paykit.sh" target="_blank">PayKit</a></div>
+    <p class="entry-desc">Billing framework for TypeScript. Define plans and features in code, it handles Stripe, webhooks, and usage state. No external dashboard, no SaaS dependency.</p>
+    <div class="entry-meta">
+      <span class="tag install">npx paykitjs init</span>
+      <span class="tag">typescript</span>
+      <span class="tag">billing</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="http://haptics.lochie.me" target="_blank">Web Haptics</a></div>
+    <p class="entry-desc">Library for custom tactile patterns. Super easy to set up strengths and durations for interactions. Works on Android and iOS.</p>
+    <div class="entry-meta">
+      <span class="tag install">npm i web-haptics</span>
+      <span class="tag">mobile</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://github.com/we-promise/sure" target="_blank">Sure</a></div>
+    <p class="entry-desc">Company spent $1M developing this app then open sourced it. Worth a look.</p>
+    <div class="entry-meta">
+      <span class="tag">open source</span>
+      <span class="tag">1M$</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Developer Tools</div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://qwen.ai/qwencode" target="_blank">Qwen Code</a></div>
+    <p class="entry-desc">1000 free requests per day. Open source. Access to Qwen 3.6 Plus. On par with Sonnet 4.6 for most tasks.</p>
+    <div class="entry-meta">
+      <span class="tag">ai</span>
+      <span class="tag">coding agent</span>
+      <span class="tag">free</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://fieldtheory.dev/cli" target="_blank">FieldTheory CLI</a></div>
+    <p class="entry-desc">Syncs all your X bookmarks locally so your AI agent can actually read and search them. Free, open source by Andrew Farah.</p>
+    <div class="entry-meta">
+      <span class="tag install">npm install -g fieldtheory</span>
+      <span class="tag">bookmarks</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://github.com/ctatedev/dogfood" target="_blank">Dogfood</a></div>
+    <p class="entry-desc">Agent-browser skill that uses your app like a real user. Point it at a URL, it explores, clicks, fills forms, tests edge cases, captures screenshots and repro videos. By Chris Tate.</p>
+    <div class="entry-meta">
+      <span class="tag">testing</span>
+      <span class="tag">automation</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://openrouter.ai/qwen/qwen3.6-plus:free" target="_blank">Qwen 3.6 Plus (free)</a></div>
+    <p class="entry-desc">Free on OpenRouter. Works with OpenCode, Hermès Agent, and any OpenAI-compatible client.</p>
+    <div class="entry-meta">
+      <span class="tag">llm</span>
+      <span class="tag">free</span>
+      <span class="tag">openrouter</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://apps.apple.com/us/app/google-ai-edge-gallery/id6749645337" target="_blank">Google AI Edge Gallery</a></div>
+    <p class="entry-desc">Run Gemma models on your phone. 100% open source, fully offline and private. Multimodal with text, audio, and image.</p>
+    <div class="entry-meta">
+      <span class="tag">on-device</span>
+      <span class="tag">offline</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Design & Resources</div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://kube.io/blog/liquid-glass-css-svg" target="_blank">Liquid Glass with CSS + SVG</a></div>
+    <p class="entry-desc">Best breakdown of recreating Apple's liquid glass effect. Theory, implementation, final result all covered. Feed it to your AI if you're too lazy to read.</p>
+    <div class="entry-meta">
+      <span class="tag">css</span>
+      <span class="tag">svg</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://component.gallery/" target="_blank">Component Gallery</a></div>
+    <p class="entry-desc">Learn what UI components are actually called. Instantly 10x your vibecoded frontends by knowing more words than "menu" and "button".</p>
+    <div class="entry-meta">
+      <span class="tag">reference</span>
+      <span class="tag">ui</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://detail.design/" target="_blank">Detail Design</a></div>
+    <p class="entry-desc">Curated collection of design details. Micro-interactions, transitions, and UI patterns worth studying.</p>
+    <div class="entry-meta">
+      <span class="tag">inspiration</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://impeccable.style/" target="_blank">Impeccable</a></div>
+    <p class="entry-desc">Design fluency for every AI harness. Skills that teach coding agents how to produce better UI.</p>
+    <div class="entry-meta">
+      <span class="tag">ai</span>
+      <span class="tag">design</span>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://thebicycle42.com" target="_blank">Bicycle42</a></div>
+    <p class="entry-desc">Web-based editor for dithering and half-dot art styles. Clean aesthetic.</p>
+    <div class="entry-meta">
+      <span class="tag">art</span>
+      <span class="tag">editor</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Things that stuck</div>
+
+  <div class="quote">"You can instantly 10x your vibecoded frontends by just learning what different UI components are called."</div>
+
+  <div class="quote">"Your app is probably 100-300ms slower than it needs to be... and it's CORS's fault. Every cross-origin fetch can trigger an extra preflight round trip."</div>
+
+  <div class="quote">"Consider that the dumbest people you know are repeatedly being told 'You're absolutely right!' by LLMs."</div>
+
+  <div class="quote">"A kid can master seventh grade science in 22 hours. School takes 200+. Same material, same kid, completely different outcomes. The bottleneck was never the learner."</div>
+</section>
+
+<section>
+  <div class="section-label">Also good</div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://shoo.dev" target="_blank">Shoo</a></div>
+    <p class="entry-desc">Free open source auth in 2 lines of code.</p>
+    <div class="entry-meta"><span class="tag">auth</span><span class="tag">open source</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://translate.kagi.com/" target="_blank">Kagi Translate</a></div>
+    <p class="entry-desc">You can put anything into the "to" field. Not just languages.</p>
+    <div class="entry-meta"><span class="tag">tool</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://shoo.dev" target="_blank">InstantDB</a></div>
+    <p class="entry-desc">Realtime backend with auth, permissions, storage, and presence built in. 1.0 just shipped.</p>
+    <div class="entry-meta"><span class="tag">database</span><span class="tag">realtime</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-title"><a href="https://massgrave.dev" target="_blank">massgrave.dev</a></div>
+    <p class="entry-desc">iykyk</p>
+    <div class="entry-meta"><span class="tag">windows</span></div>
+  </div>
+</section>
+
+<footer>
+  <p>collected by ray &middot; hosted on github pages &middot; built with vanilla html</p>
+</footer>
+
 </div>
-
-<script>
-// Live clock
-function updateClock() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2, '0');
-  const m = String(now.getMinutes()).padStart(2, '0');
-  const s = String(now.getSeconds()).padStart(2, '0');
-  document.getElementById('clock').textContent = h + ':' + m + ':' + s;
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-// Animated particle background
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-const PARTICLE_COUNT = 40;
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-for (let i = 0; i < PARTICLE_COUNT; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: (Math.random() - 0.5) * 0.4,
-    r: Math.random() * 2 + 1
-  });
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#58a6ff';
-  for (const p of particles) {
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  // draw lines between close particles
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 150) {
-        ctx.strokeStyle = 'rgba(88,166,255,' + (1 - dist / 150) + ')';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-
 </body>
 </html>
