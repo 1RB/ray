@@ -7,11 +7,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%}
+body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:#c44d2b;color:#fff}
+
+/* plyr theme overrides */
+:root{
+  --plyr-color-main:#c44d2b;
+  --plyr-video-background:#000;
+  --plyr-badge-background:#c44d2b;
+  --plyr-badge-text-color:#fff;
+  --plyr-control-icon-size:16px;
+  --plyr-range-thumb-height:10px;
+  --plyr-range-track-height:3px;
+  --plyr-video-controls-background:linear-gradient(transparent,rgba(0,0,0,0.75));
+  --plyr-control-spacing:6px;
+  --plyr-control-radius:4px;
+}
+.plyr{border-radius:4px;overflow:hidden;margin-bottom:16px}
+.plyr video{max-height:70vh;width:100%;object-fit:contain;background:#000}
 
 /* ===== SHELL ===== */
 .shell{max-width:680px;margin:0 auto;padding:0 24px}
@@ -20,56 +37,40 @@ body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;f
 .mast{padding:48px 0 32px}
 .mast h1{font-family:'Playfair Display',Georgia,serif;font-size:2.8rem;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#e8e4dc}
 .mast h1 em{font-style:italic;font-weight:400;color:#c44d2b}
-.mast .sub{font-size:0.82rem;color:#666;margin-top:8px;font-weight:300;letter-spacing:0.01em}
+.mast .sub{font-size:0.82rem;color:#666;margin-top:8px;font-weight:300}
 .mast .links{margin-top:12px;font-size:0.68rem;color:#555}
 .mast .links a{color:#555;text-decoration:none;margin-right:14px;transition:color 0.15s}
 .mast .links a:hover{color:#c44d2b}
-.rule{height:1px;background:#222;margin:0}
+.rule{height:1px;background:#222}
 
 /* ===== POST ===== */
 .post{padding:32px 0;border-bottom:1px solid #1a1a1a}
 .post:last-child{border-bottom:none}
 
-/* media container */
-.media{position:relative;margin-bottom:16px;border-radius:4px;overflow:hidden;background:#151515;cursor:pointer}
-.media img{width:100%;display:block;transition:opacity 0.3s}
-.media img.loading{opacity:0}
-.media img.loaded{opacity:1}
+.post .media{position:relative;margin-bottom:16px;border-radius:4px;overflow:hidden;background:#111}
+.post .media img{width:100%;display:block;max-height:70vh;object-fit:contain;transition:opacity 0.3s}
+.post .media img.loading{opacity:0}
+.post .media img.loaded{opacity:1}
 
-/* custom video player */
-.vid-wrap{position:relative;background:#000;border-radius:4px;overflow:hidden;margin-bottom:16px;cursor:pointer}
-.vid-wrap video{width:100%;display:block;vertical-align:top}
-.vid-wrap .vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);transition:background 0.2s,opacity 0.2s}
-.vid-wrap:hover .vid-overlay{background:rgba(0,0,0,0.15)}
-.vid-wrap.playing .vid-overlay{opacity:0;pointer-events:none}
-.vid-wrap:hover.playing .vid-overlay{opacity:1;pointer-events:auto}
-.vid-play{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:transform 0.15s,background 0.15s}
-.vid-wrap:hover .vid-play{transform:scale(1.06)}
-.vid-play svg{width:20px;height:20px;margin-left:2px}
-.vid-wrap.playing .vid-play{opacity:0}
-.vid-wrap:hover.playing .vid-play{opacity:1}
-.vid-controls{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));display:flex;align-items:center;gap:8px;opacity:0;transition:opacity 0.2s}
-.vid-wrap:hover .vid-controls,.vid-wrap.paused .vid-controls{opacity:1}
-.vid-bar{flex:1;height:3px;background:rgba(255,255,255,0.2);border-radius:2px;cursor:pointer;position:relative;overflow:hidden}
-.vid-bar-fill{height:100%;background:#c44d2b;border-radius:2px;width:0;transition:width 0.1s linear}
-.vid-time{font-size:0.62rem;color:rgba(255,255,255,0.7);font-variant-numeric:tabular-nums;min-width:32px;text-align:right;font-family:'Inter',sans-serif}
-.vid-mute{background:none;border:none;color:rgba(255,255,255,0.8);cursor:pointer;padding:2px;display:flex;align-items:center}
-.vid-mute svg{width:16px;height:16px}
-
-/* title */
 .post h2{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-0.01em;color:#e8e4dc;margin-bottom:6px}
 .post h2 a{color:inherit;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color 0.15s}
 .post h2 a:hover{border-bottom-color:#c44d2b}
 .post.featured h2{font-size:2rem;line-height:1.2}
 
-/* body text */
-.body{font-size:0.88rem;color:#888;line-height:1.65;max-width:560px}
-.body a{color:#c44d2b;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s}
-.body a:hover{border-bottom-color:#c44d2b}
+.post .body{font-size:0.88rem;color:#888;line-height:1.65;max-width:560px;white-space:pre-wrap;word-break:break-word}
+.post .body a{color:#c44d2b;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.post .body a:hover{border-bottom-color:#c44d2b}
 
-/* meta */
-.meta{margin-top:10px;display:flex;gap:10px;align-items:center;font-size:0.62rem;font-family:'Inter',sans-serif;color:#444}
-.meta .cmd{background:#e8e4dc;color:#0c0c0c;padding:2px 7px;border-radius:3px;font-weight:500}
+.post .meta{margin-top:10px;display:flex;gap:10px;align-items:center;font-size:0.62rem;font-family:'Inter',sans-serif;color:#444}
+
+/* command pill */
+.cmd{background:#e8e4dc;color:#0c0c0c;padding:3px 9px;border-radius:3px;font-weight:500;cursor:pointer;position:relative;transition:background 0.15s;user-select:all;display:inline-flex;align-items:center;gap:5px}
+.cmd:hover{background:#fff}
+.cmd .copy-icon{width:11px;height:11px;opacity:0.4;transition:opacity 0.15s}
+.cmd:hover .copy-icon{opacity:0.8}
+.cmd.copied{background:#c44d2b;color:#fff}
+.cmd.copied .copy-icon{opacity:0}
+
 .meta .src{color:#c44d2b;opacity:0.7;text-decoration:none;transition:opacity 0.15s}
 .meta .src:hover{opacity:1}
 
@@ -78,7 +79,6 @@ body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;f
 .foot a{color:#444;text-decoration:none}
 .foot a:hover{color:#c44d2b}
 
-/* ===== LOADING ===== */
 .ld{font-size:0.78rem;color:#444;padding:60px 0;text-align:center}
 
 @media(max-width:600px){
@@ -86,6 +86,7 @@ body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;f
   .mast h1{font-size:2rem}
   .post.featured h2{font-size:1.5rem}
   .post h2{font-size:1.15rem}
+  .plyr video{max-height:50vh}
 }
 </style>
 </head>
@@ -101,30 +102,16 @@ body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;f
 <div class="foot"><a href="https://t.me/raysterminal">@raysterminal</a></div>
 </div>
 
-<template id="vid-tpl">
-<div class="vid-wrap paused">
-  <video preload="metadata" playsinline></video>
-  <div class="vid-overlay">
-    <div class="vid-play">
-      <svg viewBox="0 0 24 24" fill="#0c0c0c"><polygon points="6,3 20,12 6,21"/></svg>
-    </div>
-  </div>
-  <div class="vid-controls">
-    <div class="vid-bar"><div class="vid-bar-fill"></div></div>
-    <span class="vid-time">0:00</span>
-    <button class="vid-mute"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></button>
-  </div>
-</div>
-</template>
-
+<script src="https://cdn.plyr.io/3.7.8/plyr.min.js"></script>
 <script>
-// ===== CONFIG =====
 const SKIP = ['trump','netanyahu','spain','ireland','palestine','cease','vaccines',
   'duality of man','andrew tate','windows/office','massgrave','zuckerberg',
   'meta superintelligence','anthropic running','digital whip','food supply',
   'blockade','hormuz','navy','jesus','epstein','elon','vance','iran',
   'hungary','lebanon','apple maps','whip to make','truth social','ai jesus',
-  'vaccine in food','orban','obama','biden','putin','russia','china','nato'];
+  'vaccine in food','orban','obama','biden','putin','russia','china','nato',
+  'lovable','kagi','ultramock','nestle','muse spark','mattrothenberg',
+  'cineby','bicycle42','massgrave','react-shop'];
 
 const DEV = ['npm','npx','open source','github.com','huggingface','ollama','pip',
   'library','component','framework','tailwind','shadcn','vercel','webgl','react',
@@ -136,10 +123,12 @@ const DEV = ['npm','npx','open source','github.com','huggingface','ollama','pip'
   'haptic','whisper','model','llm','ai','agent','mcp','qwen','claude','gpt',
   'gemma','mistral','deepseek','cursor','lovable','v0','bolt','anthropic','ollama',
   'opencode','hermes','sonnet','opus','codex','copilot','whisper','suno','music',
-  'audio','video','image','generative','diffusion','stable','flux','comfy','openai'];
+  'audio','video','image','generative','diffusion','stable','flux','comfy','openai',
+  'cobe','spell','cult','boneyard','sileo','fieldtheory','dogfood','paykit','sure',
+  'haptics','pascal','aurelia','hit-area','liquid glass'];
 
-// ===== HELPERS =====
-const $ = s => document.querySelector(s);
+const COPY_ICON = `<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`;
+
 const esc = s => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 const linkify = t => t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 const trunc = (s,n) => s.length > n ? s.slice(0,n) + '\u2026' : s;
@@ -156,72 +145,22 @@ function parse(p) {
   const url = extractUrl(p.text);
   const npm = p.text.match(/(npm\s+(?:i|install)\s+\S+|npx\s+\S+\s*\S*)/);
   if (url) body = body.replace(url,'').trim();
+  // clean up trailing/leading whitespace in body
+  body = body.replace(/^\s+|\s+$/g, '');
   return { title, body, url, npm, id: p.id, photos: p.photos||[], videos: p.videos||[] };
 }
 
-// ===== VIDEO PLAYER =====
-function initVideo(wrap) {
-  const video = wrap.querySelector('video');
-  const overlay = wrap.querySelector('.vid-overlay');
-  const playBtn = wrap.querySelector('.vid-play');
-  const bar = wrap.querySelector('.vid-bar');
-  const fill = wrap.querySelector('.vid-bar-fill');
-  const time = wrap.querySelector('.vid-time');
-  const muteBtn = wrap.querySelector('.vid-mute');
-
-  function fmt(s) {
-    s = Math.floor(s);
-    const m = Math.floor(s/60);
-    return m + ':' + String(s%60).padStart(2,'0');
-  }
-
-  function toggle() {
-    if (video.paused) {
-      // pause all others first
-      document.querySelectorAll('.vid-wrap video').forEach(v => { if(v!==video) { v.pause(); v.closest('.vid-wrap').classList.remove('playing'); v.closest('.vid-wrap').classList.add('paused'); }});
-      video.play();
-      wrap.classList.add('playing');
-      wrap.classList.remove('paused');
-    } else {
-      video.pause();
-      wrap.classList.remove('playing');
-      wrap.classList.add('paused');
-    }
-  }
-
-  wrap.addEventListener('click', e => {
-    if (e.target.closest('.vid-bar') || e.target.closest('.vid-mute')) return;
-    toggle();
-  });
-
-  video.addEventListener('timeupdate', () => {
-    fill.style.width = (video.currentTime / video.duration * 100) + '%';
-    time.textContent = fmt(video.currentTime);
-  });
-
-  video.addEventListener('ended', () => {
-    wrap.classList.remove('playing');
-    wrap.classList.add('paused');
-    fill.style.width = '0';
-  });
-
-  bar.addEventListener('click', e => {
-    const rect = bar.getBoundingClientRect();
-    video.currentTime = (e.clientX - rect.left) / rect.width * video.duration;
-  });
-
-  muteBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    video.muted = !video.muted;
-    muteBtn.innerHTML = video.muted
-      ? '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>'
-      : '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>';
+function copyCmd(el) {
+  const text = el.dataset.cmd;
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    const orig = el.innerHTML;
+    el.innerHTML = 'copied';
+    setTimeout(() => { el.innerHTML = orig; el.classList.remove('copied'); }, 1200);
   });
 }
 
-// ===== RENDER =====
 function render(allPosts) {
-  // filter
   const posts = allPosts.filter(p => {
     const t = p.text.toLowerCase().trim();
     if (t.length < 25) return false;
@@ -232,68 +171,67 @@ function render(allPosts) {
     return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0,50) === key) === i;
   });
 
-  const feed = $('#feed');
+  const feed = document.getElementById('feed');
   feed.innerHTML = '';
 
   posts.forEach((p, idx) => {
     const e = parse(p);
-    if (/^https?:\/\//.test(e.title) && !e.body) return;
+    if (/^https?:\/\//.test(e.title) && !e.body && !e.photos.length && !e.videos.length) return;
 
-    const isFeatured = idx === 0;
-    const cls = isFeatured ? 'post featured' : 'post';
+    const cls = idx === 0 ? 'post featured' : 'post';
+    let html = '';
 
-    let mediaHtml = '';
-
+    // media
     if (e.photos.length) {
-      mediaHtml = `<div class="media"><img src="${esc(e.photos[0])}" class="loading" decoding="async" onload="this.classList.replace('loading','loaded')" ${isFeatured ? '' : 'loading="lazy"'}></div>`;
+      html += `<div class="media"><img src="${esc(e.photos[0])}" class="loading" decoding="async" onload="this.classList.replace('loading','loaded')" ${idx > 0 ? 'loading="lazy"' : ''}></div>`;
     }
-
     if (e.videos.length) {
-      const v = e.videos[0];
-      mediaHtml = `<div class="vid-wrap paused">
-        <video src="${esc(v)}" preload="metadata" playsinline></video>
-        <div class="vid-overlay"><div class="vid-play"><svg viewBox="0 0 24 24" fill="#0c0c0c"><polygon points="6,3 20,12 6,21"/></svg></div></div>
-        <div class="vid-controls">
-          <div class="vid-bar"><div class="vid-bar-fill"></div></div>
-          <span class="vid-time">0:00</span>
-          <button class="vid-mute"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></button>
-        </div>
-      </div>`;
+      html += `<video id="vid-${e.id}" playsinline ${idx === 0 ? 'autoplay muted' : 'preload="metadata"'}><source src="${esc(e.videos[0])}" type="video/mp4"></video>`;
     }
 
-    const titleHtml = e.url
-      ? `<h2><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h2>`
-      : `<h2>${esc(e.title)}</h2>`;
+    // title
+    if (e.url) {
+      html += `<h2><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h2>`;
+    } else {
+      html += `<h2>${esc(e.title)}</h2>`;
+    }
 
-    const bodyHtml = e.body ? `<div class="body">${linkify(esc(e.body))}</div>` : '';
+    // body
+    if (e.body) {
+      html += `<div class="body">${linkify(esc(e.body))}</div>`;
+    }
 
-    const cmdHtml = e.npm ? `<span class="cmd">${esc(e.npm[0])}</span>` : '';
-    const host = e.url ? (() => { try { return new URL(e.url).hostname.replace('www.',''); } catch { return ''; } })() : '';
-    const srcHtml = host ? `<a class="src" href="${esc(e.url)}" target="_blank">${esc(host)}</a>` : '';
+    // meta
+    let meta = '';
+    if (e.npm) {
+      meta += `<span class="cmd" data-cmd="${esc(e.npm[0])}" onclick="copyCmd(this)">${esc(e.npm[0])}${COPY_ICON}</span>`;
+    }
+    if (e.url) {
+      let host = '';
+      try { host = new URL(e.url).hostname.replace('www.',''); } catch {}
+      if (host) meta += `<a class="src" href="${esc(e.url)}" target="_blank">${esc(host)}</a>`;
+    }
+    if (meta) html += `<div class="meta">${meta}</div>`;
 
     const el = document.createElement('div');
     el.className = cls;
-    el.innerHTML = `${mediaHtml}${titleHtml}${bodyHtml}<div class="meta">${cmdHtml}${srcHtml}</div>`;
+    el.innerHTML = html;
     feed.appendChild(el);
   });
 
-  // init all video players
-  document.querySelectorAll('.vid-wrap').forEach(initVideo);
-
-  // preload images on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
-        observer.unobserve(img);
-      }
+  // init plyr on all videos
+  if (typeof Plyr !== 'undefined') {
+    Plyr.setup('video', {
+      controls: ['play-large','play','progress','current-time','mute','volume','fullscreen'],
+      hideControls: true,
+      clickToPlay: true,
+      ratio: '16:9',
+      invertTime: false,
+      displayDuration: true,
     });
-  }, { rootMargin: '400px' });
-  document.querySelectorAll('.media img').forEach(img => observer.observe(img));
+  }
 }
 
-// ===== GO =====
 fetch('posts.json').then(r=>r.json()).then(render).catch(()=>{
   document.getElementById('feed').innerHTML = '<div class="ld">failed to load</div>';
 });
