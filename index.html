@@ -6,366 +6,548 @@
   <title>ray</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --bg: #FAF8F4;
-      --fg: #1a1a1a;
-      --muted: #8a8a8a;
-      --accent: #c44d2b;
-      --border: #e5e0d8;
-      --surface: #f2efe9;
+      --cream: #FAF8F4;
+      --ink: #111110;
+      --ink-light: #3a3a38;
+      --ink-muted: #8a8880;
+      --rule: #d8d4cc;
+      --rule-light: #e8e4dc;
+      --accent: #b5421f;
+      --accent-light: #f0e8e4;
       --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Inter', -apple-system, sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
+      background: var(--cream);
+      color: var(--ink);
       font-family: var(--sans);
-      background: var(--bg);
-      color: var(--fg);
-      -webkit-font-smoothing: antialiased;
       font-size: 15px;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    ::selection { background: var(--accent); color: white; }
-    a { color: inherit; }
 
-    /* ========== HEADER ========== */
-    .header {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 32px 0;
+    ::selection { background: var(--accent); color: var(--cream); }
+
+    .site { max-width: 1200px; margin: 0 auto; }
+
+    /* ==========================================
+       MASTHEAD
+       ========================================== */
+    .masthead {
+      padding: 20px 40px 0;
+      border-bottom: 3px double var(--ink);
     }
-    .header-top {
+    .masthead-inner {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 16px;
-      border-bottom: 2px solid var(--fg);
+      align-items: flex-end;
+      padding-bottom: 12px;
     }
     .logo {
       font-family: var(--serif);
-      font-size: 2.4rem;
+      font-size: 3.2rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--ink);
     }
-    .logo em { font-style: italic; color: var(--accent); }
-    .header-links {
+    .logo em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .masthead-right {
+      text-align: right;
+    }
+    .masthead-date {
       font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      display: flex;
-      gap: 16px;
-    }
-    .header-links a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .header-links a:hover { color: var(--accent); }
-
-    .date-bar {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      margin-bottom: 4px;
     }
+    .masthead-links {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+    }
+    .masthead-links a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      margin-left: 16px;
+      transition: color 0.15s;
+    }
+    .masthead-links a:hover { color: var(--accent); }
+    .masthead-links a:first-child { margin-left: 0; }
 
-    /* ========== LAYOUT ========== */
-    .layout {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 40px;
+    .nav-bar {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      margin-top: 0;
     }
-
-    /* ========== HERO ========== */
-    .hero {
-      padding: 32px 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-    }
-    .hero-img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      border-radius: 2px;
-      display: block;
-      margin-bottom: 20px;
-    }
-    .hero video {
-      width: 100%;
-      border-radius: 2px;
-      margin-bottom: 20px;
-      background: #000;
-    }
-    .hero-label {
+    .nav-item {
       font-family: var(--mono);
       font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
+      color: var(--ink-muted);
+      padding: 8px 16px;
+      cursor: pointer;
+      border-right: 1px solid var(--rule);
+      transition: background 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .nav-item:last-child { border-right: none; }
+    .nav-item:hover, .nav-item.active {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    /* ==========================================
+       FEATURED STORY
+       ========================================== */
+    .featured {
+      padding: 40px 40px 36px;
+      border-bottom: 1px solid var(--rule);
+      cursor: default;
+    }
+    .featured-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 16px;
+      font-weight: 400;
     }
-    .hero-title {
+    .featured-media {
+      margin-bottom: 24px;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .featured-media img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-media video {
+      width: 100%;
+      display: block;
+      background: var(--ink);
+    }
+    .featured-headline {
       font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      max-width: 720px;
+      margin-bottom: 16px;
     }
-    .hero-body {
-      font-size: 0.95rem;
-      color: #555;
+    .featured-deck {
+      font-size: 1rem;
+      color: var(--ink-light);
       line-height: 1.65;
       max-width: 600px;
     }
-    .hero-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
-    .hero-body a:hover { border-bottom-color: var(--accent); }
+    .featured-deck a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+    .featured-deck a:hover { border-bottom-color: var(--accent); }
+    .featured-meta {
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--ink-muted);
+    }
 
-    /* ========== GRID ========== */
-    .grid {
+    /* ==========================================
+       SECTION HEADERS
+       ========================================== */
+    .section-header {
+      padding: 28px 40px 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .section-rule {
+      flex: 1;
+      height: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-count {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-muted);
+    }
+
+    /* ==========================================
+       NEWS GRID (2-col with images)
+       ========================================== */
+    .news-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
+      padding: 0 40px;
     }
-    .card {
+    .news-item {
       padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
+      border-bottom: 1px solid var(--rule);
     }
-    .card:nth-child(odd) { padding-right: 20px; border-right: 1px solid var(--border); }
-    .card:nth-child(even) { padding-left: 20px; }
-    .card-img {
+    .news-item:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--rule-light); }
+    .news-item:nth-child(even) { padding-left: 24px; }
+    .news-img {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/10;
       object-fit: cover;
       border-radius: 2px;
-      display: block;
       margin-bottom: 12px;
+      display: block;
     }
-    .card video {
+    .news-item video {
       width: 100%;
       border-radius: 2px;
       margin-bottom: 12px;
-      background: #000;
+      background: var(--ink);
     }
-    .card-title {
+    .news-headline {
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       line-height: 1.3;
       margin-bottom: 6px;
     }
-    .card-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
+    .news-deck {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
       line-height: 1.55;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .card-meta {
+    .news-meta {
       margin-top: 8px;
       font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
+      font-size: 0.58rem;
+      color: var(--ink-muted);
       opacity: 0.6;
     }
 
-    /* ========== FULL WIDTH (below grid) ========== */
-    .full-width {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
+    /* ==========================================
+       TOOLS LIST
+       ========================================== */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 0 40px;
+      gap: 0;
     }
-    .full-title {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 600;
-      line-height: 1.3;
+    .tool-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule-light);
+    }
+    .tool-item:nth-child(3n) { border-right: none; }
+    .tool-name {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 400;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .tool-desc {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
       margin-bottom: 8px;
     }
-    .full-body {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.65;
+    .tool-cmd {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 3px 8px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .tool-meta {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--ink-muted);
+      margin-top: 8px;
+      opacity: 0.5;
+    }
+
+    /* ==========================================
+       ANNOUNCEMENTS
+       ========================================== */
+    .announce-list {
+      padding: 0 40px;
+    }
+    .announce-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .announce-img {
+      width: 140px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+    .announce-item video {
+      width: 140px;
+      border-radius: 2px;
+      background: var(--ink);
+    }
+    .announce-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .announce-body {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .announce-body a { color: var(--accent); text-decoration: none; }
+    .announce-meta {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--ink-muted);
+      margin-top: 6px;
+      opacity: 0.5;
+    }
+
+    /* ==========================================
+       TAKES
+       ========================================== */
+    .takes {
+      padding: 0 40px;
+    }
+    .take-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+    .take-text {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--ink-light);
+    }
+    .take-meta {
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--ink-muted);
+      opacity: 0.5;
+    }
+
+    /* ==========================================
+       FULL TEXT POSTS (news without media)
+       ========================================== */
+    .text-feed {
+      padding: 0 40px;
+    }
+    .text-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .text-headline {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .text-body {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
       white-space: pre-wrap;
       word-break: break-word;
     }
-    .full-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
-    .full-body a:hover { border-bottom-color: var(--accent); }
-    .full-body.collapsed {
+    .text-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+    .text-body a:hover { border-bottom-color: var(--accent); }
+    .text-body.collapsed {
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .full-meta {
-      margin-top: 8px;
+    .text-meta {
+      margin-top: 6px;
       font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      opacity: 0.6;
+      font-size: 0.58rem;
+      color: var(--ink-muted);
+      opacity: 0.5;
       display: flex;
       gap: 10px;
       align-items: center;
     }
-    .read-more {
+    .expand-btn {
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.62rem;
       color: var(--accent);
       cursor: pointer;
       border: none;
       background: none;
-      padding: 0;
       text-decoration: underline;
       text-underline-offset: 2px;
+      opacity: 0.8;
     }
+    .expand-btn:hover { opacity: 1; }
 
-    .tag {
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    .site-footer {
+      padding: 32px 40px 60px;
+      border-top: 3px double var(--ink);
+      margin-top: 40px;
+    }
+    .site-footer p {
       font-family: var(--mono);
-      font-size: 0.62rem;
-      background: var(--fg);
-      color: var(--bg);
-      padding: 2px 7px;
-      border-radius: 2px;
+      font-size: 0.68rem;
+      color: var(--ink-muted);
     }
-
-    /* ========== SIDEBAR ========== */
-    .sidebar {
-      border-left: 1px solid var(--border);
-      padding-left: 32px;
-    }
-    .sidebar-section {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .sidebar-section:last-child { border-bottom: none; }
-    .sidebar-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .sidebar-item {
-      margin-bottom: 16px;
-      cursor: pointer;
-    }
-    .sidebar-item:last-child { margin-bottom: 0; }
-    .sidebar-item-title {
-      font-family: var(--serif);
-      font-size: 0.95rem;
-      font-weight: 600;
-      line-height: 1.35;
-      margin-bottom: 4px;
-    }
-    .sidebar-item-meta {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--muted);
-      opacity: 0.5;
-    }
-    .sidebar-img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      border-radius: 2px;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    /* ========== QUOTE ========== */
-    .quote-block {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      padding-left: 20px;
-      margin-left: 0;
-    }
-    .quote-text {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-style: italic;
-      line-height: 1.5;
-      color: #444;
-    }
-
-    /* ========== FOOTER ========== */
-    .footer {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 32px 60px;
-      border-top: 2px solid var(--fg);
-    }
-    .footer p {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-    .footer a { color: var(--muted); text-decoration: none; }
-    .footer a:hover { color: var(--accent); }
+    .site-footer a { color: var(--ink-muted); text-decoration: none; }
+    .site-footer a:hover { color: var(--accent); }
 
     .loading {
       font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--muted);
-      padding: 60px 0;
-      text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      padding: 80px 40px;
     }
 
-    /* ========== RESPONSIVE ========== */
+    /* ==========================================
+       RESPONSIVE
+       ========================================== */
     @media (max-width: 860px) {
-      .layout { grid-template-columns: 1fr; gap: 0; }
-      .sidebar {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid var(--border);
-      }
-      .grid { grid-template-columns: 1fr; }
-      .card:nth-child(odd) { padding-right: 0; border-right: none; }
-      .card:nth-child(even) { padding-left: 0; }
+      .news-grid { grid-template-columns: 1fr; }
+      .news-item:nth-child(odd) { padding-right: 0; border-right: none; }
+      .news-item:nth-child(even) { padding-left: 0; }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+      .tool-item:nth-child(3n) { border-right: 1px solid var(--rule-light); }
+      .tool-item:nth-child(2n) { border-right: none; }
     }
     @media (max-width: 600px) {
-      .header, .layout, .footer { padding-left: 20px; padding-right: 20px; }
-      .hero-title { font-size: 1.6rem; }
-      .logo { font-size: 1.8rem; }
+      .masthead, .featured, .section-header, .news-grid,
+      .tools-grid, .announce-list, .takes, .text-feed, .site-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .logo { font-size: 2.2rem; }
+      .featured-headline { font-size: 1.8rem; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .tool-item { border-right: none; }
+      .announce-item { grid-template-columns: 1fr; }
+      .announce-img, .announce-item video { width: 100%; }
+      .nav-bar { overflow-x: auto; }
     }
   </style>
 </head>
 <body>
+<div class="site">
 
-<div class="header">
-  <div class="header-top">
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-inner">
     <div class="logo"><em>ray</em>sterminal</div>
-    <div class="header-links">
-      <a href="https://t.me/raysterminal">telegram</a>
-      <a href="https://github.com/1RB">github</a>
+    <div class="masthead-right">
+      <div class="masthead-date" id="date-line"></div>
+      <div class="masthead-links">
+        <a href="https://t.me/raysterminal">telegram</a>
+        <a href="https://github.com/1RB">github</a>
+      </div>
     </div>
   </div>
-  <div class="date-bar" id="date-bar">loading</div>
-</div>
-
-<div class="layout">
-  <div>
-    <div id="hero"></div>
-    <div class="grid" id="grid"></div>
-    <div id="feed"></div>
+  <div class="nav-bar">
+    <div class="nav-item active" onclick="scrollToSection('news')">News</div>
+    <div class="nav-item" onclick="scrollToSection('tools')">Tools</div>
+    <div class="nav-item" onclick="scrollToSection('announcements')">Releases</div>
+    <div class="nav-item" onclick="scrollToSection('takes')">Takes</div>
   </div>
-  <div class="sidebar" id="sidebar"></div>
 </div>
 
-<div class="footer">
+<div id="featured"></div>
+
+<div id="news">
+  <div class="section-header" id="news-header" style="display:none">
+    <div class="section-title">News</div>
+    <div class="section-rule"></div>
+    <div class="section-count" id="news-count"></div>
+  </div>
+  <div class="news-grid" id="news-grid"></div>
+  <div class="text-feed" id="news-text"></div>
+</div>
+
+<div id="tools">
+  <div class="section-header" id="tools-header" style="display:none">
+    <div class="section-title">Tools</div>
+    <div class="section-rule"></div>
+    <div class="section-count" id="tools-count"></div>
+  </div>
+  <div class="tools-grid" id="tools-grid"></div>
+</div>
+
+<div id="announcements">
+  <div class="section-header" id="announce-header" style="display:none">
+    <div class="section-title">Releases</div>
+    <div class="section-rule"></div>
+    <div class="section-count" id="announce-count"></div>
+  </div>
+  <div class="announce-list" id="announce-list"></div>
+</div>
+
+<div id="takes">
+  <div class="section-header" id="takes-header" style="display:none">
+    <div class="section-title">Takes</div>
+    <div class="section-rule"></div>
+    <div class="section-count" id="takes-count"></div>
+  </div>
+  <div class="takes" id="takes-list"></div>
+</div>
+
+<div class="site-footer">
   <p>auto-curated from <a href="https://t.me/raysterminal">@raysterminal</a></p>
+</div>
+
 </div>
 
 <script>
@@ -373,137 +555,160 @@ function linkify(t) {
   return t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function trunc(s, n) { return s.length > n ? s.slice(0, n - 1) + '\u2026' : s; }
+function trunc(s, n) { return s.length > n ? s.slice(0, n) + '\u2026' : s; }
 
-function parsePost(p) {
+function parse(p) {
   const lines = p.text.split('\n');
-  const title = lines[0];
-  const body = lines.slice(1).join('\n').trim();
-  const media = [...(p.photos || []), ...(p.videos || [])];
-  const isQuote = p.text.length < 200 && !body && !media.length;
-  const npm = p.text.match(/(npm\s+\S+\s+\S+|npx\s+\S+)/);
-  return { title, body, media, isQuote, npm, id: p.id, text: p.text, photos: p.photos || [], videos: p.videos || [] };
+  return {
+    title: lines[0],
+    body: lines.slice(1).join('\n').trim(),
+    photos: p.photos || [],
+    videos: p.videos || [],
+    id: p.id,
+    cat: p.cat
+  };
 }
 
-function renderHero(p) {
-  const { title, body, photos, videos, id } = parsePost(p);
-  let mediaHtml = '';
-  if (photos.length) mediaHtml += `<img class="hero-img" src="${esc(photos[0])}" loading="eager" alt="">`;
-  if (videos.length) mediaHtml += `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
-
-  document.getElementById('hero').innerHTML = `
-    <div class="hero">
-      ${mediaHtml}
-      <div class="hero-label">latest</div>
-      <div class="hero-title">${esc(title)}</div>
-      ${body ? `<div class="hero-body">${linkify(esc(body))}</div>` : ''}
-    </div>`;
+function mediaHtml(photos, videos, cls) {
+  let h = '';
+  if (photos.length) h += `<img class="${cls}" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
+  if (videos.length) h += `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
+  return h;
 }
 
-function renderCard(p) {
-  const { title, body, photos, videos, id } = parsePost(p);
-  let mediaHtml = '';
-  if (photos.length) mediaHtml += `<img class="card-img" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
-  if (videos.length) mediaHtml += `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
-
-  return `<div class="card" onmouseenter="this.querySelectorAll('img[loading=lazy]').forEach(i=>{i.loading='eager';i.dataset.l=1})">
-    ${mediaHtml}
-    <div class="card-title">${esc(trunc(title, 100))}</div>
-    ${body ? `<div class="card-desc">${esc(trunc(body, 120))}</div>` : ''}
-    <div class="card-meta">#${id}</div>
-  </div>`;
-}
-
-function renderFullPost(p) {
-  const { title, body, npm, id, text } = parsePost(p);
-  const isLong = text.length > 280;
-  const bodyClass = isLong ? 'full-body collapsed' : 'full-body';
-  const expandBtn = isLong ? `<button class="read-more" onclick="this.previousElementSibling.classList.remove('collapsed');this.remove()">more</button>` : '';
-  const tag = npm ? `<span class="tag">${esc(npm[0])}</span>` : '';
-
-  return `<div class="full-width">
-    <div class="full-title">${esc(title)}</div>
-    ${body ? `<div class="${bodyClass}">${linkify(esc(body))}</div>` : ''}
-    <div class="full-meta">${tag}<span>#${id}</span>${expandBtn ? expandBtn.outerHTML || '' : ''}</div>
-  </div>`;
-}
-
-function renderQuote(p) {
-  return `<div class="quote-block">
-    <div class="quote-text">${esc(p.text)}</div>
-  </div>`;
-}
-
-function renderSidebarItem(p) {
-  const { title, photos, id } = parsePost(p);
-  let img = '';
-  if (photos.length) img = `<img class="sidebar-img" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
-
-  return `<div class="sidebar-item">
-    ${img}
-    <div class="sidebar-item-title">${esc(trunc(title, 80))}</div>
-    <div class="sidebar-item-meta">#${id}</div>
-  </div>`;
-}
-
-function renderDate() {
+function formatDate() {
   const d = new Date();
-  const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
-  document.getElementById('date-bar').textContent = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  document.getElementById('date-line').textContent = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+function render(posts) {
+  posts = posts.filter(p => p.text.trim().length > 15);
+  // re-categorize
+  const tk = ['npm ','npx ','open source','github.com','huggingface','ollama','pip install','tailwind','shadcn','vercel.app','webgl','web-haptics','svg'];
+  const ak = ['new model','dropped','released','launch','now on','now free','preview','just open sourced','is now','apparently free','mythos','muse spark'];
+  posts.forEach(p => {
+    const t = p.text.toLowerCase();
+    if (tk.some(k => t.includes(k))) p.cat = 'tool';
+    else if (ak.some(k => t.includes(k))) p.cat = 'announce';
+    else if (p.text.length < 130 && !(p.photos||[]).length && !(p.videos||[]).length) p.cat = 'take';
+    else p.cat = 'news';
+  });
+
+  formatDate();
+
+  const news = posts.filter(p => p.cat === 'news');
+  const tools = posts.filter(p => p.cat === 'tool');
+  const announces = posts.filter(p => p.cat === 'announce');
+  const takes = posts.filter(p => p.cat === 'take');
+
+  // FEATURED
+  const hero = news[0];
+  if (hero) {
+    const p = parse(hero);
+    document.getElementById('featured').innerHTML = `
+      <div class="featured">
+        <div class="featured-label">breaking</div>
+        <div class="featured-media">${mediaHtml(p.photos, p.videos, '')}</div>
+        <div class="featured-headline">${esc(p.title)}</div>
+        ${p.body ? `<div class="featured-deck">${linkify(esc(trunc(p.body, 300)))}</div>` : ''}
+        <div class="featured-meta">#${p.id}</div>
+      </div>`;
+  }
+
+  // NEWS GRID (next news with media, up to 4)
+  const gridNews = news.filter((p, i) => i > 0 && (p.photos.length || p.videos.length)).slice(0, 4);
+  const textNews = news.filter(p => !gridNews.includes(p)).slice(0, 8);
+
+  if (gridNews.length || textNews.length) {
+    document.getElementById('news-header').style.display = 'flex';
+    document.getElementById('news-count').textContent = `${news.length} stories`;
+  }
+
+  const gridEl = document.getElementById('news-grid');
+  gridNews.forEach(p => {
+    const { title, body, photos, videos, id } = parse(p);
+    gridEl.innerHTML += `<div class="news-item">
+      ${mediaHtml(photos, videos, 'news-img')}
+      <div class="news-headline">${esc(trunc(title, 90))}</div>
+      ${body ? `<div class="news-deck">${esc(trunc(body, 140))}</div>` : ''}
+      <div class="news-meta">#${id}</div>
+    </div>`;
+  });
+
+  const textEl = document.getElementById('news-text');
+  textNews.forEach(p => {
+    const { title, body, id } = parse(p);
+    const isLong = body.length > 280;
+    const bodyClass = isLong ? 'text-body collapsed' : 'text-body';
+    const btn = isLong ? `<button class="expand-btn" onclick="this.previousElementSibling.classList.remove('collapsed');this.remove()">more</button>` : '';
+    textEl.innerHTML += `<div class="text-item">
+      <div class="text-headline">${esc(title)}</div>
+      ${body ? `<div class="${bodyClass}">${linkify(esc(body))}</div>` : ''}
+      <div class="text-meta"><span>#${id}</span>${btn}</div>
+    </div>`;
+  });
+
+  // TOOLS
+  if (tools.length) {
+    document.getElementById('tools-header').style.display = 'flex';
+    document.getElementById('tools-count').textContent = `${tools.length} tools`;
+    const toolsEl = document.getElementById('tools-grid');
+    tools.forEach(p => {
+      const { title, body, photos, videos, id } = parse(p);
+      const npm = p.text.match(/(npm\s+\S+\s+\S+|npx\s+\S+\s*\S*)/);
+      toolsEl.innerHTML += `<div class="tool-item">
+        <div class="tool-name">${esc(trunc(title, 60))}</div>
+        ${body ? `<div class="tool-desc">${esc(trunc(body, 140))}</div>` : ''}
+        ${npm ? `<div class="tool-cmd">${esc(npm[0])}</div>` : ''}
+        <div class="tool-meta">#${id}</div>
+      </div>`;
+    });
+  }
+
+  // ANNOUNCEMENTS
+  if (announces.length) {
+    document.getElementById('announce-header').style.display = 'flex';
+    document.getElementById('announce-count').textContent = `${announces.length} releases`;
+    const annEl = document.getElementById('announce-list');
+    announces.forEach(p => {
+      const { title, body, photos, videos, id } = parse(p);
+      let media = '';
+      if (photos.length) media = `<img class="announce-img" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
+      if (videos.length) media = `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
+      annEl.innerHTML += `<div class="announce-item">
+        ${media}
+        <div>
+          <div class="announce-title">${esc(title)}</div>
+          ${body ? `<div class="announce-body">${linkify(esc(trunc(body, 200)))}</div>` : ''}
+          <div class="announce-meta">#${id}</div>
+        </div>
+      </div>`;
+    });
+  }
+
+  // TAKES
+  if (takes.length) {
+    document.getElementById('takes-header').style.display = 'flex';
+    document.getElementById('takes-count').textContent = `${takes.length} takes`;
+    const takesEl = document.getElementById('takes-list');
+    takes.forEach(p => {
+      takesEl.innerHTML += `<div class="take-item">
+        <div class="take-text">${esc(p.text)}</div>
+        <div class="take-meta">#${p.id}</div>
+      </div>`;
+    });
+  }
 }
 
 fetch('posts.json')
   .then(r => r.json())
-  .then(posts => {
-    // filter out empty junk
-    posts = posts.filter(p => p.text.trim().length > 20);
-
-    renderDate();
-
-    // hero = first post with media
-    const heroIdx = posts.findIndex(p => (p.photos && p.photos.length) || (p.videos && p.videos.length));
-    if (heroIdx >= 0) {
-      renderHero(posts[heroIdx]);
-      posts.splice(heroIdx, 1);
-    }
-
-    // next 4 posts with media -> grid cards
-    const grid = document.getElementById('grid');
-    let gridCount = 0;
-    const usedForGrid = [];
-    for (let i = 0; i < posts.length && gridCount < 4; i++) {
-      if ((posts[i].photos && posts[i].photos.length) || (posts[i].videos && posts[i].videos.length)) {
-        grid.innerHTML += renderCard(posts[i]);
-        usedForGrid.push(posts[i].id);
-        gridCount++;
-      }
-    }
-
-    // remaining posts -> feed (text-focused)
-    const feed = document.getElementById('feed');
-    const feedPosts = posts.filter(p => !usedForGrid.includes(p.id));
-    feedPosts.forEach((p, i) => {
-      if (i < 15) {
-        const { isQuote } = parsePost(p);
-        if (isQuote) {
-          feed.innerHTML += renderQuote(p);
-        } else {
-          feed.innerHTML += renderFullPost(p);
-        }
-      }
-    });
-
-    // sidebar = mid-range posts
-    const sidebar = document.getElementById('sidebar');
-    const sidebarPosts = posts.filter(p => !usedForGrid.includes(p.id)).slice(5, 13);
-    let sidebarHtml = `<div class="sidebar-section"><div class="sidebar-label">recent</div>`;
-    sidebarPosts.forEach(p => { sidebarHtml += renderSidebarItem(p); });
-    sidebarHtml += '</div>';
-    sidebar.innerHTML = sidebarHtml;
-  })
-  .catch(() => {
-    document.getElementById('hero').innerHTML = '<div class="loading">failed to load</div>';
-  });
+  .then(posts => render(posts))
+  .catch(() => { document.getElementById('featured').innerHTML = '<div class="loading">failed to load</div>'; });
 </script>
 </body>
 </html>
