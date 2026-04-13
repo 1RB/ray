@@ -10,18 +10,11 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-x:hidden}
-body{
-  background:#09090b;color:#e4e0d8;
-  font-family:'Inter',-apple-system,system-ui,sans-serif;
-  font-size:15px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
+body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
 ::selection{background:rgba(194,65,12,0.45);color:#fff}
 a{color:inherit;text-decoration:none}
 
 .page{max-width:560px;margin:0 auto;padding:0 20px}
-
-/* header */
 .h{padding:56px 0 28px;display:flex;justify-content:space-between;align-items:flex-end}
 .h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.8rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
 .h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
@@ -29,57 +22,29 @@ a{color:inherit;text-decoration:none}
 .h .links a:hover{color:#c2410c}
 .rule{height:1px;background:#1f1f1f}
 
-/* card */
-.card{padding:0;border-bottom:1px solid #161616}
+.card{border-bottom:1px solid #161616}
 .card:last-child{border-bottom:none}
 
-/* media */
 .m{margin:0 -20px;background:#0a0a0a;position:relative}
 .m img{width:100%;display:block;max-height:62vh;object-fit:contain;opacity:0;transition:opacity 0.6s cubic-bezier(0.4,0,0.2,1)}
 .m img.ok{opacity:1}
 
-/* video container */
-.vid-wrap{position:relative;background:#000}
-.vid-wrap video{
-  width:100%;display:block;
-  max-height:62vh;object-fit:contain;
-  background:#000;
-}
+.vid-box{position:relative;background:#000;margin:0 -20px}
+.vid-box video{width:100%;display:block;max-height:62vh;object-fit:contain;background:#000}
 
-/* mute button overlay */
-.mute-float{
+.mute-btn{
   position:absolute;top:10px;right:10px;
-  width:32px;height:32px;
-  border-radius:50%;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,0.1);
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.08);
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  color:rgba(255,255,255,0.7);
-  transition:background 0.15s,color 0.15s,opacity 0.2s;
-  z-index:2;
-  opacity:0;
+  cursor:pointer;color:rgba(255,255,255,0.65);
+  transition:all 0.15s;opacity:0;z-index:3;
 }
-.vid-wrap:hover .mute-float{opacity:1}
-.mute-float:hover{background:rgba(0,0,0,0.75);color:#fff}
-.mute-float svg{width:16px;height:16px}
+.vid-box:hover .mute-btn{opacity:1}
+.mute-btn:hover{background:rgba(0,0,0,0.7);color:#fff}
+.mute-btn svg{width:15px;height:15px}
 
-/* autoplay indicator */
-.auto-badge{
-  position:absolute;top:10px;left:10px;
-  font-size:0.55rem;font-weight:500;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(6px);
-  color:rgba(255,255,255,0.5);
-  padding:3px 8px;border-radius:3px;
-  pointer-events:none;
-  opacity:0;transition:opacity 0.2s;
-  z-index:2;
-}
-.vid-wrap:hover .auto-badge{opacity:1}
-
-/* text */
 .t{padding:16px 0 20px}
 .t .title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:500;line-height:1.3;color:#e4e0d8;margin-bottom:5px;letter-spacing:-0.005em}
 .t .title a:hover{color:#c2410c}
@@ -87,11 +52,10 @@ a{color:inherit;text-decoration:none}
 .t .body a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
 .t .body a:hover{border-bottom-color:#c2410c}
 
-/* meta */
 .meta{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .cmd{display:inline-flex;align-items:center;gap:5px;font-family:'Inter',sans-serif;font-size:0.64rem;font-weight:500;background:#151515;color:#888;padding:4px 10px;border-radius:4px;cursor:pointer;border:1px solid #1e1e1e;transition:all 0.15s;user-select:all}
 .cmd:hover{background:#1c1c1c;color:#bbb;border-color:#2a2a2a}
-.cmd:active{background:#c2410c;color:#fff;border-color:#c2410c}
+.cmd:active,.cmd.ok{background:#c2410c;color:#fff;border-color:#c2410c}
 .cmd .ico{width:10px;height:10px;opacity:0.3}
 .src{font-size:0.58rem;color:#c2410c;opacity:0.45;text-decoration:none;transition:opacity 0.15s}
 .src:hover{opacity:1}
@@ -106,8 +70,8 @@ a{color:inherit;text-decoration:none}
   .h{flex-direction:column;align-items:flex-start;gap:8px}
   .h h1{font-size:2.2rem}
   .t .title{font-size:1.1rem}
-  .m{margin:0 -14px}
-  .m img,.vid-wrap video{max-height:50vh}
+  .m,.vid-box{margin:0 -14px}
+  .m img,.vid-box video{max-height:50vh}
 }
 </style>
 </head>
@@ -115,10 +79,7 @@ a{color:inherit;text-decoration:none}
 <div class="page">
   <div class="h">
     <h1>ray</h1>
-    <div class="links">
-      <a href="https://t.me/raysterminal">telegram</a>
-      <a href="https://github.com/1RB">github</a>
-    </div>
+    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
   </div>
   <div class="rule"></div>
   <div id="feed"><div class="ld">loading</div></div>
@@ -131,7 +92,6 @@ const SKIP=['trump','netanyahu','spain','ireland','palestine','vance','iran','hu
 const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.innerHTML};
 const linkify=t=>t.replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
 const host=u=>{try{return new URL(u).hostname.replace('www.','')}catch{return ''}};
-
 function getUrl(t){const u=t.match(/https?:\/\/[^\s]+/g)||[];return u.find(x=>!x.includes('fixupx')&&!x.includes('x.com/i/status'))||''}
 function getCmd(t){const m=t.match(/((?:npm|npx)\s+[^\n]+)/);return m?m[1].replace(/\s*https?:\/\/\S+/,'').trim():''}
 
@@ -139,8 +99,7 @@ function parse(p){
   const lines=p.text.split('\n');
   let title=lines[0].replace(/\s+/g,' ').trim();
   let body=lines.slice(1).join('\n').trim();
-  const url=getUrl(p.text);
-  const cmd=getCmd(p.text);
+  const url=getUrl(p.text);const cmd=getCmd(p.text);
   if(url)body=body.replace(new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'').trim();
   return{title,body:body.trim(),url,cmd,id:p.id,photos:p.photos||[],videos:p.videos||[]}
 }
@@ -148,36 +107,64 @@ function parse(p){
 function copyPill(el){
   const text=el.dataset.cmd||el.textContent;
   navigator.clipboard.writeText(text).then(()=>{
-    el.style.background='#c2410c';el.style.color='#fff';el.style.borderColor='#c2410c';
-    el.textContent='copied';
-    setTimeout(()=>{el.textContent=text;el.style.background='';el.style.color='';el.style.borderColor=''},800);
+    el.classList.add('ok');el.textContent='copied';
+    setTimeout(()=>{el.textContent=text;el.classList.remove('ok')},800);
   });
 }
 
-const MUTE_ON='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>';
-const MUTE_OFF='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
+// mute button SVGs
+const M_ON='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
+const M_OFF='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>';
 
-// autoplay observer
-const vidObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    const v=e.target;
-    if(e.isIntersecting&&e.intersectionRatio>0.4){
-      v.muted=true;v.play().catch(()=>{});
-    }else{v.pause()}
+function toggleMute(btn){
+  const v=btn.closest('.vid-box').querySelector('video');
+  v.muted=!v.muted;btn.innerHTML=v.muted?M_ON:M_OFF;
+}
+
+// autoplay videos when visible
+function setupAutoplay(){
+  const vids=document.querySelectorAll('.vid-box video');
+  if(!vids.length)return;
+
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      const v=entry.target;
+      if(entry.isIntersecting){
+        v.muted=true;
+        const p=v.play();
+        if(p)p.catch(()=>{/* autoplay blocked, user can click play */});
+      }else{
+        v.pause();
+      }
+    });
+  },{threshold:0.25});
+
+  vids.forEach(v=>{
+    v.muted=true;v.loop=true;v.playsInline=true;
+    // pause all other videos when this one plays
+    v.addEventListener('play',()=>{
+      document.querySelectorAll('.vid-box video').forEach(o=>{
+        if(o!==v)o.pause();
+      });
+    });
+    obs.observe(v);
   });
-},{threshold:[0,0.4,0.8]});
+}
 
 // image fade
-const imgObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const img=e.target;
-      if(img.complete)img.classList.add('ok');
-      else img.onload=()=>img.classList.add('ok');
-      imgObs.unobserve(img);
-    }
-  });
-},{rootMargin:'400px'});
+function setupImages(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const img=e.target;
+        if(img.complete)img.classList.add('ok');
+        else img.onload=()=>img.classList.add('ok');
+        obs.unobserve(img);
+      }
+    });
+  },{rootMargin:'400px'});
+  document.querySelectorAll('.m img').forEach(img=>obs.observe(img));
+}
 
 function render(allPosts){
   const posts=allPosts.filter(p=>{
@@ -190,28 +177,25 @@ function render(allPosts){
     return arr.findIndex(x=>x.text.split('\n')[0].toLowerCase().trim().slice(0,55)===k)===i;
   });
 
-  const feed=document.getElementById('feed');
-  feed.innerHTML='';
+  const feed=document.getElementById('feed');feed.innerHTML='';
 
   posts.forEach(p=>{
     const e=parse(p);
     if(/^https?:\/\//.test(e.title)&&!e.body&&!e.photos.length&&!e.videos.length)return;
 
-    const card=document.createElement('div');
-    card.className='card';
+    const card=document.createElement('div');card.className='card';
+    let top='';
 
-    // media
     if(e.photos.length){
-      card.innerHTML+=`<div class="m"><img src="${esc(e.photos[0])}" decoding="async" alt=""></div>`;
+      top=`<div class="m"><img src="${esc(e.photos[0])}" decoding="async" alt=""></div>`;
     }else if(e.videos.length){
-      card.innerHTML+=`<div class="m"><div class="vid-wrap">
-        <video src="${esc(e.videos[0])}" controls muted loop playsinline preload="metadata"></video>
-        <div class="mute-float" onclick="toggleMute(this)">${MUTE_ON}</div>
-        <div class="auto-badge">autoplay</div>
-      </div></div>`;
+      const vu=esc(e.videos[0]);
+      top=`<div class="vid-box">
+        <video controls muted loop playsinline preload="auto"><source src="${vu}" type="video/mp4"></video>
+        <div class="mute-btn" onclick="toggleMute(this)">${M_ON}</div>
+      </div>`;
     }
 
-    // text
     let title=e.url?`<div class="title"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>`:`<div class="title">${esc(e.title)}</div>`;
     let body=e.body?`<div class="body">${linkify(esc(e.body))}</div>`:'';
     let meta='';
@@ -219,22 +203,11 @@ function render(allPosts){
     if(e.url){const h=host(e.url);if(h)meta+=`<a class="src" href="${esc(e.url)}" target="_blank">${esc(h)}</a>`}
     if(meta)meta=`<div class="meta">${meta}</div>`;
 
-    card.innerHTML+=`<div class="t">${title}${body}${meta}</div>`;
+    card.innerHTML=top+`<div class="t">${title}${body}${meta}</div>`;
     feed.appendChild(card);
   });
 
-  requestAnimationFrame(()=>{
-    document.querySelectorAll('.m img').forEach(img=>imgObs.observe(img));
-    document.querySelectorAll('.vid-wrap video').forEach(v=>{
-      v.muted=true;vidObs.observe(v);
-    });
-  });
-}
-
-function toggleMute(btn){
-  const vid=btn.closest('.vid-wrap').querySelector('video');
-  vid.muted=!vid.muted;
-  btn.innerHTML=vid.muted?MUTE_ON:MUTE_OFF;
+  requestAnimationFrame(()=>{setupImages();setupAutoplay()});
 }
 
 fetch('posts.json').then(r=>r.json()).then(render).catch(()=>{
