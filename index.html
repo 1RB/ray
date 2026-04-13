@@ -2,91 +2,161 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ray</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{overflow-x:hidden}
 body{
-  background:#0f0f0f;
-  color:#e0dcd4;
-  font-family:-apple-system,'Inter',system-ui,sans-serif;
+  background:#0e0e0e;
+  color:#d4d0c8;
+  font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;
   font-size:15px;
-  line-height:1.55;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
 }
-::selection{background:rgba(196,77,43,0.6);color:#fff}
-a{color:inherit}
+::selection{background:rgba(180,60,30,0.5);color:#fff}
 
-/* ===== SITE ===== */
-.site{max-width:600px;margin:0 auto;padding:0 16px}
+/* ===== LAYOUT ===== */
+.site{max-width:580px;margin:0 auto;padding:0 20px}
 
 /* ===== HEADER ===== */
-.hdr{padding:40px 0 20px}
-.hdr h1{font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;font-weight:400;letter-spacing:-0.02em;line-height:1}
-.hdr h1 i{color:#c44d2b}
-.hdr .sub{font-size:0.78rem;color:#555;margin-top:4px;font-weight:300}
-.hdr .lnk{margin-top:10px;font-size:0.65rem;color:#444}
-.hdr .lnk a{color:#444;text-decoration:none;margin-right:12px;transition:color 0.2s}
-.hdr .lnk a:hover{color:#c44d2b}
-.sep{height:1px;background:#1c1c1c}
+.hdr{padding:52px 0 24px}
+.hdr h1{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:2.6rem;
+  font-weight:400;
+  font-style:italic;
+  letter-spacing:-0.02em;
+  line-height:1;
+  color:#e8e4dc;
+}
+.hdr .sub{
+  font-size:0.76rem;
+  color:#555;
+  margin-top:6px;
+  font-weight:400;
+  letter-spacing:0.01em;
+}
+.hdr .nav{margin-top:12px;font-size:0.64rem;color:#3a3a3a;display:flex;gap:14px}
+.hdr .nav a{color:#3a3a3a;text-decoration:none;transition:color 0.2s}
+.hdr .nav a:hover{color:#b4441e}
+.rule{height:1px;background:#1c1c1c;margin:0}
 
 /* ===== CARD ===== */
-.card{padding:20px 0;border-bottom:1px solid #1a1a1a}
-.card:last-child{border-bottom:none;padding-bottom:60px}
+.card{padding:22px 0;border-bottom:1px solid #171717}
+.card:last-child{border-bottom:none;padding-bottom:80px}
 
-/* media */
-.card .pic{margin:-20px -16px 14px;overflow:hidden;background:#161616}
-.card .pic img{width:100%;display:block;opacity:0;transition:opacity 0.4s ease}
-.card .pic img.show{opacity:1}
-.card .pic video{width:100%;display:block;max-height:520px;object-fit:contain;background:#000}
+/* media - full bleed within card, no rounded corners, no bg */
+.card .media{margin:0 -20px 14px;overflow:hidden;position:relative;background:#111}
+.card .media img{
+  width:100%;
+  display:block;
+  max-height:55vh;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+.card .media img.ok{opacity:1}
+
+/* video */
+.card .media video{
+  width:100%;
+  display:block;
+  max-height:55vh;
+  object-fit:contain;
+  background:#000;
+  cursor:pointer;
+}
 
 /* title */
-.card .ttl{font-family:'Instrument Serif',Georgia,serif;font-size:1.2rem;font-weight:400;line-height:1.35;color:#e0dcd4;margin-bottom:5px}
-.card .ttl a{color:#e0dcd4;text-decoration:none;transition:color 0.15s}
-.card .ttl a:hover{color:#c44d2b}
+.card .title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.25rem;
+  font-weight:600;
+  line-height:1.3;
+  color:#e0dcd4;
+  margin-bottom:4px;
+}
+.card .title a{color:inherit;text-decoration:none}
+.card .title a:hover{color:#b4441e}
 
 /* body */
-.card .txt{font-size:0.86rem;color:#777;line-height:1.6;white-space:pre-wrap;word-break:break-word}
-.card .txt a{color:#c44d2b;text-decoration:none;transition:opacity 0.15s}
-.card .txt a:hover{opacity:0.7}
-
-/* footer */
-.card .ft{margin-top:8px;display:flex;align-items:center;gap:8px;font-size:0.6rem;color:#3a3a3a}
-.card .ft .src{color:#c44d2b;opacity:0.6;text-decoration:none;transition:opacity 0.15s}
-.card .ft .src:hover{opacity:1}
-.card .ft .cmd{
-  background:#1a1a1a;color:#999;padding:2px 7px;border-radius:3px;
-  cursor:pointer;transition:background 0.15s,color 0.15s;
-  user-select:all;font-family:-apple-system,'Inter',sans-serif;
-  display:inline-flex;align-items:center;gap:4px;
+.card .body{
+  font-size:0.84rem;
+  color:#777;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
 }
-.card .ft .cmd:hover{background:#252525;color:#ccc}
-.card .ft .cmd.ok{background:#c44d2b;color:#fff}
+.card .body a{color:#b4441e;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.card .body a:hover{border-bottom-color:#b4441e}
 
-/* ===== LOADING ===== */
+/* meta row */
+.card .meta{
+  margin-top:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+/* command pill */
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-family:'Instrument Sans',-apple-system,sans-serif;
+  font-size:0.68rem;
+  font-weight:500;
+  background:#1a1a1a;
+  color:#999;
+  padding:4px 10px;
+  border-radius:4px;
+  cursor:pointer;
+  transition:background 0.15s,color 0.15s;
+  user-select:all;
+  border:1px solid #222;
+}
+.pill:hover{background:#222;color:#ccc;border-color:#333}
+.pill:active{background:#b4441e;color:#fff;border-color:#b4441e}
+.pill svg{width:10px;height:10px;opacity:0.4}
+
+.host{
+  font-size:0.6rem;
+  color:#b4441e;
+  opacity:0.5;
+  text-decoration:none;
+  transition:opacity 0.15s;
+}
+.host:hover{opacity:1}
+
+/* loading */
 .ld{font-size:0.75rem;color:#333;padding:80px 0;text-align:center}
 
 @media(max-width:600px){
-  .site{padding:0 12px}
-  .hdr h1{font-size:1.8rem}
-  .card .ttl{font-size:1.05rem}
-  .card .pic{margin:-20px -12px 14px}
+  .site{padding:0 14px}
+  .hdr h1{font-size:2rem}
+  .card .title{font-size:1.1rem}
+  .card .media{margin:0 -14px 14px}
+  .card .media img,.card .media video{max-height:45vh}
 }
 </style>
 </head>
 <body>
 <div class="site">
   <div class="hdr">
-    <h1><i>ray</i></h1>
+    <h1>ray</h1>
     <div class="sub">curated dev tools and resources</div>
-    <div class="lnk"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+    <div class="nav">
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </div>
   </div>
-  <div class="sep"></div>
+  <div class="rule"></div>
   <div id="feed"><div class="ld">loading</div></div>
 </div>
 
@@ -98,24 +168,11 @@ const SKIP = ['trump','netanyahu','spain','ireland','palestine','cease','vaccine
   'blockade','hormuz','navy','jesus','epstein','elon','vance','iran',
   'hungary','lebanon','apple maps','whip to make','truth social','ai jesus',
   'vaccine in food','orban','obama','biden','putin','russia','china','nato',
-  'lovable','kagi','ultramock','nestle','muse spark','mattrothenberg',
-  'cineby','bicycle42','react-shop','spacetime','meta super','how anthropic',
-  'anthropic running','digital whip'];
-
-const DEV = ['npm','npx','open source','github.com','huggingface','ollama','pip',
-  'library','component','framework','tailwind','shadcn','vercel','webgl','react',
-  'next.js','typescript','javascript','css ','html ','python','rust','api','cli','tool',
-  'editor','ui ','design','figma','animation','3d','shader','svg','svelte','vue',
-  'astro','vite','bundler','compiler','database','auth','saas','stripe','webgpu',
-  'canvas','dom','browser','extension','plugin','font','icon','template',
-  'boilerplate','starter','skeleton','toast','modal','chart','graph','map','globe',
-  'haptic','whisper','model','llm','ai','agent','mcp','qwen','claude','gpt',
-  'gemma','mistral','deepseek','cursor','bolt','anthropic','ollama',
-  'opencode','hermes','sonnet','opus','codex','copilot','suno','music',
-  'audio','video','image','generative','diffusion','stable','flux','comfy','openai',
-  'cobe','spell','cult','boneyard','sileo','fieldtheory','dogfood','paykit','sure',
-  'haptics','pascal','aurelia','hit-area','liquid glass','minimax','glm',
-  'cursor','google','apple','skoda','joe liemandt','knowledge project'];
+  'kagi','ultramock','nestle','muse spark','mattrothenberg',
+  'cineby','bicycle42','react-shop','spacetime','lovable',
+  'how anthropic','digital whip','matt rothenberg','kagi.com','massgrave.dev',
+  'nestle.cam','ultramock.io','v0-nfc','v0-sidebar','v0-marketing',
+  'download/activate','windows','office','pay $1.99'];
 
 // === helpers ===
 const $ = s => document.querySelector(s);
@@ -128,62 +185,112 @@ function getMainUrl(text) {
   return urls.find(u => !u.includes('fixupx') && !u.includes('x.com/i/status')) || '';
 }
 
+function getHost(url) {
+  try { return new URL(url).hostname.replace('www.',''); } catch { return ''; }
+}
+
+// full command extraction: npm install -g fieldtheory, npx shadcn@latest add ...
+function getCmd(text) {
+  // match from npm/npx to end of line or next URL/line break
+  const m = text.match(/((?:npm|npx)\s+[^\n]+)/);
+  if (!m) return '';
+  // trim trailing URLs
+  return m[1].replace(/\s*https?:\/\/\S+/, '').trim();
+}
+
 function parse(p) {
   const lines = p.text.split('\n');
   let title = lines[0].replace(/\s+/g,' ').trim();
   let body = lines.slice(1).join('\n').trim();
   const url = getMainUrl(p.text);
-  const npm = p.text.match(/(npm\s+(?:i|install)\s+\S+|npx\s+\S+\s*\S*)/);
+  const cmd = getCmd(p.text);
   if (url) body = body.replace(new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'').trim();
   body = body.replace(/^\s+|\s+$/g,'');
-  return { title, body, url, npm, id: p.id, photos: p.photos||[], videos: p.videos||[] };
+  return { title, body, url, cmd, id: p.id, photos: p.photos||[], videos: p.videos||[] };
 }
 
-function copyCmd(el) {
-  const text = el.textContent.trim();
+function copyPill(el) {
+  const text = el.dataset.cmd || el.textContent;
   navigator.clipboard.writeText(text).then(() => {
-    el.classList.add('ok');
+    el.style.background = '#b4441e';
+    el.style.color = '#fff';
+    el.style.borderColor = '#b4441e';
     const orig = el.textContent;
     el.textContent = 'copied';
-    setTimeout(() => { el.textContent = orig; el.classList.remove('ok'); }, 1000);
+    setTimeout(() => {
+      el.textContent = orig;
+      el.style.background = '';
+      el.style.color = '';
+      el.style.borderColor = '';
+    }, 900);
   });
 }
 
-// === intersection observer for video autoplay ===
-const vidObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    const v = e.target;
-    if (e.isIntersecting) {
-      v.muted = true;
-      v.play().catch(()=>{});
-    } else {
-      v.pause();
-    }
+// === video autoplay via intersection observer ===
+function setupVideos() {
+  const vids = document.querySelectorAll('.media video');
+  if (!vids.length) return;
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const v = entry.target;
+      if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+        v.muted = true;
+        const p = v.play();
+        if (p) p.catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: [0, 0.4, 0.7] });
+
+  vids.forEach(v => {
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    // click to toggle play/pause
+    v.addEventListener('click', () => {
+      if (v.paused) { v.muted = true; v.play(); }
+      else v.pause();
+    });
+    obs.observe(v);
   });
-}, { threshold: 0.5 });
+}
 
 // === image fade in ===
-const imgObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const img = e.target;
-      if (img.complete) img.classList.add('show');
-      else img.onload = () => img.classList.add('show');
-      imgObserver.unobserve(img);
-    }
-  });
-}, { rootMargin: '200px' });
+function setupImages() {
+  const imgs = document.querySelectorAll('.media img');
+  if (!imgs.length) return;
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.complete) img.classList.add('ok');
+        else {
+          img.onload = () => img.classList.add('ok');
+          img.onerror = () => img.classList.add('ok'); // show broken instead of blank
+        }
+        obs.unobserve(img);
+      }
+    });
+  }, { rootMargin: '300px' });
+
+  imgs.forEach(img => obs.observe(img));
+}
 
 // === render ===
 function render(allPosts) {
+  // filter
   const posts = allPosts.filter(p => {
     const t = p.text.toLowerCase().trim();
-    if (t.length < 20) return false;
+    if (t.length < 15) return false;
     if (SKIP.some(s => t.includes(s))) return false;
-    return DEV.some(k => t.includes(k)) || p.text.length > 100;
+    return true;
   }).filter((p,i,arr) => {
-    const key = p.text.split('\n')[0].toLowerCase().trim().slice(0,50);
-    return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0,50) === key) === i;
+    // dedup by first line
+    const key = p.text.split('\n')[0].toLowerCase().trim().slice(0,55);
+    return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0,55) === key) === i;
   });
 
   const feed = document.getElementById('feed');
@@ -191,55 +298,51 @@ function render(allPosts) {
 
   posts.forEach(p => {
     const e = parse(p);
-    // skip posts that are just a URL with no context
+    // skip posts that are just a URL with zero context and no media
     if (/^https?:\/\//.test(e.title) && !e.body && !e.photos.length && !e.videos.length) return;
 
     const card = document.createElement('div');
     card.className = 'card';
-
     let html = '';
 
     // media
     if (e.photos.length) {
-      html += `<div class="pic"><img src="${esc(e.photos[0])}" decoding="async" alt=""></div>`;
+      html += `<div class="media"><img src="${esc(e.photos[0])}" decoding="async" alt=""></div>`;
     } else if (e.videos.length) {
-      html += `<div class="pic"><video src="${esc(e.videos[0])}" muted loop playsinline></video></div>`;
+      html += `<div class="media"><video src="${esc(e.videos[0])}" muted loop playsinline preload="auto"></video></div>`;
     }
 
     // title
     if (e.url) {
-      html += `<div class="ttl"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>`;
+      html += `<div class="title"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>`;
     } else {
-      html += `<div class="ttl">${esc(e.title)}</div>`;
+      html += `<div class="title">${esc(e.title)}</div>`;
     }
 
     // body
     if (e.body) {
-      html += `<div class="txt">${linkify(esc(e.body))}</div>`;
+      html += `<div class="body">${linkify(esc(e.body))}</div>`;
     }
 
-    // footer
-    let ft = '';
-    if (e.npm) {
-      ft += `<span class="cmd" onclick="copyCmd(this)">${esc(e.npm[0])}</span>`;
+    // meta
+    let meta = '';
+    if (e.cmd) {
+      meta += `<span class="pill" data-cmd="${esc(e.cmd)}" onclick="copyPill(this)">${esc(e.cmd)}<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>`;
     }
     if (e.url) {
-      let host = '';
-      try { host = new URL(e.url).hostname.replace('www.',''); } catch {}
-      if (host) ft += `<a class="src" href="${esc(e.url)}" target="_blank">${esc(host)}</a>`;
+      const host = getHost(e.url);
+      if (host) meta += `<a class="host" href="${esc(e.url)}" target="_blank">${esc(host)}</a>`;
     }
-    if (ft) html += `<div class="ft">${ft}</div>`;
+    if (meta) html += `<div class="meta">${meta}</div>`;
 
     card.innerHTML = html;
     feed.appendChild(card);
+  });
 
-    // observe images
-    const img = card.querySelector('.pic img');
-    if (img) imgObserver.observe(img);
-
-    // observe videos for autoplay
-    const vid = card.querySelector('.pic video');
-    if (vid) vidObserver.observe(vid);
+  // init observers after render
+  requestAnimationFrame(() => {
+    setupImages();
+    setupVideos();
   });
 }
 
