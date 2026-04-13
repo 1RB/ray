@@ -6,546 +6,213 @@
   <title>ray</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --cream: #FAF8F4;
-      --ink: #111110;
-      --ink-light: #3a3a38;
-      --ink-muted: #8a8880;
-      --rule: #d8d4cc;
-      --rule-light: #e8e4dc;
-      --accent: #b5421f;
-      --accent-light: #f0e8e4;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'Inter', -apple-system, sans-serif;
-      --mono: 'JetBrains Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--sans);
+      background: #FAF8F4;
+      color: #111;
+      font-family: 'Inter', -apple-system, sans-serif;
       font-size: 15px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
+    ::selection { background: #b5421f; color: #FAF8F4; }
 
-    ::selection { background: var(--accent); color: var(--cream); }
+    .page { max-width: 780px; margin: 0 auto; padding: 0 28px; }
 
-    .site { max-width: 1200px; margin: 0 auto; }
-
-    /* ==========================================
-       MASTHEAD
-       ========================================== */
-    .masthead {
-      padding: 20px 40px 0;
-      border-bottom: 3px double var(--ink);
+    /* header */
+    .header {
+      padding: 56px 0 40px;
     }
-    .masthead-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-bottom: 12px;
-    }
-    .logo {
-      font-family: var(--serif);
-      font-size: 3.2rem;
+    .header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3.5rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1;
-      color: var(--ink);
+      margin-bottom: 10px;
     }
-    .logo em {
+    .header h1 em {
       font-style: italic;
       font-weight: 500;
-      color: var(--accent);
+      color: #b5421f;
     }
-    .masthead-right {
-      text-align: right;
+    .header p {
+      font-size: 0.92rem;
+      color: #8a8880;
+      max-width: 440px;
+      line-height: 1.55;
     }
-    .masthead-date {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--ink-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .masthead-links {
-      font-family: var(--mono);
+    .header-links {
+      margin-top: 14px;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.68rem;
     }
-    .masthead-links a {
-      color: var(--ink-muted);
+    .header-links a {
+      color: #8a8880;
       text-decoration: none;
-      margin-left: 16px;
+      margin-right: 16px;
       transition: color 0.15s;
     }
-    .masthead-links a:hover { color: var(--accent); }
-    .masthead-links a:first-child { margin-left: 0; }
+    .header-links a:hover { color: #b5421f; }
 
-    .nav-bar {
-      display: flex;
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      margin-top: 0;
-    }
-    .nav-item {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--ink-muted);
-      padding: 8px 16px;
-      cursor: pointer;
-      border-right: 1px solid var(--rule);
-      transition: background 0.15s, color 0.15s;
-      user-select: none;
-    }
-    .nav-item:last-child { border-right: none; }
-    .nav-item:hover, .nav-item.active {
-      background: var(--ink);
-      color: var(--cream);
+    .divider {
+      height: 1px;
+      background: #d8d4cc;
+      margin: 0;
     }
 
-    /* ==========================================
-       FEATURED STORY
-       ========================================== */
-    .featured {
-      padding: 40px 40px 36px;
-      border-bottom: 1px solid var(--rule);
-      cursor: default;
+    /* post */
+    .post {
+      padding: 36px 0;
+      border-bottom: 1px solid #e8e4dc;
     }
-    .featured-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-bottom: 16px;
-      font-weight: 400;
-    }
-    .featured-media {
-      margin-bottom: 24px;
+    .post:last-child { border-bottom: none; }
+
+    .post-media {
+      margin-bottom: 18px;
+      border-radius: 3px;
       overflow: hidden;
-      border-radius: 2px;
     }
-    .featured-media img {
-      width: 100%;
-      max-height: 480px;
-      object-fit: cover;
-      display: block;
-    }
-    .featured-media video {
+    .post-media img {
       width: 100%;
       display: block;
-      background: var(--ink);
     }
-    .featured-headline {
-      font-family: var(--serif);
-      font-size: 2.8rem;
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      max-width: 720px;
-      margin-bottom: 16px;
-    }
-    .featured-deck {
-      font-size: 1rem;
-      color: var(--ink-light);
-      line-height: 1.65;
-      max-width: 600px;
-    }
-    .featured-deck a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
-    .featured-deck a:hover { border-bottom-color: var(--accent); }
-    .featured-meta {
-      margin-top: 12px;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--ink-muted);
+    .post-media video {
+      width: 100%;
+      display: block;
+      background: #111;
+      border-radius: 3px;
     }
 
-    /* ==========================================
-       SECTION HEADERS
-       ========================================== */
-    .section-header {
-      padding: 28px 40px 16px;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      border-bottom: 2px solid var(--ink);
-    }
-    .section-title {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    .section-rule {
-      flex: 1;
-      height: 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .section-count {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--ink-muted);
-    }
-
-    /* ==========================================
-       NEWS GRID (2-col with images)
-       ========================================== */
-    .news-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 0 40px;
-    }
-    .news-item {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .news-item:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--rule-light); }
-    .news-item:nth-child(even) { padding-left: 24px; }
-    .news-img {
-      width: 100%;
-      aspect-ratio: 16/10;
-      object-fit: cover;
-      border-radius: 2px;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .news-item video {
-      width: 100%;
-      border-radius: 2px;
-      margin-bottom: 12px;
-      background: var(--ink);
-    }
-    .news-headline {
-      font-family: var(--serif);
-      font-size: 1.2rem;
+    .post-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
       font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .news-deck {
-      font-size: 0.82rem;
-      color: var(--ink-muted);
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .news-meta {
-      margin-top: 8px;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      color: var(--ink-muted);
-      opacity: 0.6;
-    }
-
-    /* ==========================================
-       TOOLS LIST
-       ========================================== */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      padding: 0 40px;
-      gap: 0;
-    }
-    .tool-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--rule);
-      border-right: 1px solid var(--rule-light);
-    }
-    .tool-item:nth-child(3n) { border-right: none; }
-    .tool-name {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      font-weight: 400;
-      margin-bottom: 6px;
-      color: var(--ink);
-    }
-    .tool-desc {
-      font-size: 0.78rem;
-      color: var(--ink-muted);
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      line-height: 1.28;
+      letter-spacing: -0.01em;
       margin-bottom: 8px;
     }
-    .tool-cmd {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      background: var(--ink);
-      color: var(--cream);
-      padding: 3px 8px;
-      border-radius: 2px;
-      display: inline-block;
+    .post-title a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.15s;
     }
-    .tool-meta {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      color: var(--ink-muted);
-      margin-top: 8px;
-      opacity: 0.5;
-    }
+    .post-title a:hover { border-bottom-color: #b5421f; }
 
-    /* ==========================================
-       ANNOUNCEMENTS
-       ========================================== */
-    .announce-list {
-      padding: 0 40px;
-    }
-    .announce-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--rule);
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-    .announce-img {
-      width: 140px;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: 2px;
-    }
-    .announce-item video {
-      width: 140px;
-      border-radius: 2px;
-      background: var(--ink);
-    }
-    .announce-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .announce-body {
-      font-size: 0.82rem;
-      color: var(--ink-muted);
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .announce-body a { color: var(--accent); text-decoration: none; }
-    .announce-meta {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      color: var(--ink-muted);
-      margin-top: 6px;
-      opacity: 0.5;
-    }
-
-    /* ==========================================
-       TAKES
-       ========================================== */
-    .takes {
-      padding: 0 40px;
-    }
-    .take-item {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--rule);
-      border-left: 3px solid var(--accent);
-      padding-left: 20px;
-    }
-    .take-text {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.45;
-      color: var(--ink-light);
-    }
-    .take-meta {
-      margin-top: 8px;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      color: var(--ink-muted);
-      opacity: 0.5;
-    }
-
-    /* ==========================================
-       FULL TEXT POSTS (news without media)
-       ========================================== */
-    .text-feed {
-      padding: 0 40px;
-    }
-    .text-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .text-headline {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 600;
-      line-height: 1.35;
-      margin-bottom: 6px;
-    }
-    .text-body {
-      font-size: 0.85rem;
-      color: var(--ink-muted);
-      line-height: 1.6;
+    .post-body {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.65;
+      max-width: 600px;
       white-space: pre-wrap;
       word-break: break-word;
     }
-    .text-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
-    .text-body a:hover { border-bottom-color: var(--accent); }
-    .text-body.collapsed {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .post-body a {
+      color: #b5421f;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
     }
-    .text-meta {
-      margin-top: 6px;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      color: var(--ink-muted);
-      opacity: 0.5;
+    .post-body a:hover { border-bottom-color: #b5421f; }
+
+    .post-meta {
+      margin-top: 10px;
       display: flex;
       gap: 10px;
       align-items: center;
     }
-    .expand-btn {
-      font-family: var(--mono);
+    .post-meta .cmd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      background: #111;
+      color: #FAF8F4;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+    .post-meta .id {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.62rem;
-      color: var(--accent);
-      cursor: pointer;
-      border: none;
-      background: none;
-      text-decoration: underline;
-      text-underline-offset: 2px;
+      color: #aaa;
+    }
+    .post-meta a.source {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: #b5421f;
+      text-decoration: none;
       opacity: 0.8;
+      transition: opacity 0.15s;
     }
-    .expand-btn:hover { opacity: 1; }
+    .post-meta a.source:hover { opacity: 1; }
 
-    /* ==========================================
-       FOOTER
-       ========================================== */
-    .site-footer {
-      padding: 32px 40px 60px;
-      border-top: 3px double var(--ink);
-      margin-top: 40px;
+    /* first post is bigger */
+    .post.featured .post-title {
+      font-size: 2.2rem;
+      line-height: 1.18;
     }
-    .site-footer p {
-      font-family: var(--mono);
+    .post.featured .post-media {
+      margin-bottom: 20px;
+    }
+
+    /* no-media post */
+    .post.text-only {
+      padding: 24px 0;
+    }
+    .post.text-only .post-title {
+      font-size: 1.2rem;
+    }
+
+    /* footer */
+    .footer {
+      padding: 40px 0 64px;
+      text-align: center;
+    }
+    .footer p {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.68rem;
-      color: var(--ink-muted);
+      color: #aaa;
     }
-    .site-footer a { color: var(--ink-muted); text-decoration: none; }
-    .site-footer a:hover { color: var(--accent); }
+    .footer a { color: #aaa; text-decoration: none; }
+    .footer a:hover { color: #b5421f; }
 
     .loading {
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
-      color: var(--ink-muted);
-      padding: 80px 40px;
+      color: #aaa;
+      padding: 60px 0;
     }
 
-    /* ==========================================
-       RESPONSIVE
-       ========================================== */
-    @media (max-width: 860px) {
-      .news-grid { grid-template-columns: 1fr; }
-      .news-item:nth-child(odd) { padding-right: 0; border-right: none; }
-      .news-item:nth-child(even) { padding-left: 0; }
-      .tools-grid { grid-template-columns: 1fr 1fr; }
-      .tool-item:nth-child(3n) { border-right: 1px solid var(--rule-light); }
-      .tool-item:nth-child(2n) { border-right: none; }
-    }
     @media (max-width: 600px) {
-      .masthead, .featured, .section-header, .news-grid,
-      .tools-grid, .announce-list, .takes, .text-feed, .site-footer {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-      .logo { font-size: 2.2rem; }
-      .featured-headline { font-size: 1.8rem; }
-      .tools-grid { grid-template-columns: 1fr; }
-      .tool-item { border-right: none; }
-      .announce-item { grid-template-columns: 1fr; }
-      .announce-img, .announce-item video { width: 100%; }
-      .nav-bar { overflow-x: auto; }
+      .header h1 { font-size: 2.4rem; }
+      .post.featured .post-title { font-size: 1.6rem; }
+      .post-title { font-size: 1.2rem; }
+      .page { padding: 0 20px; }
     }
   </style>
 </head>
 <body>
-<div class="site">
+<div class="page">
 
-<!-- MASTHEAD -->
-<div class="masthead">
-  <div class="masthead-inner">
-    <div class="logo"><em>ray</em>sterminal</div>
-    <div class="masthead-right">
-      <div class="masthead-date" id="date-line"></div>
-      <div class="masthead-links">
-        <a href="https://t.me/raysterminal">telegram</a>
-        <a href="https://github.com/1RB">github</a>
-      </div>
-    </div>
-  </div>
-  <div class="nav-bar">
-    <div class="nav-item active" onclick="scrollToSection('news')">News</div>
-    <div class="nav-item" onclick="scrollToSection('tools')">Tools</div>
-    <div class="nav-item" onclick="scrollToSection('announcements')">Releases</div>
-    <div class="nav-item" onclick="scrollToSection('takes')">Takes</div>
+<div class="header">
+  <h1><em>ray</em></h1>
+  <p>curated dev tools, libraries, and resources worth knowing about</p>
+  <div class="header-links">
+    <a href="https://t.me/raysterminal">telegram</a>
+    <a href="https://github.com/1RB">github</a>
   </div>
 </div>
 
-<div id="featured"></div>
+<div class="divider"></div>
 
-<div id="news">
-  <div class="section-header" id="news-header" style="display:none">
-    <div class="section-title">News</div>
-    <div class="section-rule"></div>
-    <div class="section-count" id="news-count"></div>
-  </div>
-  <div class="news-grid" id="news-grid"></div>
-  <div class="text-feed" id="news-text"></div>
+<div id="feed">
+  <div class="loading">loading...</div>
 </div>
 
-<div id="tools">
-  <div class="section-header" id="tools-header" style="display:none">
-    <div class="section-title">Tools</div>
-    <div class="section-rule"></div>
-    <div class="section-count" id="tools-count"></div>
-  </div>
-  <div class="tools-grid" id="tools-grid"></div>
-</div>
-
-<div id="announcements">
-  <div class="section-header" id="announce-header" style="display:none">
-    <div class="section-title">Releases</div>
-    <div class="section-rule"></div>
-    <div class="section-count" id="announce-count"></div>
-  </div>
-  <div class="announce-list" id="announce-list"></div>
-</div>
-
-<div id="takes">
-  <div class="section-header" id="takes-header" style="display:none">
-    <div class="section-title">Takes</div>
-    <div class="section-rule"></div>
-    <div class="section-count" id="takes-count"></div>
-  </div>
-  <div class="takes" id="takes-list"></div>
-</div>
-
-<div class="site-footer">
-  <p>auto-curated from <a href="https://t.me/raysterminal">@raysterminal</a></p>
+<div class="footer">
+  <p>curated from <a href="https://t.me/raysterminal">@raysterminal</a></p>
 </div>
 
 </div>
@@ -555,160 +222,104 @@ function linkify(t) {
   return t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function trunc(s, n) { return s.length > n ? s.slice(0, n) + '\u2026' : s; }
 
-function parse(p) {
-  const lines = p.text.split('\n');
-  return {
-    title: lines[0],
-    body: lines.slice(1).join('\n').trim(),
-    photos: p.photos || [],
-    videos: p.videos || [],
-    id: p.id,
-    cat: p.cat
-  };
-}
+const SKIP = ['trump','netanyahu','spain','ireland','palestine','cease','vaccines',
+  'duality of man','andrew tate','windows/office','massgrave','zuckerberg',
+  'meta superintelligence','anthropic running','digital whip','food supply',
+  'blockade','hormuz','navy','jesus','epstein','elon','vance','iran',
+  'hungary','lebanon','apple maps','whip to make','truth social'];
 
-function mediaHtml(photos, videos, cls) {
-  let h = '';
-  if (photos.length) h += `<img class="${cls}" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
-  if (videos.length) h += `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
-  return h;
-}
+const DEV_KW = ['npm','npx','open source','github.com','huggingface','ollama','pip',
+  'library','component','framework','tailwind','shadcn','vercel','webgl','react',
+  'next','typescript','javascript','css','html','python','rust','api','cli','tool',
+  'editor','ui','design','figma','animation','3d','shader','svg','svelte','vue',
+  'astro','vite','bundler','compiler','database','auth','saas','stripe','webgpu',
+  'canvas','dom','browser','extension','plugin','font','icon','template',
+  'boilerplate','starter','skeleton','toast','modal','chart','graph','map','globe',
+  'haptic','whisper','model','llm','ai','agent','mcp','qwen','claude','gpt',
+  'gemma','mistral','deepseek','cursor','lovable','v0','bolt','anthropic','ollama'];
 
-function formatDate() {
-  const d = new Date();
-  const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-  document.getElementById('date-line').textContent = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-}
-
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
-
-function render(posts) {
-  posts = posts.filter(p => p.text.trim().length > 15);
-  // re-categorize
-  const tk = ['npm ','npx ','open source','github.com','huggingface','ollama','pip install','tailwind','shadcn','vercel.app','webgl','web-haptics','svg'];
-  const ak = ['new model','dropped','released','launch','now on','now free','preview','just open sourced','is now','apparently free','mythos','muse spark'];
-  posts.forEach(p => {
+function curate(posts) {
+  return posts.filter(p => {
     const t = p.text.toLowerCase();
-    if (tk.some(k => t.includes(k))) p.cat = 'tool';
-    else if (ak.some(k => t.includes(k))) p.cat = 'announce';
-    else if (p.text.length < 130 && !(p.photos||[]).length && !(p.videos||[]).length) p.cat = 'take';
-    else p.cat = 'news';
+    if (t.trim().length < 30) return false;
+    if (SKIP.some(s => t.includes(s))) return false;
+    return DEV_KW.some(k => t.includes(k)) || p.text.length > 80;
+  }).filter((p, i, arr) => {
+    const first = p.text.split('\n')[0].toLowerCase().trim().slice(0, 60);
+    return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0, 60) === first) === i;
   });
+}
 
-  formatDate();
+function extract(p) {
+  const lines = p.text.split('\n');
+  let title = lines[0];
+  let body = lines.slice(1).join('\n').trim();
 
-  const news = posts.filter(p => p.cat === 'news');
-  const tools = posts.filter(p => p.cat === 'tool');
-  const announces = posts.filter(p => p.cat === 'announce');
-  const takes = posts.filter(p => p.cat === 'take');
+  // clean up title
+  title = title.replace(/\s+/g, ' ').trim();
+  // if title is just a URL, skip it
+  if (/^https?:\/\//.test(title) && !body) return null;
 
-  // FEATURED
-  const hero = news[0];
-  if (hero) {
-    const p = parse(hero);
-    document.getElementById('featured').innerHTML = `
-      <div class="featured">
-        <div class="featured-label">breaking</div>
-        <div class="featured-media">${mediaHtml(p.photos, p.videos, '')}</div>
-        <div class="featured-headline">${esc(p.title)}</div>
-        ${p.body ? `<div class="featured-deck">${linkify(esc(trunc(p.body, 300)))}</div>` : ''}
-        <div class="featured-meta">#${p.id}</div>
-      </div>`;
+  // find the main link (not fixupx/x.com)
+  const urls = p.text.match(/https?:\/\/[^\s]+/g) || [];
+  const mainUrl = urls.find(u => !u.includes('fixupx') && !u.includes('x.com/i/status')) || '';
+
+  // npm/npx command
+  const npm = p.text.match(/(npm\s+(?:i|install)\s+\S+|npx\s+\S+\s*\S*)/);
+
+  // clean body - remove URLs that are already in the link
+  if (mainUrl) {
+    body = body.replace(mainUrl, '').trim();
   }
 
-  // NEWS GRID (next news with media, up to 4)
-  const gridNews = news.filter((p, i) => i > 0 && (p.photos.length || p.videos.length)).slice(0, 4);
-  const textNews = news.filter(p => !gridNews.includes(p)).slice(0, 8);
-
-  if (gridNews.length || textNews.length) {
-    document.getElementById('news-header').style.display = 'flex';
-    document.getElementById('news-count').textContent = `${news.length} stories`;
-  }
-
-  const gridEl = document.getElementById('news-grid');
-  gridNews.forEach(p => {
-    const { title, body, photos, videos, id } = parse(p);
-    gridEl.innerHTML += `<div class="news-item">
-      ${mediaHtml(photos, videos, 'news-img')}
-      <div class="news-headline">${esc(trunc(title, 90))}</div>
-      ${body ? `<div class="news-deck">${esc(trunc(body, 140))}</div>` : ''}
-      <div class="news-meta">#${id}</div>
-    </div>`;
-  });
-
-  const textEl = document.getElementById('news-text');
-  textNews.forEach(p => {
-    const { title, body, id } = parse(p);
-    const isLong = body.length > 280;
-    const bodyClass = isLong ? 'text-body collapsed' : 'text-body';
-    const btn = isLong ? `<button class="expand-btn" onclick="this.previousElementSibling.classList.remove('collapsed');this.remove()">more</button>` : '';
-    textEl.innerHTML += `<div class="text-item">
-      <div class="text-headline">${esc(title)}</div>
-      ${body ? `<div class="${bodyClass}">${linkify(esc(body))}</div>` : ''}
-      <div class="text-meta"><span>#${id}</span>${btn}</div>
-    </div>`;
-  });
-
-  // TOOLS
-  if (tools.length) {
-    document.getElementById('tools-header').style.display = 'flex';
-    document.getElementById('tools-count').textContent = `${tools.length} tools`;
-    const toolsEl = document.getElementById('tools-grid');
-    tools.forEach(p => {
-      const { title, body, photos, videos, id } = parse(p);
-      const npm = p.text.match(/(npm\s+\S+\s+\S+|npx\s+\S+\s*\S*)/);
-      toolsEl.innerHTML += `<div class="tool-item">
-        <div class="tool-name">${esc(trunc(title, 60))}</div>
-        ${body ? `<div class="tool-desc">${esc(trunc(body, 140))}</div>` : ''}
-        ${npm ? `<div class="tool-cmd">${esc(npm[0])}</div>` : ''}
-        <div class="tool-meta">#${id}</div>
-      </div>`;
-    });
-  }
-
-  // ANNOUNCEMENTS
-  if (announces.length) {
-    document.getElementById('announce-header').style.display = 'flex';
-    document.getElementById('announce-count').textContent = `${announces.length} releases`;
-    const annEl = document.getElementById('announce-list');
-    announces.forEach(p => {
-      const { title, body, photos, videos, id } = parse(p);
-      let media = '';
-      if (photos.length) media = `<img class="announce-img" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
-      if (videos.length) media = `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
-      annEl.innerHTML += `<div class="announce-item">
-        ${media}
-        <div>
-          <div class="announce-title">${esc(title)}</div>
-          ${body ? `<div class="announce-body">${linkify(esc(trunc(body, 200)))}</div>` : ''}
-          <div class="announce-meta">#${id}</div>
-        </div>
-      </div>`;
-    });
-  }
-
-  // TAKES
-  if (takes.length) {
-    document.getElementById('takes-header').style.display = 'flex';
-    document.getElementById('takes-count').textContent = `${takes.length} takes`;
-    const takesEl = document.getElementById('takes-list');
-    takes.forEach(p => {
-      takesEl.innerHTML += `<div class="take-item">
-        <div class="take-text">${esc(p.text)}</div>
-        <div class="take-meta">#${p.id}</div>
-      </div>`;
-    });
-  }
+  return { title, body, mainUrl, npm, id: p.id, photos: p.photos || [], videos: p.videos || [] };
 }
 
 fetch('posts.json')
   .then(r => r.json())
-  .then(posts => render(posts))
-  .catch(() => { document.getElementById('featured').innerHTML = '<div class="loading">failed to load</div>'; });
+  .then(allPosts => {
+    const posts = curate(allPosts);
+    const feed = document.getElementById('feed');
+    feed.innerHTML = '';
+
+    posts.forEach((p, idx) => {
+      const e = extract(p);
+      if (!e) return;
+
+      const isFeatured = idx === 0;
+      const hasMedia = e.photos.length > 0 || e.videos.length > 0;
+      const cls = isFeatured ? 'post featured' : hasMedia ? 'post' : 'post text-only';
+
+      let mediaHtml = '';
+      if (e.photos.length) {
+        mediaHtml = `<div class="post-media"><img src="${esc(e.photos[0])}" loading="${isFeatured ? 'eager' : 'lazy'}" decoding="async" alt=""></div>`;
+      } else if (e.videos.length) {
+        mediaHtml = `<div class="post-media"><video src="${esc(e.videos[0])}" controls preload="metadata" playsinline></video></div>`;
+      }
+
+      const titleHtml = e.mainUrl
+        ? `<div class="post-title"><a href="${esc(e.mainUrl)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>`
+        : `<div class="post-title">${esc(e.title)}</div>`;
+
+      const bodyHtml = e.body
+        ? `<div class="post-body">${linkify(esc(e.body))}</div>`
+        : '';
+
+      const cmdHtml = e.npm ? `<span class="cmd">${esc(e.npm[0])}</span>` : '';
+      const srcHtml = e.mainUrl ? `<a class="source" href="${esc(e.mainUrl)}" target="_blank">${esc(new URL(e.mainUrl).hostname.replace('www.',''))}</a>` : '';
+
+      feed.innerHTML += `<div class="${cls}">
+        ${mediaHtml}
+        ${titleHtml}
+        ${bodyHtml}
+        <div class="post-meta">${cmdHtml}${srcHtml}<span class="id">#${e.id}</span></div>
+      </div>`;
+    });
+  })
+  .catch(() => {
+    document.getElementById('feed').innerHTML = '<div class="loading">failed to load</div>';
+  });
 </script>
 </body>
 </html>
