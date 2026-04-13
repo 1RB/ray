@@ -6,17 +6,16 @@
   <title>ray</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #FAF8F4;
       --fg: #1a1a1a;
-      --muted: #6b6b6b;
+      --muted: #8a8a8a;
       --accent: #c44d2b;
       --border: #e5e0d8;
-      --surface: #f0ece6;
-      --tag-bg: #eae5dd;
-      --serif: 'Instrument Serif', Georgia, serif;
+      --surface: #f2efe9;
+      --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Inter', -apple-system, sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
@@ -25,99 +24,203 @@
       font-family: var(--sans);
       background: var(--bg);
       color: var(--fg);
-      line-height: 1.7;
-      font-size: 16px;
       -webkit-font-smoothing: antialiased;
-    }
-    ::selection { background: var(--accent); color: white; }
-    a { color: var(--accent); }
-
-    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-
-    header { padding: 80px 0 48px; border-bottom: 1px solid var(--border); }
-    .masthead {
-      font-family: var(--serif);
-      font-size: 4.5rem;
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-    .masthead em { font-style: italic; color: var(--accent); }
-    .tagline {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 460px;
+      font-size: 15px;
       line-height: 1.6;
     }
-    .meta-line {
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: var(--muted);
+    ::selection { background: var(--accent); color: white; }
+    a { color: inherit; }
+
+    /* ========== HEADER ========== */
+    .header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px 0;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--fg);
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .logo em { font-style: italic; color: var(--accent); }
+    .header-links {
       font-family: var(--mono);
-      letter-spacing: 0.02em;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      gap: 16px;
     }
-    .meta-line a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
-    .meta-line a:hover { color: var(--accent); border-color: var(--accent); }
-
-    .feed { padding: 0 0 80px; }
-
-    /* Post card */
-    .post {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .post:last-child { border-bottom: none; }
-
-    .post-media {
-      margin-bottom: 14px;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .post-media img, .post-media video {
-      width: 100%;
-      display: block;
-    }
-    .post-media video { background: #000; }
-
-    .post-text {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--fg);
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    .post-text a {
-      color: var(--accent);
+    .header-links a {
+      color: var(--muted);
       text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s;
+      transition: color 0.2s;
     }
-    .post-text a:hover { border-bottom-color: var(--accent); }
+    .header-links a:hover { color: var(--accent); }
 
-    .post-text.collapsed {
+    .date-bar {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ========== LAYOUT ========== */
+    .layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .hero video {
+      width: 100%;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      background: #000;
+    }
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .hero-body {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.65;
+      max-width: 600px;
+    }
+    .hero-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+    .hero-body a:hover { border-bottom-color: var(--accent); }
+
+    /* ========== GRID ========== */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .card {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .card:nth-child(odd) { padding-right: 20px; border-right: 1px solid var(--border); }
+    .card:nth-child(even) { padding-left: 20px; }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .card video {
+      width: 100%;
+      border-radius: 2px;
+      margin-bottom: 12px;
+      background: #000;
+    }
+    .card-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
       display: -webkit-box;
-      -webkit-line-clamp: 6;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-
-    .post-footer {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .card-meta {
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.6;
     }
-    .post-id {
+
+    /* ========== FULL WIDTH (below grid) ========== */
+    .full-width {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .full-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .full-body {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .full-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+    .full-body a:hover { border-bottom-color: var(--accent); }
+    .full-body.collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .full-meta {
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.6;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .read-more {
       font-family: var(--mono);
       font-size: 0.7rem;
-      color: var(--muted);
-      opacity: 0.5;
-    }
-    .post-expand {
-      font-family: var(--mono);
-      font-size: 0.72rem;
       color: var(--accent);
       cursor: pointer;
       border: none;
@@ -126,157 +229,280 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-    .post-expand:hover { opacity: 0.7; }
 
     .tag {
       font-family: var(--mono);
-      font-size: 0.68rem;
-      background: var(--tag-bg);
-      color: var(--muted);
-      padding: 2px 8px;
-      border-radius: 3px;
+      font-size: 0.62rem;
+      background: var(--fg);
+      color: var(--bg);
+      padding: 2px 7px;
+      border-radius: 2px;
     }
-    .tag.install { background: var(--fg); color: var(--bg); }
 
-    footer {
-      padding: 48px 0 80px;
-      text-align: center;
-      border-top: 1px solid var(--border);
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+      border-left: 1px solid var(--border);
+      padding-left: 32px;
     }
-    footer p {
-      font-size: 0.8rem;
-      color: var(--muted);
+    .sidebar-section {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-section:last-child { border-bottom: none; }
+    .sidebar-label {
       font-family: var(--mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
-    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); }
-    footer a:hover { color: var(--accent); border-color: var(--accent); }
+    .sidebar-item {
+      margin-bottom: 16px;
+      cursor: pointer;
+    }
+    .sidebar-item:last-child { margin-bottom: 0; }
+    .sidebar-item-title {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .sidebar-item-meta {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+    .sidebar-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* ========== QUOTE ========== */
+    .quote-block {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+      margin-left: 0;
+    }
+    .quote-text {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px 60px;
+      border-top: 2px solid var(--fg);
+    }
+    .footer p {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .footer a { color: var(--muted); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
 
     .loading {
       font-family: var(--mono);
       font-size: 0.85rem;
       color: var(--muted);
-      padding: 40px 0;
+      padding: 60px 0;
+      text-align: center;
     }
 
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; gap: 0; }
+      .sidebar {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border);
+      }
+      .grid { grid-template-columns: 1fr; }
+      .card:nth-child(odd) { padding-right: 0; border-right: none; }
+      .card:nth-child(even) { padding-left: 0; }
+    }
     @media (max-width: 600px) {
-      .masthead { font-size: 3rem; }
-      header { padding: 48px 0 32px; }
-      .post { padding: 20px 0; }
+      .header, .layout, .footer { padding-left: 20px; padding-right: 20px; }
+      .hero-title { font-size: 1.6rem; }
+      .logo { font-size: 1.8rem; }
     }
-
-    /* preload link on hover */
-    .post-media img { content-visibility: auto; }
   </style>
 </head>
 <body>
-<div class="container">
 
-<header>
-  <div class="masthead"><em>ray</em></div>
-  <p class="tagline">curated dev resources, tools, and takes from the timeline</p>
-  <div class="meta-line">
-    <a href="https://t.me/raysterminal">t.me/raysterminal</a> &middot;
-    <a href="https://github.com/1RB">github</a>
+<div class="header">
+  <div class="header-top">
+    <div class="logo"><em>ray</em>sterminal</div>
+    <div class="header-links">
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </div>
   </div>
-</header>
-
-<div class="feed" id="feed">
-  <div class="loading" id="loading">loading...</div>
+  <div class="date-bar" id="date-bar">loading</div>
 </div>
 
-<footer>
-  <p>auto-updated from <a href="https://t.me/raysterminal">@raysterminal</a></p>
-</footer>
+<div class="layout">
+  <div>
+    <div id="hero"></div>
+    <div class="grid" id="grid"></div>
+    <div id="feed"></div>
+  </div>
+  <div class="sidebar" id="sidebar"></div>
+</div>
 
+<div class="footer">
+  <p>auto-curated from <a href="https://t.me/raysterminal">@raysterminal</a></p>
 </div>
 
 <script>
-function linkify(text) {
-  return text.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+function linkify(t) {
+  return t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function trunc(s, n) { return s.length > n ? s.slice(0, n - 1) + '\u2026' : s; }
+
+function parsePost(p) {
+  const lines = p.text.split('\n');
+  const title = lines[0];
+  const body = lines.slice(1).join('\n').trim();
+  const media = [...(p.photos || []), ...(p.videos || [])];
+  const isQuote = p.text.length < 200 && !body && !media.length;
+  const npm = p.text.match(/(npm\s+\S+\s+\S+|npx\s+\S+)/);
+  return { title, body, media, isQuote, npm, id: p.id, text: p.text, photos: p.photos || [], videos: p.videos || [] };
 }
 
-function escapeHtml(s) {
-  const d = document.createElement('div');
-  d.textContent = s;
-  return d.innerHTML;
-}
+function renderHero(p) {
+  const { title, body, photos, videos, id } = parsePost(p);
+  let mediaHtml = '';
+  if (photos.length) mediaHtml += `<img class="hero-img" src="${esc(photos[0])}" loading="eager" alt="">`;
+  if (videos.length) mediaHtml += `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
 
-function renderPosts(posts) {
-  const feed = document.getElementById('feed');
-  document.getElementById('loading').style.display = 'none';
-
-  // preload images on hover
-  const preloaded = new Set();
-
-  feed.innerHTML = posts.map((p, i) => {
-    const lines = p.text.split('\n');
-    const title = lines[0];
-    const body = lines.slice(1).join('\n').trim();
-    const isLong = p.text.length > 280;
-    const hasBody = body.length > 0;
-    const textClass = isLong ? 'post-text collapsed' : 'post-text';
-
-    const npm = p.text.match(/(npm\s+\S+\s+\S+|npx\s+\S+)/);
-    const installTag = npm ? `<span class="tag install">${escapeHtml(npm[0])}</span> ` : '';
-
-    let mediaHtml = '';
-    if (p.photos && p.photos.length > 0) {
-      mediaHtml += p.photos.map(url =>
-        `<div class="post-media"><img src="${escapeHtml(url)}" loading="lazy" alt="" decoding="async"></div>`
-      ).join('');
-    }
-    if (p.videos && p.videos.length > 0) {
-      mediaHtml += p.videos.map(url =>
-        `<div class="post-media"><video src="${escapeHtml(url)}" controls preload="metadata" playsinline></video></div>`
-      ).join('');
-    }
-
-    const expandBtn = isLong ? `<button class="post-expand" onclick="expandPost(this)">read more</button>` : '';
-
-    return `<div class="post" data-id="${p.id}" onmouseenter="preloadMedia(this)">
+  document.getElementById('hero').innerHTML = `
+    <div class="hero">
       ${mediaHtml}
-      <div class="${textClass}" id="text-${p.id}">${linkify(escapeHtml(p.text))}</div>
-      <div class="post-footer">
-        ${installTag}
-        <span class="post-id">#${p.id}</span>
-        ${expandBtn}
-      </div>
+      <div class="hero-label">latest</div>
+      <div class="hero-title">${esc(title)}</div>
+      ${body ? `<div class="hero-body">${linkify(esc(body))}</div>` : ''}
     </div>`;
-  }).join('');
 }
 
-function expandPost(btn) {
-  const post = btn.closest('.post');
-  const textEl = post.querySelector('.post-text');
-  textEl.classList.remove('collapsed');
-  btn.remove();
+function renderCard(p) {
+  const { title, body, photos, videos, id } = parsePost(p);
+  let mediaHtml = '';
+  if (photos.length) mediaHtml += `<img class="card-img" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
+  if (videos.length) mediaHtml += `<video src="${esc(videos[0])}" controls preload="metadata" playsinline></video>`;
+
+  return `<div class="card" onmouseenter="this.querySelectorAll('img[loading=lazy]').forEach(i=>{i.loading='eager';i.dataset.l=1})">
+    ${mediaHtml}
+    <div class="card-title">${esc(trunc(title, 100))}</div>
+    ${body ? `<div class="card-desc">${esc(trunc(body, 120))}</div>` : ''}
+    <div class="card-meta">#${id}</div>
+  </div>`;
 }
 
-function preloadMedia(container) {
-  const imgs = container.querySelectorAll('img[loading="lazy"]');
-  imgs.forEach(img => {
-    if (!img.dataset.loaded) {
-      img.loading = 'eager';
-      img.dataset.loaded = '1';
-    }
-  });
+function renderFullPost(p) {
+  const { title, body, npm, id, text } = parsePost(p);
+  const isLong = text.length > 280;
+  const bodyClass = isLong ? 'full-body collapsed' : 'full-body';
+  const expandBtn = isLong ? `<button class="read-more" onclick="this.previousElementSibling.classList.remove('collapsed');this.remove()">more</button>` : '';
+  const tag = npm ? `<span class="tag">${esc(npm[0])}</span>` : '';
+
+  return `<div class="full-width">
+    <div class="full-title">${esc(title)}</div>
+    ${body ? `<div class="${bodyClass}">${linkify(esc(body))}</div>` : ''}
+    <div class="full-meta">${tag}<span>#${id}</span>${expandBtn ? expandBtn.outerHTML || '' : ''}</div>
+  </div>`;
 }
 
-// preload adjacent posts on hover
-function preloadAdjacent(container) {
-  const next = container.nextElementSibling;
-  if (next && next.classList.contains('post')) preloadMedia(next);
-  const prev = container.previousElementSibling;
-  if (prev && prev.classList.contains('post')) preloadMedia(prev);
+function renderQuote(p) {
+  return `<div class="quote-block">
+    <div class="quote-text">${esc(p.text)}</div>
+  </div>`;
+}
+
+function renderSidebarItem(p) {
+  const { title, photos, id } = parsePost(p);
+  let img = '';
+  if (photos.length) img = `<img class="sidebar-img" src="${esc(photos[0])}" loading="lazy" decoding="async" alt="">`;
+
+  return `<div class="sidebar-item">
+    ${img}
+    <div class="sidebar-item-title">${esc(trunc(title, 80))}</div>
+    <div class="sidebar-item-meta">#${id}</div>
+  </div>`;
+}
+
+function renderDate() {
+  const d = new Date();
+  const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  document.getElementById('date-bar').textContent = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
 fetch('posts.json')
   .then(r => r.json())
   .then(posts => {
-    renderPosts(posts);
+    // filter out empty junk
+    posts = posts.filter(p => p.text.trim().length > 20);
+
+    renderDate();
+
+    // hero = first post with media
+    const heroIdx = posts.findIndex(p => (p.photos && p.photos.length) || (p.videos && p.videos.length));
+    if (heroIdx >= 0) {
+      renderHero(posts[heroIdx]);
+      posts.splice(heroIdx, 1);
+    }
+
+    // next 4 posts with media -> grid cards
+    const grid = document.getElementById('grid');
+    let gridCount = 0;
+    const usedForGrid = [];
+    for (let i = 0; i < posts.length && gridCount < 4; i++) {
+      if ((posts[i].photos && posts[i].photos.length) || (posts[i].videos && posts[i].videos.length)) {
+        grid.innerHTML += renderCard(posts[i]);
+        usedForGrid.push(posts[i].id);
+        gridCount++;
+      }
+    }
+
+    // remaining posts -> feed (text-focused)
+    const feed = document.getElementById('feed');
+    const feedPosts = posts.filter(p => !usedForGrid.includes(p.id));
+    feedPosts.forEach((p, i) => {
+      if (i < 15) {
+        const { isQuote } = parsePost(p);
+        if (isQuote) {
+          feed.innerHTML += renderQuote(p);
+        } else {
+          feed.innerHTML += renderFullPost(p);
+        }
+      }
+    });
+
+    // sidebar = mid-range posts
+    const sidebar = document.getElementById('sidebar');
+    const sidebarPosts = posts.filter(p => !usedForGrid.includes(p.id)).slice(5, 13);
+    let sidebarHtml = `<div class="sidebar-section"><div class="sidebar-label">recent</div>`;
+    sidebarPosts.forEach(p => { sidebarHtml += renderSidebarItem(p); });
+    sidebarHtml += '</div>';
+    sidebar.innerHTML = sidebarHtml;
   })
   .catch(() => {
-    document.getElementById('loading').textContent = 'failed to load posts';
+    document.getElementById('hero').innerHTML = '<div class="loading">failed to load</div>';
   });
 </script>
 </body>
