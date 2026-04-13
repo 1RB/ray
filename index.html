@@ -1,325 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ray</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ray</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+::selection{background:#c44d2b;color:#fff}
 
-    body {
-      background: #FAF8F4;
-      color: #111;
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    ::selection { background: #b5421f; color: #FAF8F4; }
+/* ===== SHELL ===== */
+.shell{max-width:680px;margin:0 auto;padding:0 24px}
 
-    .page { max-width: 780px; margin: 0 auto; padding: 0 28px; }
+/* ===== MASTHEAD ===== */
+.mast{padding:48px 0 32px}
+.mast h1{font-family:'Playfair Display',Georgia,serif;font-size:2.8rem;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#e8e4dc}
+.mast h1 em{font-style:italic;font-weight:400;color:#c44d2b}
+.mast .sub{font-size:0.82rem;color:#666;margin-top:8px;font-weight:300;letter-spacing:0.01em}
+.mast .links{margin-top:12px;font-size:0.68rem;color:#555}
+.mast .links a{color:#555;text-decoration:none;margin-right:14px;transition:color 0.15s}
+.mast .links a:hover{color:#c44d2b}
+.rule{height:1px;background:#222;margin:0}
 
-    /* header */
-    .header {
-      padding: 56px 0 40px;
-    }
-    .header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .header h1 em {
-      font-style: italic;
-      font-weight: 500;
-      color: #b5421f;
-    }
-    .header p {
-      font-size: 0.92rem;
-      color: #8a8880;
-      max-width: 440px;
-      line-height: 1.55;
-    }
-    .header-links {
-      margin-top: 14px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-    }
-    .header-links a {
-      color: #8a8880;
-      text-decoration: none;
-      margin-right: 16px;
-      transition: color 0.15s;
-    }
-    .header-links a:hover { color: #b5421f; }
+/* ===== POST ===== */
+.post{padding:32px 0;border-bottom:1px solid #1a1a1a}
+.post:last-child{border-bottom:none}
 
-    .divider {
-      height: 1px;
-      background: #d8d4cc;
-      margin: 0;
-    }
+/* media container */
+.media{position:relative;margin-bottom:16px;border-radius:4px;overflow:hidden;background:#151515;cursor:pointer}
+.media img{width:100%;display:block;transition:opacity 0.3s}
+.media img.loading{opacity:0}
+.media img.loaded{opacity:1}
 
-    /* post */
-    .post {
-      padding: 36px 0;
-      border-bottom: 1px solid #e8e4dc;
-    }
-    .post:last-child { border-bottom: none; }
+/* custom video player */
+.vid-wrap{position:relative;background:#000;border-radius:4px;overflow:hidden;margin-bottom:16px;cursor:pointer}
+.vid-wrap video{width:100%;display:block;vertical-align:top}
+.vid-wrap .vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);transition:background 0.2s,opacity 0.2s}
+.vid-wrap:hover .vid-overlay{background:rgba(0,0,0,0.15)}
+.vid-wrap.playing .vid-overlay{opacity:0;pointer-events:none}
+.vid-wrap:hover.playing .vid-overlay{opacity:1;pointer-events:auto}
+.vid-play{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:transform 0.15s,background 0.15s}
+.vid-wrap:hover .vid-play{transform:scale(1.06)}
+.vid-play svg{width:20px;height:20px;margin-left:2px}
+.vid-wrap.playing .vid-play{opacity:0}
+.vid-wrap:hover.playing .vid-play{opacity:1}
+.vid-controls{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));display:flex;align-items:center;gap:8px;opacity:0;transition:opacity 0.2s}
+.vid-wrap:hover .vid-controls,.vid-wrap.paused .vid-controls{opacity:1}
+.vid-bar{flex:1;height:3px;background:rgba(255,255,255,0.2);border-radius:2px;cursor:pointer;position:relative;overflow:hidden}
+.vid-bar-fill{height:100%;background:#c44d2b;border-radius:2px;width:0;transition:width 0.1s linear}
+.vid-time{font-size:0.62rem;color:rgba(255,255,255,0.7);font-variant-numeric:tabular-nums;min-width:32px;text-align:right;font-family:'Inter',sans-serif}
+.vid-mute{background:none;border:none;color:rgba(255,255,255,0.8);cursor:pointer;padding:2px;display:flex;align-items:center}
+.vid-mute svg{width:16px;height:16px}
 
-    .post-media {
-      margin-bottom: 18px;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .post-media img {
-      width: 100%;
-      display: block;
-    }
-    .post-media video {
-      width: 100%;
-      display: block;
-      background: #111;
-      border-radius: 3px;
-    }
+/* title */
+.post h2{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-0.01em;color:#e8e4dc;margin-bottom:6px}
+.post h2 a{color:inherit;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color 0.15s}
+.post h2 a:hover{border-bottom-color:#c44d2b}
+.post.featured h2{font-size:2rem;line-height:1.2}
 
-    .post-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      line-height: 1.28;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-    }
-    .post-title a {
-      color: #111;
-      text-decoration: none;
-      border-bottom: 1.5px solid transparent;
-      transition: border-color 0.15s;
-    }
-    .post-title a:hover { border-bottom-color: #b5421f; }
+/* body text */
+.body{font-size:0.88rem;color:#888;line-height:1.65;max-width:560px}
+.body a{color:#c44d2b;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.body a:hover{border-bottom-color:#c44d2b}
 
-    .post-body {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.65;
-      max-width: 600px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    .post-body a {
-      color: #b5421f;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s;
-    }
-    .post-body a:hover { border-bottom-color: #b5421f; }
+/* meta */
+.meta{margin-top:10px;display:flex;gap:10px;align-items:center;font-size:0.62rem;font-family:'Inter',sans-serif;color:#444}
+.meta .cmd{background:#e8e4dc;color:#0c0c0c;padding:2px 7px;border-radius:3px;font-weight:500}
+.meta .src{color:#c44d2b;opacity:0.7;text-decoration:none;transition:opacity 0.15s}
+.meta .src:hover{opacity:1}
 
-    .post-meta {
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .post-meta .cmd {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      background: #111;
-      color: #FAF8F4;
-      padding: 3px 8px;
-      border-radius: 3px;
-    }
-    .post-meta .id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      color: #aaa;
-    }
-    .post-meta a.source {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      color: #b5421f;
-      text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.15s;
-    }
-    .post-meta a.source:hover { opacity: 1; }
+/* ===== FOOTER ===== */
+.foot{padding:40px 0 56px;text-align:center;font-size:0.65rem;color:#333}
+.foot a{color:#444;text-decoration:none}
+.foot a:hover{color:#c44d2b}
 
-    /* first post is bigger */
-    .post.featured .post-title {
-      font-size: 2.2rem;
-      line-height: 1.18;
-    }
-    .post.featured .post-media {
-      margin-bottom: 20px;
-    }
+/* ===== LOADING ===== */
+.ld{font-size:0.78rem;color:#444;padding:60px 0;text-align:center}
 
-    /* no-media post */
-    .post.text-only {
-      padding: 24px 0;
-    }
-    .post.text-only .post-title {
-      font-size: 1.2rem;
-    }
-
-    /* footer */
-    .footer {
-      padding: 40px 0 64px;
-      text-align: center;
-    }
-    .footer p {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      color: #aaa;
-    }
-    .footer a { color: #aaa; text-decoration: none; }
-    .footer a:hover { color: #b5421f; }
-
-    .loading {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: #aaa;
-      padding: 60px 0;
-    }
-
-    @media (max-width: 600px) {
-      .header h1 { font-size: 2.4rem; }
-      .post.featured .post-title { font-size: 1.6rem; }
-      .post-title { font-size: 1.2rem; }
-      .page { padding: 0 20px; }
-    }
-  </style>
+@media(max-width:600px){
+  .shell{padding:0 16px}
+  .mast h1{font-size:2rem}
+  .post.featured h2{font-size:1.5rem}
+  .post h2{font-size:1.15rem}
+}
+</style>
 </head>
 <body>
-<div class="page">
-
-<div class="header">
+<div class="shell">
+<div class="mast">
   <h1><em>ray</em></h1>
-  <p>curated dev tools, libraries, and resources worth knowing about</p>
-  <div class="header-links">
-    <a href="https://t.me/raysterminal">telegram</a>
-    <a href="https://github.com/1RB">github</a>
+  <div class="sub">dev tools and resources worth knowing</div>
+  <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+</div>
+<div class="rule"></div>
+<div id="feed"><div class="ld">loading</div></div>
+<div class="foot"><a href="https://t.me/raysterminal">@raysterminal</a></div>
+</div>
+
+<template id="vid-tpl">
+<div class="vid-wrap paused">
+  <video preload="metadata" playsinline></video>
+  <div class="vid-overlay">
+    <div class="vid-play">
+      <svg viewBox="0 0 24 24" fill="#0c0c0c"><polygon points="6,3 20,12 6,21"/></svg>
+    </div>
+  </div>
+  <div class="vid-controls">
+    <div class="vid-bar"><div class="vid-bar-fill"></div></div>
+    <span class="vid-time">0:00</span>
+    <button class="vid-mute"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></button>
   </div>
 </div>
-
-<div class="divider"></div>
-
-<div id="feed">
-  <div class="loading">loading...</div>
-</div>
-
-<div class="footer">
-  <p>curated from <a href="https://t.me/raysterminal">@raysterminal</a></p>
-</div>
-
-</div>
+</template>
 
 <script>
-function linkify(t) {
-  return t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
-}
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
+// ===== CONFIG =====
 const SKIP = ['trump','netanyahu','spain','ireland','palestine','cease','vaccines',
   'duality of man','andrew tate','windows/office','massgrave','zuckerberg',
   'meta superintelligence','anthropic running','digital whip','food supply',
   'blockade','hormuz','navy','jesus','epstein','elon','vance','iran',
-  'hungary','lebanon','apple maps','whip to make','truth social'];
+  'hungary','lebanon','apple maps','whip to make','truth social','ai jesus',
+  'vaccine in food','orban','obama','biden','putin','russia','china','nato'];
 
-const DEV_KW = ['npm','npx','open source','github.com','huggingface','ollama','pip',
+const DEV = ['npm','npx','open source','github.com','huggingface','ollama','pip',
   'library','component','framework','tailwind','shadcn','vercel','webgl','react',
-  'next','typescript','javascript','css','html','python','rust','api','cli','tool',
+  'next.js','typescript','javascript','css','html','python','rust','api','cli','tool',
   'editor','ui','design','figma','animation','3d','shader','svg','svelte','vue',
   'astro','vite','bundler','compiler','database','auth','saas','stripe','webgpu',
   'canvas','dom','browser','extension','plugin','font','icon','template',
   'boilerplate','starter','skeleton','toast','modal','chart','graph','map','globe',
   'haptic','whisper','model','llm','ai','agent','mcp','qwen','claude','gpt',
-  'gemma','mistral','deepseek','cursor','lovable','v0','bolt','anthropic','ollama'];
+  'gemma','mistral','deepseek','cursor','lovable','v0','bolt','anthropic','ollama',
+  'opencode','hermes','sonnet','opus','codex','copilot','whisper','suno','music',
+  'audio','video','image','generative','diffusion','stable','flux','comfy','openai'];
 
-function curate(posts) {
-  return posts.filter(p => {
-    const t = p.text.toLowerCase();
-    if (t.trim().length < 30) return false;
-    if (SKIP.some(s => t.includes(s))) return false;
-    return DEV_KW.some(k => t.includes(k)) || p.text.length > 80;
-  }).filter((p, i, arr) => {
-    const first = p.text.split('\n')[0].toLowerCase().trim().slice(0, 60);
-    return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0, 60) === first) === i;
-  });
+// ===== HELPERS =====
+const $ = s => document.querySelector(s);
+const esc = s => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+const linkify = t => t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+const trunc = (s,n) => s.length > n ? s.slice(0,n) + '\u2026' : s;
+
+function extractUrl(text) {
+  const urls = text.match(/https?:\/\/[^\s]+/g) || [];
+  return urls.find(u => !u.includes('fixupx') && !u.includes('x.com/i/status')) || '';
 }
 
-function extract(p) {
+function parse(p) {
   const lines = p.text.split('\n');
-  let title = lines[0];
+  let title = lines[0].replace(/\s+/g,' ').trim();
   let body = lines.slice(1).join('\n').trim();
-
-  // clean up title
-  title = title.replace(/\s+/g, ' ').trim();
-  // if title is just a URL, skip it
-  if (/^https?:\/\//.test(title) && !body) return null;
-
-  // find the main link (not fixupx/x.com)
-  const urls = p.text.match(/https?:\/\/[^\s]+/g) || [];
-  const mainUrl = urls.find(u => !u.includes('fixupx') && !u.includes('x.com/i/status')) || '';
-
-  // npm/npx command
+  const url = extractUrl(p.text);
   const npm = p.text.match(/(npm\s+(?:i|install)\s+\S+|npx\s+\S+\s*\S*)/);
+  if (url) body = body.replace(url,'').trim();
+  return { title, body, url, npm, id: p.id, photos: p.photos||[], videos: p.videos||[] };
+}
 
-  // clean body - remove URLs that are already in the link
-  if (mainUrl) {
-    body = body.replace(mainUrl, '').trim();
+// ===== VIDEO PLAYER =====
+function initVideo(wrap) {
+  const video = wrap.querySelector('video');
+  const overlay = wrap.querySelector('.vid-overlay');
+  const playBtn = wrap.querySelector('.vid-play');
+  const bar = wrap.querySelector('.vid-bar');
+  const fill = wrap.querySelector('.vid-bar-fill');
+  const time = wrap.querySelector('.vid-time');
+  const muteBtn = wrap.querySelector('.vid-mute');
+
+  function fmt(s) {
+    s = Math.floor(s);
+    const m = Math.floor(s/60);
+    return m + ':' + String(s%60).padStart(2,'0');
   }
 
-  return { title, body, mainUrl, npm, id: p.id, photos: p.photos || [], videos: p.videos || [] };
+  function toggle() {
+    if (video.paused) {
+      // pause all others first
+      document.querySelectorAll('.vid-wrap video').forEach(v => { if(v!==video) { v.pause(); v.closest('.vid-wrap').classList.remove('playing'); v.closest('.vid-wrap').classList.add('paused'); }});
+      video.play();
+      wrap.classList.add('playing');
+      wrap.classList.remove('paused');
+    } else {
+      video.pause();
+      wrap.classList.remove('playing');
+      wrap.classList.add('paused');
+    }
+  }
+
+  wrap.addEventListener('click', e => {
+    if (e.target.closest('.vid-bar') || e.target.closest('.vid-mute')) return;
+    toggle();
+  });
+
+  video.addEventListener('timeupdate', () => {
+    fill.style.width = (video.currentTime / video.duration * 100) + '%';
+    time.textContent = fmt(video.currentTime);
+  });
+
+  video.addEventListener('ended', () => {
+    wrap.classList.remove('playing');
+    wrap.classList.add('paused');
+    fill.style.width = '0';
+  });
+
+  bar.addEventListener('click', e => {
+    const rect = bar.getBoundingClientRect();
+    video.currentTime = (e.clientX - rect.left) / rect.width * video.duration;
+  });
+
+  muteBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    video.muted = !video.muted;
+    muteBtn.innerHTML = video.muted
+      ? '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>';
+  });
 }
 
-fetch('posts.json')
-  .then(r => r.json())
-  .then(allPosts => {
-    const posts = curate(allPosts);
-    const feed = document.getElementById('feed');
-    feed.innerHTML = '';
-
-    posts.forEach((p, idx) => {
-      const e = extract(p);
-      if (!e) return;
-
-      const isFeatured = idx === 0;
-      const hasMedia = e.photos.length > 0 || e.videos.length > 0;
-      const cls = isFeatured ? 'post featured' : hasMedia ? 'post' : 'post text-only';
-
-      let mediaHtml = '';
-      if (e.photos.length) {
-        mediaHtml = `<div class="post-media"><img src="${esc(e.photos[0])}" loading="${isFeatured ? 'eager' : 'lazy'}" decoding="async" alt=""></div>`;
-      } else if (e.videos.length) {
-        mediaHtml = `<div class="post-media"><video src="${esc(e.videos[0])}" controls preload="metadata" playsinline></video></div>`;
-      }
-
-      const titleHtml = e.mainUrl
-        ? `<div class="post-title"><a href="${esc(e.mainUrl)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>`
-        : `<div class="post-title">${esc(e.title)}</div>`;
-
-      const bodyHtml = e.body
-        ? `<div class="post-body">${linkify(esc(e.body))}</div>`
-        : '';
-
-      const cmdHtml = e.npm ? `<span class="cmd">${esc(e.npm[0])}</span>` : '';
-      const srcHtml = e.mainUrl ? `<a class="source" href="${esc(e.mainUrl)}" target="_blank">${esc(new URL(e.mainUrl).hostname.replace('www.',''))}</a>` : '';
-
-      feed.innerHTML += `<div class="${cls}">
-        ${mediaHtml}
-        ${titleHtml}
-        ${bodyHtml}
-        <div class="post-meta">${cmdHtml}${srcHtml}<span class="id">#${e.id}</span></div>
-      </div>`;
-    });
-  })
-  .catch(() => {
-    document.getElementById('feed').innerHTML = '<div class="loading">failed to load</div>';
+// ===== RENDER =====
+function render(allPosts) {
+  // filter
+  const posts = allPosts.filter(p => {
+    const t = p.text.toLowerCase().trim();
+    if (t.length < 25) return false;
+    if (SKIP.some(s => t.includes(s))) return false;
+    return DEV.some(k => t.includes(k)) || p.text.length > 80;
+  }).filter((p,i,arr) => {
+    const key = p.text.split('\n')[0].toLowerCase().trim().slice(0,50);
+    return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0,50) === key) === i;
   });
+
+  const feed = $('#feed');
+  feed.innerHTML = '';
+
+  posts.forEach((p, idx) => {
+    const e = parse(p);
+    if (/^https?:\/\//.test(e.title) && !e.body) return;
+
+    const isFeatured = idx === 0;
+    const cls = isFeatured ? 'post featured' : 'post';
+
+    let mediaHtml = '';
+
+    if (e.photos.length) {
+      mediaHtml = `<div class="media"><img src="${esc(e.photos[0])}" class="loading" decoding="async" onload="this.classList.replace('loading','loaded')" ${isFeatured ? '' : 'loading="lazy"'}></div>`;
+    }
+
+    if (e.videos.length) {
+      const v = e.videos[0];
+      mediaHtml = `<div class="vid-wrap paused">
+        <video src="${esc(v)}" preload="metadata" playsinline></video>
+        <div class="vid-overlay"><div class="vid-play"><svg viewBox="0 0 24 24" fill="#0c0c0c"><polygon points="6,3 20,12 6,21"/></svg></div></div>
+        <div class="vid-controls">
+          <div class="vid-bar"><div class="vid-bar-fill"></div></div>
+          <span class="vid-time">0:00</span>
+          <button class="vid-mute"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></button>
+        </div>
+      </div>`;
+    }
+
+    const titleHtml = e.url
+      ? `<h2><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h2>`
+      : `<h2>${esc(e.title)}</h2>`;
+
+    const bodyHtml = e.body ? `<div class="body">${linkify(esc(e.body))}</div>` : '';
+
+    const cmdHtml = e.npm ? `<span class="cmd">${esc(e.npm[0])}</span>` : '';
+    const host = e.url ? (() => { try { return new URL(e.url).hostname.replace('www.',''); } catch { return ''; } })() : '';
+    const srcHtml = host ? `<a class="src" href="${esc(e.url)}" target="_blank">${esc(host)}</a>` : '';
+
+    const el = document.createElement('div');
+    el.className = cls;
+    el.innerHTML = `${mediaHtml}${titleHtml}${bodyHtml}<div class="meta">${cmdHtml}${srcHtml}</div>`;
+    feed.appendChild(el);
+  });
+
+  // init all video players
+  document.querySelectorAll('.vid-wrap').forEach(initVideo);
+
+  // preload images on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+        observer.unobserve(img);
+      }
+    });
+  }, { rootMargin: '400px' });
+  document.querySelectorAll('.media img').forEach(img => observer.observe(img));
+}
+
+// ===== GO =====
+fetch('posts.json').then(r=>r.json()).then(render).catch(()=>{
+  document.getElementById('feed').innerHTML = '<div class="ld">failed to load</div>';
+});
 </script>
 </body>
 </html>
