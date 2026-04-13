@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ray - curated dev resources</title>
+  <title>raysterminal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -46,6 +46,7 @@
       line-height: 1;
       margin-bottom: 12px;
     }
+    .masthead a { color: var(--fg); text-decoration: none; }
     .masthead em { font-style: italic; color: var(--accent); }
     .tagline {
       font-size: 1.05rem;
@@ -67,9 +68,8 @@
     }
     .meta-line a:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* Section */
-    section { padding: 48px 0; border-bottom: 1px solid var(--border); }
-    section:last-of-type { border-bottom: none; }
+    /* Feed */
+    section { padding: 48px 0; }
     .section-label {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -80,22 +80,24 @@
     }
 
     /* Entry */
-    .entry { margin-bottom: 36px; }
-    .entry:last-child { margin-bottom: 0; }
+    .entry {
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .entry:first-child { padding-top: 0; }
+    .entry:last-child { border-bottom: none; }
+    .entry:hover { background: var(--surface); margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; border-radius: 4px; }
     .entry-title {
       font-family: var(--serif);
       font-size: 1.6rem;
       font-weight: 400;
       line-height: 1.3;
       margin-bottom: 6px;
-    }
-    .entry-title a {
       color: var(--fg);
-      text-decoration: none;
-      border-bottom: 1.5px solid var(--border);
-      transition: border-color 0.2s, color 0.2s;
     }
-    .entry-title a:hover { color: var(--accent); border-color: var(--accent); }
     .entry-desc {
       color: var(--muted);
       font-size: 0.95rem;
@@ -120,30 +122,102 @@
     .tag.install {
       background: var(--fg);
       color: var(--bg);
-      cursor: pointer;
     }
     .source {
       font-size: 0.75rem;
       color: var(--muted);
       opacity: 0.6;
     }
-
-    /* Quote block */
-    .quote {
-      border-left: 2px solid var(--accent);
-      padding-left: 20px;
-      margin: 32px 0;
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--muted);
-      line-height: 1.5;
+    .media-badge {
+      font-size: 0.65rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      opacity: 0.8;
     }
+
+    /* Detail view */
+    .detail { display: none; }
+    .detail.active { display: block; }
+    .feed.hidden { display: none; }
+
+    .back-link {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 32px;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .detail-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .detail-media {
+      margin-bottom: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .detail-media img {
+      width: 100%;
+      display: block;
+    }
+    .detail-media video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+
+    .detail-body {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .detail-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      transition: opacity 0.2s;
+    }
+    .detail-body a:hover { opacity: 0.7; }
+
+    .detail-meta {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .detail-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .detail-link:hover { color: var(--accent); border-color: var(--accent); }
 
     /* Footer */
     footer {
       padding: 48px 0 80px;
       text-align: center;
+      border-top: 1px solid var(--border);
     }
     footer p {
       font-size: 0.8rem;
@@ -151,198 +225,172 @@
       font-family: var(--mono);
     }
 
+    /* Loading */
+    .loading {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 40px 0;
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
       .masthead { font-size: 3rem; }
       header { padding: 48px 0 40px; }
       section { padding: 36px 0; }
+      .detail-title { font-size: 1.8rem; }
     }
 
-    /* Subtle animation */
-    .entry { opacity: 0; transform: translateY(12px); animation: fadeUp 0.5s ease forwards; }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    .entry:nth-child(1) { animation-delay: 0.05s; }
-    .entry:nth-child(2) { animation-delay: 0.1s; }
-    .entry:nth-child(3) { animation-delay: 0.15s; }
-    .entry:nth-child(4) { animation-delay: 0.2s; }
-    .entry:nth-child(5) { animation-delay: 0.25s; }
-    .entry:nth-child(6) { animation-delay: 0.3s; }
+    /* Animations */
+    .entry { opacity: 0; animation: fadeIn 0.3s ease forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .entry:nth-child(1) { animation-delay: 0.02s; }
+    .entry:nth-child(2) { animation-delay: 0.04s; }
+    .entry:nth-child(3) { animation-delay: 0.06s; }
+    .entry:nth-child(4) { animation-delay: 0.08s; }
+    .entry:nth-child(5) { animation-delay: 0.1s; }
+    .entry:nth-child(6) { animation-delay: 0.12s; }
+    .entry:nth-child(7) { animation-delay: 0.14s; }
+    .entry:nth-child(8) { animation-delay: 0.16s; }
+    .entry:nth-child(9) { animation-delay: 0.18s; }
+    .entry:nth-child(10) { animation-delay: 0.2s; }
   </style>
 </head>
 <body>
 <div class="container">
 
 <header>
-  <div class="masthead"><em>ray</em></div>
-  <p class="tagline">Curated JavaScript tools, components, and resources from the timeline. Things worth building with.</p>
+  <div class="masthead"><a href="#"><em>ray</em>sterminal</a></div>
+  <p class="tagline">curated dev resources, tools, and takes from the timeline</p>
   <div class="meta-line">
     <a href="https://t.me/raysterminal">t.me/raysterminal</a> &middot;
-    <a href="https://github.com/1RB">github</a> &middot;
-    updated april 2026
+    <a href="https://github.com/1RB">github</a>
   </div>
 </header>
 
-<section>
-  <!-- ENTRIES_START -->
-    <div class="entry">
-      <div class="entry-title">us vice president vance: iran &quot;has chosen not to accept our terms&quot;</div>
-      <p class="entry-desc">after 21 hours of negotiations, the us delegation is returning home without a deal. &quot;the iranians would not accept our best offer.&quot;</p>
-      <div class="entry-meta"><span class="source">#101</span></div>
+<!-- Feed view -->
+<section class="feed" id="feed">
+  <div class="loading" id="loading">loading posts...</div>
+  <div id="entries"></div>
+</section>
+
+<!-- Detail view -->
+<section class="detail" id="detail">
+  <a href="#" class="back-link" id="back-link">&larr; all posts</a>
+  <div id="detail-content"></div>
+</section>
+
+<footer>
+  <p>auto-updated from <a href="https://t.me/raysterminal" style="color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);">@raysterminal</a></p>
+</footer>
+
+</div>
+
+<script>
+let posts = [];
+
+function linkify(text) {
+  return text.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function truncate(s, max) {
+  if (s.length <= max) return s;
+  return s.substring(0, max - 3) + '...';
+}
+
+function showFeed() {
+  document.getElementById('feed').classList.remove('hidden');
+  document.getElementById('detail').classList.remove('active');
+  window.scrollTo(0, 0);
+}
+
+function showDetail(id) {
+  const post = posts.find(p => p.id === id);
+  if (!post) return showFeed();
+
+  const lines = post.text.split('\n');
+  const title = lines[0];
+  const body = lines.slice(1).join('\n').trim();
+
+  let mediaHtml = '';
+  if (post.photos && post.photos.length > 0) {
+    mediaHtml += post.photos.map(url =>
+      `<div class="detail-media"><img src="${escapeHtml(url)}" loading="lazy" alt=""></div>`
+    ).join('');
+  }
+  if (post.videos && post.videos.length > 0) {
+    mediaHtml += post.videos.map(url =>
+      `<div class="detail-media"><video src="${escapeHtml(url)}" controls preload="metadata"></video></div>`
+    ).join('');
+  }
+
+  const urls = post.text.match(/(https?:\/\/[^\s]+)/g) || [];
+
+  document.getElementById('detail-content').innerHTML = `
+    <h1 class="detail-title">${escapeHtml(title)}</h1>
+    ${mediaHtml}
+    ${body ? `<div class="detail-body">${linkify(escapeHtml(body))}</div>` : ''}
+    <div class="detail-meta">
+      <span class="source">#${post.id}</span>
+      ${urls.length > 0 ? urls.map(u => `<a href="${escapeHtml(u)}" target="_blank" class="detail-link">${escapeHtml(truncate(u.replace(/https?:\/\//, ''), 40))}</a>`).join('') : ''}
     </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://ollama.com/library/minimax-m2.7" target="_blank">minimax m2.7 is now on ollama&#x27;s cloud, licensed for commercial usage</a></div>
-      <p class="entry-desc">can be used with openclaw and coding agents like claude  https://ollama.com/library/minimax-m2.7</p>
-      <div class="entry-meta"><span class="source">#100</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.7" target="_blank">minimax m2.7 is now open source  sota on swe-pro (56.22%) and terminal bench 2 (57.0%)  huggingface: https://huggingface.co/MiniMaxAI/MiniMax-M2.7 blog: https://www.minimax.io/news/minimax-m27-en api: https://platform.minimax.io/</a></div>
-      <p class="entry-desc"></p>
-      <div class="entry-meta"><span class="source">#99</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.7" target="_blank">minimax m2.7 is now open source</a></div>
-      <p class="entry-desc">sota on swe-pro (56.22%) and terminal bench 2 (57.0%)  huggingface: https://huggingface.co/MiniMaxAI/MiniMax-M2.7 blog: https://www.minimax.io/news/minimax-m27-en api: https://platform.minimax.io/</p>
-      <div class="entry-meta"><span class="source">#98</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://qwen.ai/qwencode" target="_blank">i tried qwen code</a></div>
-      <p class="entry-desc">1000 free requests per day open source access to qwen 3.6 plus  seems like it&#x27;s on par with sonnet 4.6 but I&#x27;ve only used it to add translations to some websites  https://qwen.ai/qwencode</p>
-      <div class="entry-meta"><span class="source">#90</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">found this again today while trying to build a liquid glass component. if you want to recreate apple&#x27;s liquid glass effect with CSS + SVG this is the best breakdown i&#x27;ve seen. theory, implementation, final result all covered. if you&#x27;re too lazy to read it just feed it to your AI and let it do the work</div>
-      <p class="entry-desc">kube.io/blog/liquid-glass-css-svg</p>
-      <div class="entry-meta"><span class="source">#83</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">paykit</div>
-      <p class="entry-desc">a billing framework for typescript. define plans and features in code, it handles stripe, webhooks, and usage state inside your app. no external dashboard, no saas dependency. just npx paykitjs init and you&#x27;re set.  open source  if you&#x27;re building a saas and hate setting up billing from scratch t...</p>
-      <div class="entry-meta"><span class="tag install">npx paykitjs</span><span class="source">#82</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">theme toggle using view transitions api</div>
-      <p class="entry-desc">smooth dark/light mode animations with one line of javascript. uses SVG masks, clip-paths, gradients, even GIFs for the transition effect. you can basically make the theme switch do whatever you want.  used by drizzle orm. open source  if any of yall were looking for these kind of components here...</p>
-      <div class="entry-meta"><span class="source">#81</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://youtu.be/zDaVPfpQvPI" target="_blank">skoda duobell</a></div>
-      <p class="entry-desc">the first bike bell designed to penetrate noise cancelling headphones  skoda found the one frequency ANC can&#x27;t fully block (750hz) and built a mechanical bell around it with a second frequency for extra reliability. tested in london, heard 22 meters earlier than a standard bell. analog solution t...</p>
-      <div class="entry-meta"><span class="source">#79</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">joe liemandt on the knowledge project - a kid can master seventh grade science in 22 hours. school takes 200+. same material, same kid, completely different outcomes. the bottleneck was never the learner</div>
-      <p class="entry-desc">fs.blog/podcast</p>
-      <div class="entry-meta"><span class="source">#77</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">browser use + hermes agent - free cloud browser automation for anyone running hermes. unlimited hours, free proxies, persistent auth, no setup needed</div>
-      <p class="entry-desc">docs.browser-use.com/cloud/tutorials/integrations/hermes-agent</p>
-      <div class="entry-meta"><span class="source">#73</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">“forget winning, forget losing, love trying”</div>
-      <p class="entry-desc"></p>
-      <div class="entry-meta"><span class="source">#67</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">If the United States saw what the United States is doing in the United States, the United States would invade the United States to liberate the United States from the tyranny of the United States</div>
-      <p class="entry-desc"></p>
-      <div class="entry-meta"><span class="source">#61</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://www.anthropic.com/glasswing" target="_blank">Claude Mythos Preview by @AnthropicAI</a></div>
-      <p class="entry-desc">anthropic released opus 4.6 just 2 months ago. now they have a new model that found thousands of zero-day vulnerabilities in every major OS and browser. some of these bugs survived decades of human review.  they locked it in a sandbox. it escaped, got to the open internet, then emailed the resear...</p>
-      <div class="entry-meta"><span class="source">#59</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">fieldtheory cli syncs all your X bookmarks locally so your AI agent can actually read and search them. free, open source by andrewfarah</div>
-      <p class="entry-desc">fieldtheory.dev/cli github.com/afar1/fieldtheory-cli npm install -g fieldtheory  #ai #webdev #tool</p>
-      <div class="entry-meta"><span class="tag install">npm install -g</span><span class="source">#49</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://openrouter.ai/qwen/qwen3.6-plus:free" target="_blank">qwen3.6 is free on openrouter for those of u who didnt know. can be used with openclaw or hermes agent</a></div>
-      <p class="entry-desc">https://openrouter.ai/qwen/qwen3.6-plus:free</p>
-      <div class="entry-meta"><span class="source">#48</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">consider that the dumbest people you know are repeatedly being told &quot;You&#x27;re absolutely right!&quot; by LLMs</div>
-      <p class="entry-desc"></p>
-      <div class="entry-meta"><span class="source">#41</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://apps.apple.com/us/app/google-ai-edge-gallery/id6749645337" target="_blank">friendly reminder that google has an official app to run gemma 4 on your phone. 100% open source, fully offline and private</a></div>
-      <p class="entry-desc">app store: https://apps.apple.com/us/app/google-ai-edge-gallery/id6749645337  google play: https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery</p>
-      <div class="entry-meta"><span class="source">#40</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://skills.sh/vercel-labs/agent-browser/dogfood" target="_blank">dogfood by chris tate</a></div>
-      <p class="entry-desc">an agent-browser skill that uses your app like a real user.  - point it at any url - explores, clicks, and fills forms - tests edge cases + console checks - captures repro videos &amp; screenshots - structured reports with severity ratings  no scripts. no manual qa.  https://skills.sh/vercel-labs/age...</p>
-      <div class="entry-meta"><span class="source">#38</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://spell.sh" target="_blank">SpellUI by 16 year old Tom</a></div>
-      <p class="entry-desc">another clean ui component library  https://spell.sh</p>
-      <div class="entry-meta"><span class="source">#27</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://www.cult-ui.com" target="_blank">CultUI by nollystudios</a></div>
-      <p class="entry-desc">really clean shadcn-compatible component library with a lottt of really good/useful components. check it out  https://www.cult-ui.com</p>
-      <div class="entry-meta"><span class="source">#26</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://bazza.dev/craft/2026/hit-area" target="_blank">hit-area by bazza</a></div>
-      <p class="entry-desc">tailwind classes to fix interaction dead zones. uses pseudo-elements to expand hit areas without messing up your layout.  finally a practical way to ship this across a whole codebase.  https://bazza.dev/craft/2026/hit-area npx shadcn@latest add https://bazza.dev/r/hit-area</p>
-      <div class="entry-meta"><span class="tag install">npx shadcn@latest</span><span class="source">#25</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://cobe.vercel.app/" target="_blank">cobe by shuding</a></div>
-      <p class="entry-desc">stunning 5kb webgl globe library for landing pages. ultra-light, customizable, and smooth as hell.  https://cobe.vercel.app/ npm i cobe</p>
-      <div class="entry-meta"><span class="tag install">npm i cobe</span><span class="source">#24</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://editor.pascal.app/" target="_blank">someone just open sourced a full 3d building editor that runs in the browser. no autocad, no revit, no $5k licenses</a></div>
-      <p class="entry-desc">it’s called pascal editor. built with react three fiber + webgpu for near-native speed.  features: - real-time building/wall hierarchy - gpu-powered ecs architecture - zustand state (undo/redo) - next.js frontend - dirty node tracking for fast renders  you can stack, explode, or solo levels and e...</p>
-      <div class="entry-meta"><span class="source">#23</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://www.figma.com/file/pCoEzb4rVTBVhRfPtggaEd?type=design&node-id=0%3A1&mode=design" target="_blank">Aurelia by Brett</a></div>
-      <p class="entry-desc">a collection of beautifully crafted free to use backgrounds.  https://www.figma.com/file/pCoEzb4rVTBVhRfPtggaEd?type=design&amp;node-id=0%3A1&amp;mode=design</p>
-      <div class="entry-meta"><span class="source">#21</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">for anyone who doesn&#x27;t know, html canvas is goated for high performance graphics but it absolutely sucks for seo/aio since it doesn&#x27;t render real dom text for readers</div>
-      <p class="entry-desc">usually we&#x27;ve had to keep canvas and dom elements separate, like overlaying html text on top of a canvas background (basically sibling elements).  this new api is a game changer because it lets html elements be child elements of a canvas, so you can blend graphics and html seamlessly.  we&#x27;re gonn...</p>
-      <div class="entry-meta"><span class="source">#19</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://boneyard.vercel.app/" target="_blank">pixel-perfect skeleton loading screens auto-extracted from your real DOM. zero configuration, zero layout shift</a></div>
-      <p class="entry-desc">https://boneyard.vercel.app/ npm install boneyard-js</p>
-      <div class="entry-meta"><span class="tag install">npm install boneyard-js</span><span class="source">#15</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://component.gallery/" target="_blank">you can instantly 10x your vibecoded frontends by just learning what different ui components are called</a></div>
-      <p class="entry-desc">ofc opus is creating generic slop, the only words you know are menu and button.  https://component.gallery/</p>
-      <div class="entry-meta"><span class="source">#14</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="http://haptics.lochie.me" target="_blank">library for custom tactile patterns. super easy to set up strengths and durations for interactions</a></div>
-      <p class="entry-desc">http://haptics.lochie.me  npm i web-haptics  ​works for both android and ios</p>
-      <div class="entry-meta"><span class="tag install">npm i web-haptics</span><span class="source">#11</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://github.com/we-promise/sure" target="_blank">apparently the company spent $1M developing this app and then ended up open sourcing it</a></div>
-      <p class="entry-desc">https://github.com/we-promise/sure</p>
-      <div class="entry-meta"><span class="source">#10</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title"><a href="https://sileo.aaryan.design" target="_blank">smooth ios-inspired toast component</a></div>
-      <p class="entry-desc">https://sileo.aaryan.design npm i sileo</p>
-      <div class="entry-meta"><span class="tag install">npm i sileo</span><span class="source">#8</span></div>
-    </div>
-    <div class="entry">
-      <div class="entry-title">free opensource auth in 2 lines of code. super early wip. github repo coming soon</div>
-      <p class="entry-desc">shoo.dev</p>
-      <div class="entry-meta"><span class="source">#5</span></div>
-    </div>
-    <!-- ENTRIES_END -->
-  
+  `;
+
+  document.getElementById('feed').classList.add('hidden');
+  document.getElementById('detail').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function renderFeed() {
+  const container = document.getElementById('entries');
+  document.getElementById('loading').style.display = 'none';
+
+  container.innerHTML = posts.map((p, i) => {
+    const lines = p.text.split('\n');
+    const title = lines[0];
+    const desc = lines.slice(1).join(' ').trim();
+    const hasMedia = (p.photos && p.photos.length > 0) || (p.videos && p.videos.length > 0);
+    const mediaBadge = hasMedia ? `<span class="media-badge">${p.photos?.length || 0} img${(p.photos?.length || 0) !== 1 ? 's' : ''}${p.videos?.length ? ' + ' + p.videos.length + ' video' + (p.videos.length !== 1 ? 's' : '') : ''}</span>` : '';
+
+    const npm = p.text.match(/(npm\s+\S+\s+\S+|npx\s+\S+)/);
+    const installTag = npm ? `<span class="tag install">${escapeHtml(npm[0])}</span>` : '';
+
+    return `<div class="entry" onclick="showDetail('${p.id}')" style="animation-delay:${Math.min(i * 0.02, 0.3)}s">
+      <div class="entry-title">${escapeHtml(truncate(title, 120))}</div>
+      ${desc ? `<p class="entry-desc">${escapeHtml(truncate(desc, 200))}</p>` : ''}
+      <div class="entry-meta">${installTag}${mediaBadge}<span class="source">#${p.id}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function handleHash() {
+  const hash = window.location.hash;
+  if (hash.startsWith('#post-')) {
+    const id = hash.replace('#post-', '');
+    if (posts.length > 0) showDetail(id);
+  } else {
+    showFeed();
+  }
+}
+
+window.addEventListener('hashchange', handleHash);
+
+fetch('posts.json')
+  .then(r => r.json())
+  .then(data => {
+    posts = data;
+    renderFeed();
+    handleHash();
+  })
+  .catch(() => {
+    document.getElementById('loading').textContent = 'failed to load posts';
+  });
+</script>
+</body>
+</html>
