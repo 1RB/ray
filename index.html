@@ -2,108 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>ray</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{background:#0c0c0c;color:#e8e4dc;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:#c44d2b;color:#fff}
-
-/* plyr theme overrides */
-:root{
-  --plyr-color-main:#c44d2b;
-  --plyr-video-background:#000;
-  --plyr-badge-background:#c44d2b;
-  --plyr-badge-text-color:#fff;
-  --plyr-control-icon-size:16px;
-  --plyr-range-thumb-height:10px;
-  --plyr-range-track-height:3px;
-  --plyr-video-controls-background:linear-gradient(transparent,rgba(0,0,0,0.75));
-  --plyr-control-spacing:6px;
-  --plyr-control-radius:4px;
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  background:#0f0f0f;
+  color:#e0dcd4;
+  font-family:-apple-system,'Inter',system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
-.plyr{border-radius:4px;overflow:hidden;margin-bottom:16px}
-.plyr video{max-height:70vh;width:100%;object-fit:contain;background:#000}
+::selection{background:rgba(196,77,43,0.6);color:#fff}
+a{color:inherit}
 
-/* ===== SHELL ===== */
-.shell{max-width:680px;margin:0 auto;padding:0 24px}
+/* ===== SITE ===== */
+.site{max-width:600px;margin:0 auto;padding:0 16px}
 
-/* ===== MASTHEAD ===== */
-.mast{padding:48px 0 32px}
-.mast h1{font-family:'Playfair Display',Georgia,serif;font-size:2.8rem;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#e8e4dc}
-.mast h1 em{font-style:italic;font-weight:400;color:#c44d2b}
-.mast .sub{font-size:0.82rem;color:#666;margin-top:8px;font-weight:300}
-.mast .links{margin-top:12px;font-size:0.68rem;color:#555}
-.mast .links a{color:#555;text-decoration:none;margin-right:14px;transition:color 0.15s}
-.mast .links a:hover{color:#c44d2b}
-.rule{height:1px;background:#222}
+/* ===== HEADER ===== */
+.hdr{padding:40px 0 20px}
+.hdr h1{font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;font-weight:400;letter-spacing:-0.02em;line-height:1}
+.hdr h1 i{color:#c44d2b}
+.hdr .sub{font-size:0.78rem;color:#555;margin-top:4px;font-weight:300}
+.hdr .lnk{margin-top:10px;font-size:0.65rem;color:#444}
+.hdr .lnk a{color:#444;text-decoration:none;margin-right:12px;transition:color 0.2s}
+.hdr .lnk a:hover{color:#c44d2b}
+.sep{height:1px;background:#1c1c1c}
 
-/* ===== POST ===== */
-.post{padding:32px 0;border-bottom:1px solid #1a1a1a}
-.post:last-child{border-bottom:none}
+/* ===== CARD ===== */
+.card{padding:20px 0;border-bottom:1px solid #1a1a1a}
+.card:last-child{border-bottom:none;padding-bottom:60px}
 
-.post .media{position:relative;margin-bottom:16px;border-radius:4px;overflow:hidden;background:#111}
-.post .media img{width:100%;display:block;max-height:70vh;object-fit:contain;transition:opacity 0.3s}
-.post .media img.loading{opacity:0}
-.post .media img.loaded{opacity:1}
+/* media */
+.card .pic{margin:-20px -16px 14px;overflow:hidden;background:#161616}
+.card .pic img{width:100%;display:block;opacity:0;transition:opacity 0.4s ease}
+.card .pic img.show{opacity:1}
+.card .pic video{width:100%;display:block;max-height:520px;object-fit:contain;background:#000}
 
-.post h2{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-0.01em;color:#e8e4dc;margin-bottom:6px}
-.post h2 a{color:inherit;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color 0.15s}
-.post h2 a:hover{border-bottom-color:#c44d2b}
-.post.featured h2{font-size:2rem;line-height:1.2}
+/* title */
+.card .ttl{font-family:'Instrument Serif',Georgia,serif;font-size:1.2rem;font-weight:400;line-height:1.35;color:#e0dcd4;margin-bottom:5px}
+.card .ttl a{color:#e0dcd4;text-decoration:none;transition:color 0.15s}
+.card .ttl a:hover{color:#c44d2b}
 
-.post .body{font-size:0.88rem;color:#888;line-height:1.65;max-width:560px;white-space:pre-wrap;word-break:break-word}
-.post .body a{color:#c44d2b;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s}
-.post .body a:hover{border-bottom-color:#c44d2b}
+/* body */
+.card .txt{font-size:0.86rem;color:#777;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.card .txt a{color:#c44d2b;text-decoration:none;transition:opacity 0.15s}
+.card .txt a:hover{opacity:0.7}
 
-.post .meta{margin-top:10px;display:flex;gap:10px;align-items:center;font-size:0.62rem;font-family:'Inter',sans-serif;color:#444}
+/* footer */
+.card .ft{margin-top:8px;display:flex;align-items:center;gap:8px;font-size:0.6rem;color:#3a3a3a}
+.card .ft .src{color:#c44d2b;opacity:0.6;text-decoration:none;transition:opacity 0.15s}
+.card .ft .src:hover{opacity:1}
+.card .ft .cmd{
+  background:#1a1a1a;color:#999;padding:2px 7px;border-radius:3px;
+  cursor:pointer;transition:background 0.15s,color 0.15s;
+  user-select:all;font-family:-apple-system,'Inter',sans-serif;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.card .ft .cmd:hover{background:#252525;color:#ccc}
+.card .ft .cmd.ok{background:#c44d2b;color:#fff}
 
-/* command pill */
-.cmd{background:#e8e4dc;color:#0c0c0c;padding:3px 9px;border-radius:3px;font-weight:500;cursor:pointer;position:relative;transition:background 0.15s;user-select:all;display:inline-flex;align-items:center;gap:5px}
-.cmd:hover{background:#fff}
-.cmd .copy-icon{width:11px;height:11px;opacity:0.4;transition:opacity 0.15s}
-.cmd:hover .copy-icon{opacity:0.8}
-.cmd.copied{background:#c44d2b;color:#fff}
-.cmd.copied .copy-icon{opacity:0}
-
-.meta .src{color:#c44d2b;opacity:0.7;text-decoration:none;transition:opacity 0.15s}
-.meta .src:hover{opacity:1}
-
-/* ===== FOOTER ===== */
-.foot{padding:40px 0 56px;text-align:center;font-size:0.65rem;color:#333}
-.foot a{color:#444;text-decoration:none}
-.foot a:hover{color:#c44d2b}
-
-.ld{font-size:0.78rem;color:#444;padding:60px 0;text-align:center}
+/* ===== LOADING ===== */
+.ld{font-size:0.75rem;color:#333;padding:80px 0;text-align:center}
 
 @media(max-width:600px){
-  .shell{padding:0 16px}
-  .mast h1{font-size:2rem}
-  .post.featured h2{font-size:1.5rem}
-  .post h2{font-size:1.15rem}
-  .plyr video{max-height:50vh}
+  .site{padding:0 12px}
+  .hdr h1{font-size:1.8rem}
+  .card .ttl{font-size:1.05rem}
+  .card .pic{margin:-20px -12px 14px}
 }
 </style>
 </head>
 <body>
-<div class="shell">
-<div class="mast">
-  <h1><em>ray</em></h1>
-  <div class="sub">dev tools and resources worth knowing</div>
-  <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
-</div>
-<div class="rule"></div>
-<div id="feed"><div class="ld">loading</div></div>
-<div class="foot"><a href="https://t.me/raysterminal">@raysterminal</a></div>
+<div class="site">
+  <div class="hdr">
+    <h1><i>ray</i></h1>
+    <div class="sub">curated dev tools and resources</div>
+    <div class="lnk"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+  </div>
+  <div class="sep"></div>
+  <div id="feed"><div class="ld">loading</div></div>
 </div>
 
-<script src="https://cdn.plyr.io/3.7.8/plyr.min.js"></script>
 <script>
+// === filtering ===
 const SKIP = ['trump','netanyahu','spain','ireland','palestine','cease','vaccines',
   'duality of man','andrew tate','windows/office','massgrave','zuckerberg',
   'meta superintelligence','anthropic running','digital whip','food supply',
@@ -111,29 +99,31 @@ const SKIP = ['trump','netanyahu','spain','ireland','palestine','cease','vaccine
   'hungary','lebanon','apple maps','whip to make','truth social','ai jesus',
   'vaccine in food','orban','obama','biden','putin','russia','china','nato',
   'lovable','kagi','ultramock','nestle','muse spark','mattrothenberg',
-  'cineby','bicycle42','massgrave','react-shop'];
+  'cineby','bicycle42','react-shop','spacetime','meta super','how anthropic',
+  'anthropic running','digital whip'];
 
 const DEV = ['npm','npx','open source','github.com','huggingface','ollama','pip',
   'library','component','framework','tailwind','shadcn','vercel','webgl','react',
-  'next.js','typescript','javascript','css','html','python','rust','api','cli','tool',
-  'editor','ui','design','figma','animation','3d','shader','svg','svelte','vue',
+  'next.js','typescript','javascript','css ','html ','python','rust','api','cli','tool',
+  'editor','ui ','design','figma','animation','3d','shader','svg','svelte','vue',
   'astro','vite','bundler','compiler','database','auth','saas','stripe','webgpu',
   'canvas','dom','browser','extension','plugin','font','icon','template',
   'boilerplate','starter','skeleton','toast','modal','chart','graph','map','globe',
   'haptic','whisper','model','llm','ai','agent','mcp','qwen','claude','gpt',
-  'gemma','mistral','deepseek','cursor','lovable','v0','bolt','anthropic','ollama',
-  'opencode','hermes','sonnet','opus','codex','copilot','whisper','suno','music',
+  'gemma','mistral','deepseek','cursor','bolt','anthropic','ollama',
+  'opencode','hermes','sonnet','opus','codex','copilot','suno','music',
   'audio','video','image','generative','diffusion','stable','flux','comfy','openai',
   'cobe','spell','cult','boneyard','sileo','fieldtheory','dogfood','paykit','sure',
-  'haptics','pascal','aurelia','hit-area','liquid glass'];
+  'haptics','pascal','aurelia','hit-area','liquid glass','minimax','glm',
+  'cursor','google','apple','skoda','joe liemandt','knowledge project'];
 
-const COPY_ICON = `<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`;
-
+// === helpers ===
+const $ = s => document.querySelector(s);
 const esc = s => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 const linkify = t => t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 const trunc = (s,n) => s.length > n ? s.slice(0,n) + '\u2026' : s;
 
-function extractUrl(text) {
+function getMainUrl(text) {
   const urls = text.match(/https?:\/\/[^\s]+/g) || [];
   return urls.find(u => !u.includes('fixupx') && !u.includes('x.com/i/status')) || '';
 }
@@ -142,30 +132,55 @@ function parse(p) {
   const lines = p.text.split('\n');
   let title = lines[0].replace(/\s+/g,' ').trim();
   let body = lines.slice(1).join('\n').trim();
-  const url = extractUrl(p.text);
+  const url = getMainUrl(p.text);
   const npm = p.text.match(/(npm\s+(?:i|install)\s+\S+|npx\s+\S+\s*\S*)/);
-  if (url) body = body.replace(url,'').trim();
-  // clean up trailing/leading whitespace in body
-  body = body.replace(/^\s+|\s+$/g, '');
+  if (url) body = body.replace(new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'').trim();
+  body = body.replace(/^\s+|\s+$/g,'');
   return { title, body, url, npm, id: p.id, photos: p.photos||[], videos: p.videos||[] };
 }
 
 function copyCmd(el) {
-  const text = el.dataset.cmd;
+  const text = el.textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
-    el.classList.add('copied');
-    const orig = el.innerHTML;
-    el.innerHTML = 'copied';
-    setTimeout(() => { el.innerHTML = orig; el.classList.remove('copied'); }, 1200);
+    el.classList.add('ok');
+    const orig = el.textContent;
+    el.textContent = 'copied';
+    setTimeout(() => { el.textContent = orig; el.classList.remove('ok'); }, 1000);
   });
 }
 
+// === intersection observer for video autoplay ===
+const vidObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) {
+      v.muted = true;
+      v.play().catch(()=>{});
+    } else {
+      v.pause();
+    }
+  });
+}, { threshold: 0.5 });
+
+// === image fade in ===
+const imgObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const img = e.target;
+      if (img.complete) img.classList.add('show');
+      else img.onload = () => img.classList.add('show');
+      imgObserver.unobserve(img);
+    }
+  });
+}, { rootMargin: '200px' });
+
+// === render ===
 function render(allPosts) {
   const posts = allPosts.filter(p => {
     const t = p.text.toLowerCase().trim();
-    if (t.length < 25) return false;
+    if (t.length < 20) return false;
     if (SKIP.some(s => t.includes(s))) return false;
-    return DEV.some(k => t.includes(k)) || p.text.length > 80;
+    return DEV.some(k => t.includes(k)) || p.text.length > 100;
   }).filter((p,i,arr) => {
     const key = p.text.split('\n')[0].toLowerCase().trim().slice(0,50);
     return arr.findIndex(x => x.text.split('\n')[0].toLowerCase().trim().slice(0,50) === key) === i;
@@ -174,62 +189,58 @@ function render(allPosts) {
   const feed = document.getElementById('feed');
   feed.innerHTML = '';
 
-  posts.forEach((p, idx) => {
+  posts.forEach(p => {
     const e = parse(p);
+    // skip posts that are just a URL with no context
     if (/^https?:\/\//.test(e.title) && !e.body && !e.photos.length && !e.videos.length) return;
 
-    const cls = idx === 0 ? 'post featured' : 'post';
+    const card = document.createElement('div');
+    card.className = 'card';
+
     let html = '';
 
     // media
     if (e.photos.length) {
-      html += `<div class="media"><img src="${esc(e.photos[0])}" class="loading" decoding="async" onload="this.classList.replace('loading','loaded')" ${idx > 0 ? 'loading="lazy"' : ''}></div>`;
-    }
-    if (e.videos.length) {
-      html += `<video id="vid-${e.id}" playsinline ${idx === 0 ? 'autoplay muted' : 'preload="metadata"'}><source src="${esc(e.videos[0])}" type="video/mp4"></video>`;
+      html += `<div class="pic"><img src="${esc(e.photos[0])}" decoding="async" alt=""></div>`;
+    } else if (e.videos.length) {
+      html += `<div class="pic"><video src="${esc(e.videos[0])}" muted loop playsinline></video></div>`;
     }
 
     // title
     if (e.url) {
-      html += `<h2><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h2>`;
+      html += `<div class="ttl"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></div>`;
     } else {
-      html += `<h2>${esc(e.title)}</h2>`;
+      html += `<div class="ttl">${esc(e.title)}</div>`;
     }
 
     // body
     if (e.body) {
-      html += `<div class="body">${linkify(esc(e.body))}</div>`;
+      html += `<div class="txt">${linkify(esc(e.body))}</div>`;
     }
 
-    // meta
-    let meta = '';
+    // footer
+    let ft = '';
     if (e.npm) {
-      meta += `<span class="cmd" data-cmd="${esc(e.npm[0])}" onclick="copyCmd(this)">${esc(e.npm[0])}${COPY_ICON}</span>`;
+      ft += `<span class="cmd" onclick="copyCmd(this)">${esc(e.npm[0])}</span>`;
     }
     if (e.url) {
       let host = '';
       try { host = new URL(e.url).hostname.replace('www.',''); } catch {}
-      if (host) meta += `<a class="src" href="${esc(e.url)}" target="_blank">${esc(host)}</a>`;
+      if (host) ft += `<a class="src" href="${esc(e.url)}" target="_blank">${esc(host)}</a>`;
     }
-    if (meta) html += `<div class="meta">${meta}</div>`;
+    if (ft) html += `<div class="ft">${ft}</div>`;
 
-    const el = document.createElement('div');
-    el.className = cls;
-    el.innerHTML = html;
-    feed.appendChild(el);
+    card.innerHTML = html;
+    feed.appendChild(card);
+
+    // observe images
+    const img = card.querySelector('.pic img');
+    if (img) imgObserver.observe(img);
+
+    // observe videos for autoplay
+    const vid = card.querySelector('.pic video');
+    if (vid) vidObserver.observe(vid);
   });
-
-  // init plyr on all videos
-  if (typeof Plyr !== 'undefined') {
-    Plyr.setup('video', {
-      controls: ['play-large','play','progress','current-time','mute','volume','fullscreen'],
-      hideControls: true,
-      clickToPlay: true,
-      ratio: '16:9',
-      invertTime: false,
-      displayDuration: true,
-    });
-  }
 }
 
 fetch('posts.json').then(r=>r.json()).then(render).catch(()=>{
