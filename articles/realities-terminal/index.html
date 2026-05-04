@@ -5,74 +5,129 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>vibe coding straight to your eyeballs — ray</title>
 <meta property="og:title" content="vibe coding straight to your eyeballs">
-<meta property="og:description" content="realities' smart glasses now run a full terminal. the screen is your retina.">
+<meta property="og:description" content="realities terminal. the vr headset that runs ai in your field of view.">
 <meta property="og:type" content="article">
+<link rel="stylesheet" href="/style.css">
 <style>
-:root{--bg:#0a0a0a;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:620px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.title{font-size:2.2rem;font-weight:400;color:#d4d0c6;line-height:1.2;margin-top:56px;margin-bottom:10px;letter-spacing:-0.01em}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:56px}
-
-.body p{margin-bottom:1.7em;font-weight:300}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.pill{display:inline-block;font-size:0.72rem;color:var(--dim);background:#111;border:1px solid #1a1a1a;padding:3px 10px;border-radius:3px;margin-right:6px;margin-bottom:6px}
-
-.quote{margin:2.5em 0;padding:1.5em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.25rem;color:#d4d0c6;line-height:1.45;font-weight:300}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:1.85rem}
-}
+  .video-hero{background:#000;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin:0 -24px 32px}
+  @media(min-width:1100px){.video-hero{margin:0 0 32px}}
+  .video-hero video{width:100%;display:block;max-height:50vh}
+  .spec-pill{display:inline-block;background:var(--elevated);border:1px solid var(--line);padding:3px 10px;border-radius:20px;font-size:0.78rem;color:var(--text-dim);margin:0 6px 6px 0}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="title">vibe coding straight to your eyeballs</div>
-  <div class="sub">realities' smart glasses now run a full terminal. the screen is your retina.</div>
+<div class="article-layout">
+  <main class="article-main">
 
-  <div class="body">
-    <p>there is a specific kind of programmer who codes while walking. they dictate commits into their phone on the train. they review pull requests at the grocery store. they have learned to think in syntax while their body is doing something else entirely. for this person, the laptop was never the ideal form factor. it requires a surface, a lap, a cafe table. it demands that you stop moving.</p>
+    <article class="article-wrapper">
 
-    <p><strong>realities</strong> makes smart glasses that project a display directly into your field of vision. not a phone screen reflected in a mirror. not a watch. an actual heads-up display, floating in the air in front of you, visible only to you. and someone figured out how to run a full terminal on them.</p>
+      <div class="video-hero">
+        <video controls poster="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg">
+          <source src="https://cdn4.telesco.pe/file/9d016c5320.mp4" type="video/mp4">
+        </video>
+      </div>
 
-    <p>the implementation uses the glasses' built-in display as a terminal output device. you connect a bluetooth keyboard, or use voice input, or gesture controls, and the glasses render the shell session in your peripheral vision. the resolution is not desktop-monitor sharp, but it is readable. the text floats at a comfortable focal distance, so your eyes do not strain. the background is transparent, so you can walk, navigate a city, or hold a conversation while a build process runs in the corner of your vision.</p>
+      <header class="article-header">
+        <div class="label">video</div>
+        <h1>vibe coding straight to your eyeballs</h1>
+        <div class="subtitle">realities terminal. the vr headset that runs ai in your field of view.</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+        <div class="mt-2">
+          <span class="spec-pill">standalone vr</span>
+          <span class="spec-pill">on-device ai</span>
+          <span class="spec-pill">vibe coding</span>
+          <span class="spec-pill">passthrough</span>
+        </div>
+      </header>
 
-    <div class="quote">the screen is no longer a rectangle on your desk. it is wherever you are looking.</div>
+      <div class="article-body">
+        <p>realities terminal is a standalone vr headset with on-device generative ai. it is not a concept. it is hardware you can wear, and when you do, the ai is not on a screen in front of you. it is in your field of view. you look at something, describe what you want, and the model generates it in the space where you are standing. this is not a phone app with a camera overlay. this is a compute unit strapped to your face, running inference locally, projecting results into stereoscopic 3d.</p>
 
-    <p>the use cases are obvious to anyone who has ever needed to ssh into a server while their hands are full. deploy a fix while carrying groceries. check logs while cooking. run a database migration while on a treadmill. these are not hypothetical scenarios. these are exactly the situations where someone has thought, "i wish i could see a terminal right now," and then realized they could.</p>
+        <p>the headset runs a fork of android with a custom rendering layer. the ai model is quantized to run on the headset's own gpu, not in the cloud. the latency is low enough that the generation feels responsive, not like sending a prompt to a server and waiting. you speak, you see. the passthrough cameras let you anchor generated objects to real surfaces, so the ai output composites with your actual environment.</p>
 
-    <p>the glasses run a lightweight linux environment locally, or they can stream from a remote machine via ssh or mosh. the latency is low enough for interactive use because the display pipeline is local. only the computation happens elsewhere. this is the correct architecture for wearable terminals. rendering locally and computing remotely eliminates the lag that kills interactive sessions on fully cloud-dependent devices.</p>
+        <p>the use case the team pushes hardest is "vibe coding": describing a scene, a character, an environment, or an interface, and having it appear in front of you. you iterate by talking. "make the building taller," "change the sky to sunset," "add a second character." the model updates the scene. you are not typing code or adjusting sliders. you are describing, and the headset is interpreting.</p>
 
-    <p>the battery life is the current limitation. four to six hours of active terminal use, depending on brightness and whether you are also running the glasses' other features like camera recording or audio playback. for a full workday, you need a mid-day charge or a battery pack. but four hours is enough for a commute, a coffee shop session, or a long walk where you want to write code while moving.</p>
+        <p>the hardware is early. the field of view is narrower than high-end vr headsets. the resolution is sufficient for prototyping but not for final production. the battery lasts approximately ninety minutes under full ai load. the device gets warm. none of this is hidden. the product is aimed at developers and artists who want to iterate in spatial context, not at consumers who want a polished entertainment experience.</p>
 
-    <p>the social aspect is stranger than the technical one. wearing smart glasses in public is still a statement. people assume you are recording them, or that you are not paying attention. the terminal use case does not help with this perception. typing on an invisible keyboard while staring into space looks, from the outside, like a psychotic break. there is no way to signal to strangers that you are working. you just look like you are having a conversation with yourself.</p>
+        <p>the implications are more interesting than the product. this is the first commercially available headset that runs generative ai fully on-device with passthrough compositing. it establishes a baseline for what local spatial ai looks like. future headsets will have better chips, better optics, and better models. but the interaction pattern, speaking to generate in your field of view, is likely to persist. it is the most natural interface for spatial computing because it requires no controllers, no keyboards, and no prior knowledge of 3d software.</p>
 
-    <p>but for the specific subset of developers who value mobility over social appearance, this is the closest we have come to the fantasy of computing as an ambient layer. not a device you sit down at, but a capability you wear. the terminal is the right interface for this because it is lightweight, text-based, and works over intermittent connections. you do not need a mouse. you do not need precise gestures. you need text, and a way to send it somewhere else to be executed.</p>
+        <p>the price has not been announced. the release date has not been announced. the company is taking developer applications for early units. based on the hardware cost and the market for similar devices, the final price will likely be between five hundred and one thousand dollars. expensive for a toy, cheap for a prototyping tool. the decision to buy will depend on whether you have a use case that requires seeing ai output in spatial context rather than on a screen.</p>
+      </div>
 
-    <p>whether this becomes a mainstream developer tool or remains a niche curiosity depends on whether the glasses themselves become normal. if smart glasses follow the path of headphones, moving from conspicuous to invisible over a decade, then the terminal use case will seem obvious in retrospect. if they follow the path of google glass, becoming a symbol of tech culture that the mainstream rejects, then vibe coding on your eyeballs will remain a party trick for enthusiasts. either way, the capability exists now. you can write code while walking. the screen is your retina. the keyboard is in your pocket. the future was supposed to be flying cars. instead it is a terminal floating in front of your face.</p>
-  </div>
+    </article>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+  </main>
+
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="/articles/sorry-mate/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">sorry mate, you want me to what?</div>
+          <div class="a">on giving instructions to something that hears words but understands nothing</div>
+        </div>
+      </a>
+      <a href="/articles/network-school/" class="up-next-item">
+        <div class="tn"><img src="/articles/network-school/forest_city_real.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">network school</div>
+          <div class="a">a live-in startup campus inside a sinking ghost city</div>
+        </div>
+      </a>
+    </div>
+  </aside>
+
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

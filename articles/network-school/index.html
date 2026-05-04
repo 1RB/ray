@@ -6,102 +6,136 @@
 <title>network school — ray</title>
 <meta property="og:title" content="network school">
 <meta property="og:description" content="a live-in startup campus inside a hundred-billion-dollar ghost city in malaysia">
-<meta property="og:image" content="https://raysterminal.vercel.app/articles/network-school/forest_city_real.jpg">
 <meta property="og:type" content="article">
-<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css">
 <style>
-:root{--bg:#09090b;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#1a1a1a}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:640px;margin:0 auto;padding:0 24px}
-
-.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line)}
-.h h1{font-size:2.2rem;font-weight:400;font-style:italic;letter-spacing:-0.02em;line-height:1;color:#d4d0c6;font-family:Georgia,serif}
-.h .links{font-size:0.7rem;color:var(--muted);display:flex;gap:16px}
-.h .links a:hover{color:var(--accent)}
-
-.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
-.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.hero img.ok{opacity:1}
-
-.title-wrap{padding:0 0 8px}
-.title-wrap h2{font-family:Georgia,serif;font-size:2.6rem;font-weight:400;line-height:1.15;color:#d4d0c6;letter-spacing:-0.01em;margin-bottom:6px}
-.title-wrap .sub{font-size:0.75rem;color:var(--dim);letter-spacing:0.02em}
-
-.body-text p{margin-bottom:1.7em;font-weight:300}
-.body-text a{color:var(--accent)}
-
-.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.pull p{font-family:Georgia,serif;font-size:1.4rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
-
-.img-wrap{margin:2.8em -24px;background:#0a0a0a;position:relative}
-.img-wrap img{width:100%;display:block;max-height:60vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.img-wrap img.ok{opacity:1}
-.caption{padding:10px 24px 0;font-size:0.65rem;color:var(--muted);letter-spacing:0.02em}
-
-.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;color:#222;flex-wrap:wrap;gap:12px}
-.foot a{color:#333;transition:color 0.15s}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:600px){
-  .page{padding:0 18px}
-  .hero,.img-wrap{margin:32px -18px}
-  .h h1{font-size:1.9rem}
-  .title-wrap h2{font-size:2rem}
-  .caption{padding:8px 18px 0}
-  body{font-size:15.5px}
-}
+  .article-header h1{font-family:Georgia,serif;font-weight:400;font-style:italic}
+  .gallery-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:2em 0}
+  @media(max-width:560px){.gallery-2{grid-template-columns:1fr}}
+  .gallery-2 img{width:100%;height:220px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);cursor:pointer;transition:transform .2s}
+  .gallery-2 img:hover{transform:scale(1.02)}
+  .pull-serif{margin:2.5em 0;padding:1.6em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:Georgia,serif;font-size:1.25rem;font-style:italic;line-height:1.5;color:#c8c4bc}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <h1><a href="/">ray</a></h1>
-    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="hero">
-    <img src="forest_city_real.jpg" decoding="async" alt="Forest City, Malaysia" onload="this.classList.add('ok')">
-  </div>
+<div class="article-layout">
+  <main class="article-main">
 
-  <div class="title-wrap">
-    <h2>network school</h2>
-    <div class="sub">a live-in startup campus inside a hundred-billion-dollar ghost city</div>
-  </div>
+    <article class="article-wrapper">
 
-  <div class="body-text">
-    <p>balaji srinivasan started network school, a live-in school where people build startups and prototype new societies. the idea is you live, learn, and build together while figuring out how new countries could actually work. it is inside forest city, an abandoned hundred-billion-dollar chinese ghost city in malaysia where the buildings are literally sinking. fifteen hundred dollars a month covers your room, meals, gym, and community.</p>
+      <div class="article-hero">
+        <img src="/articles/network-school/forest_city_real.jpg" alt="aerial view of forest city, malaysia" decoding="async" onclick="openLightbox(this.src)">
+        <div class="caption">forest city, johor, malaysia. a hundred-billion-dollar development now largely vacant.</div>
+      </div>
 
-    <p>forest city was built by a chinese developer as a luxury residential project for wealthy mainland buyers. it was supposed to be a green, smart, futuristic metropolis on artificial islands off the coast of johor. then the chinese government restricted capital outflows, the buyers disappeared, and the project stalled. what remains is a collection of high-rise towers, empty shopping malls, overgrown gardens, and a golf course that is slowly being reclaimed by the jungle. the buildings are sinking because they were built on reclaimed land that is compacting faster than predicted. it is, by most measures, a failed development. it is also the perfect place to experiment with new forms of community.</p>
+      <header class="article-header">
+        <div class="label">longform</div>
+        <h1>network school</h1>
+        <div class="subtitle">a live-in startup campus inside a hundred-billion-dollar ghost city</div>
+        <div class="meta">
+          <span class="reading-time">8 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
 
-    <div class="pull">
-      <p>"the buildings are sinking because they were built on reclaimed land that is compacting faster than predicted. it is, by most measures, a failed development. it is also the perfect place to experiment."</p>
+      <div class="article-body">
+        <p>balaji srinivasan started network school, a live-in school where people build startups and prototype new societies. the idea is you live, learn, and build together while figuring out how new countries could actually work. it is inside forest city, an abandoned hundred-billion-dollar chinese ghost city in malaysia where the buildings are literally sinking. fifteen hundred dollars a month covers your room, meals, gym, and community.</p>
+
+        <div class="gallery-2">
+          <img src="/articles/network-school/forest_city_real.jpg" alt="forest city towers" onclick="openLightbox(this.src)" decoding="async">
+          <img src="/articles/network-school/ns_4.png" alt="network school cohort" onclick="openLightbox(this.src)" decoding="async">
+        </div>
+
+        <p>forest city was built by a chinese developer as a luxury residential project for wealthy mainland buyers. it was supposed to be a green, smart, futuristic metropolis on artificial islands off the coast of johor. then the chinese government restricted capital outflows, the buyers disappeared, and the project stalled. what remains is a collection of high-rise towers, empty shopping malls, overgrown gardens, and a golf course that is slowly being reclaimed by the jungle. the buildings are sinking because they were built on reclaimed land that is compacting faster than predicted. it is, by most measures, a failed development. it is also the perfect place to experiment with new forms of community.</p>
+
+        <div class="pull-serif">
+          "the buildings are sinking because they were built on reclaimed land that is compacting faster than predicted. it is, by most measures, a failed development. it is also the perfect place to experiment."
+        </div>
+
+        <p>the first intake was september to december 2024, with one hundred twenty-eight people from over eighty countries, selected from four thousand applicants. in march 2025 they started a full-year cohort with two hundred fifty-six members. new people arrive monthly for orientation. the selection process is not fully transparent but appears to weight demonstrated ability to build things over credentials. the demographic is young, technical, and globally distributed.</p>
+
+        <p>the program structure is a hybrid of startup accelerator, intentional community, and experimental governance lab. participants work on their own projects or join others, attend lectures on topics ranging from cryptocurrency to charter cities to biotech, and participate in governance experiments where they vote on community decisions using various mechanisms. the goal is not just to build companies but to test the infrastructure of new societies at small scale.</p>
+
+        <p>cohorts start on the first of every month. this is a rolling admission model that keeps the community fresh and prevents the formation of closed social circles that often happen in fixed cohorts. the downside is less continuity between groups, but the upside is a constant influx of new energy and skills. the year-long members provide institutional memory while the monthly arrivals prevent stagnation.</p>
+
+        <p>the location is part of the concept. forest city is a physical metaphor for the kind of society network school wants to build: something ambitious that failed under one set of assumptions but might succeed under another. the buildings are structurally sound, the internet is fast, the cost of living is low, and the regulatory environment is permissive. the sinking is a problem but not an immediate one. the towers will be standing for decades. the question is whether anyone will be in them.</p>
+
+        <p>the broader vision is a network of such campuses, each testing different models of governance, education, and economic organization. forest city is the first. if it works, the model replicates. if it fails, the lessons are documented and the next iteration is adjusted. this is iterative society-building, treated with the same methodology as iterative product development. the hypothesis is that the nation-state is a legacy product that has not had meaningful competition for centuries, and that startups should therefore apply to governance.</p>
+
+        <p>whether this is naive or visionary depends on your priors. building societies is harder than building apps. the feedback loops are longer, the stakes are higher, and the users are not optional. but the alternative is to accept the current set of institutions as permanent, which history suggests they never are. network school is an attempt to accelerate the cycle. it might work. it might not. but it is happening in a sinking chinese ghost city in malaysia, which is at least more interesting than another coworking space in san francisco.</p>
+      </div>
+
+    </article>
+
+  </main>
+
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="/articles/sorry-mate/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">sorry mate, you want me to what?</div>
+          <div class="a">on giving instructions to something that hears words but understands nothing</div>
+        </div>
+      </a>
+      <a href="/articles/realities-terminal/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">vibe coding straight to your eyeballs</div>
+          <div class="a">the vr headset that runs ai in your field of view</div>
+        </div>
+      </a>
     </div>
+  </aside>
 
-    <p>the first intake was september to december 2024, with one hundred twenty-eight people from over eighty countries, selected from four thousand applicants. in march 2025 they started a full-year cohort with two hundred fifty-six members. new people arrive monthly for orientation. the selection process is not fully transparent but appears to weight demonstrated ability to build things over credentials. the demographic is young, technical, and globally distributed.</p>
+</div>
 
-    <p>the program structure is a hybrid of startup accelerator, intentional community, and experimental governance lab. participants work on their own projects or join others, attend lectures on topics ranging from cryptocurrency to charter cities to biotech, and participate in governance experiments where they vote on community decisions using various mechanisms. the goal is not just to build companies but to test the infrastructure of new societies at small scale.</p>
-
-    <p>cohorts start on the first of every month. this is a rolling admission model that keeps the community fresh and prevents the formation of closed social circles that often happen in fixed cohorts. the downside is less continuity between groups, but the upside is a constant influx of new energy and skills. the year-long members provide institutional memory while the monthly arrivals prevent stagnation.</p>
-
-    <div class="img-wrap">
-      <img src="ns_4.png" decoding="async" alt="Network School cohort" onload="this.classList.add('ok')">
-      <div class="caption">members of the first network school cohort, forest city, malaysia</div>
-    </div>
-
-    <p>the location is part of the concept. forest city is a physical metaphor for the kind of society network school wants to build: something ambitious that failed under one set of assumptions but might succeed under another. the buildings are structurally sound, the internet is fast, the cost of living is low, and the regulatory environment is permissive. the sinking is a problem but not an immediate one. the towers will be standing for decades. the question is whether anyone will be in them.</p>
-
-    <p>the broader vision is a network of such campuses, each testing different models of governance, education, and economic organization. forest city is the first. if it works, the model replicates. if it fails, the lessons are documented and the next iteration is adjusted. this is iterative society-building, treated with the same methodology as iterative product development. the hypothesis is that the nation-state is a legacy product that has not had meaningful competition for centuries, and that startups should therefore apply to governance.</p>
-
-    <p>whether this is naive or visionary depends on your priors. building societies is harder than building apps. the feedback loops are longer, the stakes are higher, and the users are not optional. but the alternative is to accept the current set of institutions as permanent, which history suggests they never are. network school is an attempt to accelerate the cycle. it might work. it might not. but it is happening in a sinking chinese ghost city in malaysia, which is at least more interesting than another coworking space in san francisco.</p>
-  </div>
-
-  <div class="foot">
-    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
     <div>ray</div>
   </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
 </div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

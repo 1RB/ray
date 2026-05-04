@@ -3,85 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gemma 4 on your phone — ray</title>
-<meta property="og:title" content="gemma 4 on your phone">
-<meta property="og:description" content="google's official app for running open-source ai fully offline. no api key. no subscription. no cloud.">
+<title>gemma 4 on a phone — ray</title>
+<meta property="og:title" content="gemma 4 on a phone">
+<meta property="og:description" content="google's new model running local on android. benchmarks, tradeoffs, and what it means for privacy.">
 <meta property="og:type" content="article">
+<link rel="stylesheet" href="/style.css">
 <style>
-:root{--bg:#0a0a0a;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:600px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.title{font-size:2rem;font-weight:400;color:#d4d0c6;margin-top:56px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.2}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:48px}
-
-.body p{margin-bottom:1.7em;font-weight:300}
-.body a{color:var(--accent)}
-
-.specs{margin:36px 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.spec-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #0f0f0f;font-size:0.85rem;align-items:center}
-.spec-row:last-child{border-bottom:none}
-.spec-key{color:var(--dim)}
-.spec-val{color:#d4d0c6}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:1.7rem}
-  .spec-row{flex-direction:column;align-items:flex-start;gap:2px;padding:12px 0}
-}
+  .video-hero{background:#000;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin:0 -24px 32px}
+  @media(min-width:1100px){.video-hero{margin:0 0 32px}}
+  .video-hero video{width:100%;display:block;max-height:50vh}
+  .spec-pill{display:inline-block;background:var(--elevated);border:1px solid var(--line);padding:3px 10px;border-radius:20px;font-size:0.78rem;color:var(--text-dim);margin:0 6px 6px 0}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="title">gemma 4 on your phone</div>
-  <div class="sub">google's official app for running open-source ai fully offline. no api key. no subscription. no cloud.</div>
+<div class="article-layout">
+  <main class="article-main">
 
-  <div class="body">
-    <p>google has an official app called <a href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery&utm_source=raysterminal">ai edge gallery</a> that lets you run gemma 4 directly on your phone. one hundred percent open source, fully offline, no cloud required. you download the model weights over wifi, and after that every inference happens on device. no data leaves your phone.</p>
+    <article class="article-wrapper">
 
-    <p>this matters because it removes the last dependency on cloud providers for basic ai tasks. you do not need an api key, you do not need a subscription, and you do not need to trust google's servers with your prompts. the model runs inside the app using <a href="https://ai.google.dev/edge/litert?utm_source=raysterminal">litert</a>, google's lightweight runtime optimized for mobile chips. modern phones have npus that can handle billion-parameter models at usable speeds, and the app automatically selects the right backend for your hardware.</p>
+      <div class="video-hero">
+        <video controls poster="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg">
+          <source src="https://cdn4.telesco.pe/file/9d016c5320.mp4" type="video/mp4">
+        </video>
+      </div>
 
-    <div class="specs">
-      <div class="spec-row"><span class="spec-key">app</span><span class="spec-val">google ai edge gallery</span></div>
-      <div class="spec-row"><span class="spec-key">model</span><span class="spec-val">gemma 4 (multiple sizes)</span></div>
-      <div class="spec-row"><span class="spec-key">runtime</span><span class="spec-val">litert (formerly tensorflow lite)</span></div>
-      <div class="spec-row"><span class="spec-key">hardware</span><span class="spec-val">cpu, gpu, or npu (auto-selected)</span></div>
-      <div class="spec-row"><span class="spec-key">download size</span><span class="spec-val">2-8 gb depending on variant</span></div>
-      <div class="spec-row"><span class="spec-key">connection</span><span class="spec-val">none required after download</span></div>
-      <div class="spec-row"><span class="spec-key">license</span><span class="spec-val">open source, permissive</span></div>
+      <header class="article-header">
+        <div class="label">video</div>
+        <h1>gemma 4 on a phone</h1>
+        <div class="subtitle">google's new model running local on android. benchmarks, tradeoffs, and what it means for privacy.</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+        <div class="mt-2">
+          <span class="spec-pill">on-device</span>
+          <span class="spec-pill">gemma 4</span>
+          <span class="spec-pill">android</span>
+          <span class="spec-pill">local inference</span>
+        </div>
+      </header>
+
+      <div class="article-body">
+        <p>google released gemma 4, the latest open-weights model in their gemma series. the significant change is not just the model quality but the quantization and optimization work that allows it to run on a consumer android phone without a network connection. this is not a demo. this is a model you can download and run locally, and the performance is good enough for summarization, translation, question-answering, and light reasoning tasks.</p>
+
+        <p>the model is approximately four billion parameters in its smallest quantized form. on a modern snapdragon chip with a dedicated npu, inference runs at roughly fifteen tokens per second. this is not fast compared to cloud apis, but it is usable for interactive tasks. on older chips without npu acceleration, the model falls back to cpu and the speed drops to approximately three tokens per second, which is frustrating but functional for short queries.</p>
+
+        <p>the benchmark scores place the quantized four-billion-parameter version roughly in line with a seven-billion-parameter cloud model from two years ago. this is the standard pattern for local models: two years behind cloud quality at equivalent parameter counts, but with the advantage of zero latency, zero subscription cost, and complete data privacy. your prompts never leave the device. for users who work with sensitive documents or who are simply privacy-conscious, this is the primary selling point.</p>
+
+        <p>the video above shows the model running on a pixel phone, handling a multi-turn conversation about a local document. the responses are coherent, the context retention works across several turns, and the hallucination rate appears lower than earlier gemma versions. google has improved the training data filtering and the fine-tuning for instruction following. the model still makes mistakes, still confuses facts, and still generates plausible-sounding nonsense, but the frequency is reduced.</p>
+
+        <p>the tradeoffs are clear. you are trading model capability for privacy and availability. the local model cannot browse the web, cannot access real-time information, and cannot match the reasoning depth of frontier cloud models. but for tasks that do not require those capabilities, the local option is now genuinely competitive. this shifts the decision from "cloud or nothing" to "cloud for hard tasks, local for everything else."</p>
+
+        <p>the broader implication is that google is building infrastructure for a future where ai is ambient and on-device by default. if the model lives on your phone, google does not need to run inference at scale, does not need to store your queries, and does not need to monetize through cloud api calls. the business model shifts to selling the phone and the chip, not the service. this is a structural change in how ai economics work, and it is only possible because the hardware has caught up to the model size.</p>
+      </div>
+
+    </article>
+
+  </main>
+
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="/articles/zed-1-0/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">zed 1.0</div>
+          <div class="a">the ide hits version one. what they built and what they skipped.</div>
+        </div>
+      </a>
+      <a href="/articles/sorry-mate/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">sorry mate, you want me to what?</div>
+          <div class="a">on giving instructions to something that hears words but understands nothing</div>
+        </div>
+      </a>
     </div>
+  </aside>
 
-    <p>gemma 4 itself is the latest in google's open model family. it comes in several sizes, from a tiny variant that runs on mid-range phones to a larger version that requires a flagship chip and more ram. the app detects your available memory and suggests the largest model that will fit comfortably. you can also manually select a smaller model if you prefer faster responses over deeper reasoning.</p>
-
-    <p>the interface is minimal. a chat screen, a settings panel for model selection, and a download manager for the weights. there are no cloud sync features, no account requirements, and no usage tracking. the app does not even request an internet connection after the initial model download, though it will check for model updates if you allow it.</p>
-
-    <p>performance depends on your phone. on a recent flagship with a dedicated npu, gemma 4 responds at roughly the speed of a fast typist. on older hardware, there is noticeable lag between prompt and response. the app shows a token-per-second counter so you can see exactly how fast your device is processing. the smaller model variants are usable on hardware from two to three years ago, which is a significant democratization compared to the cloud-only era.</p>
-
-    <p>the implications go beyond personal convenience. in regions with unreliable internet, an offline model is the only option. for sensitive topics, local inference means no data trail on external servers. for developers, the app is a reference implementation showing how to embed gemma into any android or ios application using the same litert backend.</p>
-
-    <p>google's positioning here is interesting. they are giving away a capable model and the runtime to run it, while their cloud ai services remain the premium option for scale. the edge gallery is effectively a loss leader that builds familiarity with the gemma family and trains developers on the litert stack. if you outgrow your phone, google hopes you will move to their cloud tpus. but you are never forced to. the model weights are open, the runtime is open, and you can self-host on your own hardware whenever you choose.</p>
-
-    <p>the app is available on <a href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery&utm_source=raysterminal">google play</a> and the <a href="https://apps.apple.com/app/ai-edge-gallery/id6749645337&utm_source=raysterminal">app store</a>. the model downloads are large, between two and eight gigabytes depending on the variant, so you will want wifi. once downloaded, the app works entirely offline. no account. no cloud. just a model running on your hardware.</p>
-  </div>
-
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

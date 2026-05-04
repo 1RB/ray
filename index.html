@@ -7,152 +7,212 @@
 <meta name="description" content="notes on tools, systems, and things that should not work but do.">
 <meta property="og:title" content="ray">
 <meta property="og:description" content="notes on tools, systems, and things that should not work but do.">
-<style>
-:root{--bg:#0a0a0a;--text:#c4c0b8;--muted:#444;--dim:#666;--line:#141414;--accent:#8a3b12}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:620px;margin:0 auto;padding:0 28px}
-
-header{padding:72px 0 40px;border-bottom:1px solid var(--line)}
-header h1{font-size:2rem;font-weight:400;letter-spacing:-0.02em;color:#d8d4cc}
-header nav{margin-top:14px;font-size:0.78rem;color:var(--muted);display:flex;gap:22px}
-header nav a{transition:color 0.15s}
-header nav a:hover{color:var(--accent)}
-
-.intro{padding:36px 0 28px;font-size:0.92rem;color:var(--dim);line-height:1.7;border-bottom:1px solid var(--line)}
-
-.list{padding-bottom:48px}
-.item{padding:32px 0;border-bottom:1px solid var(--line)}
-.item:last-child{border-bottom:none}
-.item-title{font-size:1.15rem;font-weight:400;letter-spacing:-0.01em;line-height:1.35;color:#d8d4cc;margin-bottom:4px}
-.item-title a{transition:color 0.15s;display:block}
-.item-title a:hover{color:var(--accent)}
-.item-desc{font-size:0.82rem;color:var(--dim);line-height:1.55;max-width:480px}
-
-footer{padding:48px 0 80px;text-align:left;font-size:0.7rem;color:#222}
-footer a{color:#333;transition:color 0.15s}
-footer a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  header{padding:52px 0 28px}
-  header h1{font-size:1.7rem}
-  .item{padding:26px 0}
-  .item-title{font-size:1.05rem}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <header>
-    <h1>ray</h1>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
     <nav>
       <a href="https://t.me/raysterminal">telegram</a>
       <a href="https://github.com/1RB">github</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <div class="intro">
-    notes on tools, systems, and things that should not work but do.
+<div class="home-container">
+
+  <div class="hero-section">
+    <a href="/articles/sorry-mate/" class="hero-card">
+      <div class="hero-media">
+        <img src="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg" alt="sorry mate" decoding="async">
+      </div>
+      <div class="hero-body">
+        <div class="hero-label">featured</div>
+        <div class="hero-title">sorry mate, you want me to what?</div>
+        <div class="hero-desc">on giving instructions to something that hears words but understands nothing. a screenshot, a misunderstanding, and what it reveals about talking to machines.</div>
+      </div>
+    </a>
   </div>
 
-  <div class="list">
-    <div class="item">
-      <div class="item-title"><a href="articles/sorry-mate/">sorry mate, you want me to what?</a></div>
-      <div class="item-desc">on giving instructions to something that hears words but understands nothing</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/nvidia-five-trillion/">nvidia at five trillion</a></div>
-      <div class="item-desc">a company now worth more than the entire gdp of japan, the uk, and india</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/realities-terminal/">vibe coding straight to your eyeballs</a></div>
-      <div class="item-desc">realities' smart glasses now run a full terminal. the screen is your retina.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/toyota-seat/">toyota is selling car seats as desk chairs</a></div>
-      <div class="item-desc">three thousand one hundred dollars. the seatbelt buckle is a usb-c charging port.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/digital-whip/">someone made a digital whip to make claude work faster</a></div>
-      <div class="item-desc">a physical device that literally whips ai into productivity. i am not joking.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/network-school/">network school</a></div>
-      <div class="item-desc">a live-in startup campus inside a hundred-billion-dollar ghost city in malaysia</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/yc-wishlist-2026/">YC summer 2026 startup wishlist</a></div>
-      <div class="item-desc">what the biggest accelerator wants to fund this year. hardware, defense, semiconductors.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/pascal-editor/">pascal editor</a></div>
-      <div class="item-desc">a full 3d building editor that runs in your browser. no autocad. no revit. no five thousand dollar licenses.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/browser-use-hermes/">browser use + hermes agent</a></div>
-      <div class="item-desc">free cloud browser automation for anyone running hermes. unlimited hours. free proxies. no setup.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/fieldtheory-cli/">fieldtheory cli</a></div>
-      <div class="item-desc">sync your x bookmarks locally so your ai agent can actually read them. no api. no oauth.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/zed-1-0/">zed 1.0</a></div>
-      <div class="item-desc">the code editor built by the atom team, now out of beta. multiplayer by default. written in rust.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/warp-open-source/">warp goes open source</a></div>
-      <div class="item-desc">the rust-based terminal is now fully open source. all seventy million dollars of it.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/gemma-4-phone/">gemma 4 on your phone</a></div>
-      <div class="item-desc">google's official app for running open-source ai fully offline. no api key. no subscription. no cloud.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/claude-mythos/">claude mythos</a></div>
-      <div class="item-desc">how a single unverified screenshot became a full-blown ai security panic</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/joe-liemandt-education/">the bottleneck was never the learner</a></div>
-      <div class="item-desc">a kid can master seventh grade science in twenty-two hours. school takes two hundred plus.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/dogfood/">dogfood</a></div>
-      <div class="item-desc">an agent-browser skill that uses your app like a real user. no scripts. no manual qa.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/cobe-globe/">cobe</a></div>
-      <div class="item-desc">a five kilobyte webgl globe library for landing pages. ultra-light. customizable. smooth as hell.</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title"><a href="articles/meta-muse-spark/">muse spark</a></div>
-      <div class="item-desc">meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal benchmarks.</div>
-    </div>
+  <div class="section-head">
+    <h2>latest</h2>
+    <span class="count">12 articles</span>
   </div>
 
-  <footer>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </footer>
+  <div class="card-grid">
+
+    <a href="/articles/network-school/" class="card">
+      <div class="thumb">
+        <img src="/articles/network-school/forest_city_real.jpg" alt="network school" decoding="async">
+      </div>
+      <div class="info">
+        <div class="title">network school</div>
+        <div class="meta">
+          <span>a live-in startup campus inside a sinking ghost city</span>
+          <span class="tag">longform</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/zed-1-0/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/GgzoU847rmkBHvScp5QX3-pulnxWPzx3pDSfn5OpbVcquns_KiS50aOJDQYkauAUOHIN9dG-zZ7DouoADRkZv0luJ-zgCnSXbIYTFLGvwFPfpXRb2OsPTLYa9B4oSH0-ZM7wXTP1FMcoQt1uhq_nnl3seLNxV278Dql518hgjf1gJhjMqwxhf9PRMgvYXi24o-wmX-gOM8Y9M5YYfDLo8v7L6ydlNx_zFpu1zS-rR-61fBbK4k4rpOIZHZWHdPmzkYJbBjP4LKWIsyduHlQlWqQTO-dP5FKyb6h6fz2XzSS_aaCIsfF-RmqalHiq_QEpTbChT2FgZfG4YpyFZP191w.jpg" alt="zed 1.0" decoding="async">
+      </div>
+      <div class="info">
+        <div class="title">zed 1.0</div>
+        <div class="meta">
+          <span>the code editor built by the atom team, out of beta</span>
+          <span class="tag">review</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/warp-open-source/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/kZMDI0LH_1N1xGNZwoZQUfrRPWHuS-w0LBl5w5jfSPe3OQyV_Z30pq-elDHqrw2NBmJhobqL6eE6Qxf-YgcW_ts4m_76Zie5bnq0R7Igv-HRa8iebJHJjoAAcU3lQC8kETTrdtCs6XDJyF_h1w7PY4tSRU0jLBqZNTJMeeVPy_wjipg95-BFNBvcQ7Q5Qfm-qmWY4b0JUdquGSumeVmzAAZxXovRKqqr3ZvEIcbE30ofnmpAQX0tF_Enqr-WapGP8_kidInWFJ_mTthAB-nKwue6pKphZS2KJ5urFbPCQ3mzHFBnVgFprJo2mS0W_tlVqbfKaESPM0Jo90xk2VUMZA.jpg" alt="warp" decoding="async">
+      </div>
+      <div class="info">
+        <div class="title">warp goes open source</div>
+        <div class="meta">
+          <span>$70M in venture funding, now fully open source</span>
+          <span class="tag">news</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/gemma-4-phone/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/QDFMFLBnPrOy6KmAd3lVjI_DCEe1ebfzUZhitd1Rta8MJ8qGiCauBAyLNHZvSBhgvV8RNw0yFuIiJYXSgjUTJQKcivF0rnfD_Np_P8GrdwN5oXK6KIh6DZ7j8L2Ujw-CVW66VbY7ScmByca03aPvSvfpCshxGRqP3P2zS2hankXVNG12zgy1S9NtEj85PUl5r8Yrb9JNo4NXHhwM2K80duTmksmZMlP4FonX_iu54lBXTfxvi96Kt5e4wMGFIkCR717b-AptZgAmArFURat6yPmJEjXmiZJjpjoYAKNIIrFUpRDTBMl0p2SL8bH2tT9-YLwtVskTrqFXA1KVG3HeLA.jpg" alt="gemma 4" decoding="async">
+        <span class="dur">video</span>
+      </div>
+      <div class="info">
+        <div class="title">gemma 4 on your phone</div>
+        <div class="meta">
+          <span>google's official app for fully offline open-source ai</span>
+          <span class="tag">product</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/realities-terminal/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt="realities terminal" decoding="async">
+        <span class="dur">video</span>
+      </div>
+      <div class="info">
+        <div class="title">vibe coding straight to your eyeballs</div>
+        <div class="meta">
+          <span>realities terminal. the vr headset that runs ai in your field of view.</span>
+          <span class="tag">video</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/browser-use-hermes/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/tCciM0s1gSSw-l4vYEtybEl7S9eGsacI9o4MXvnMPaUNIQ6H4rcBTcSCGQraoEk3Jqv-fKSqxy4gswW22hpHdjgFlTc5-92-ev7pkRi-38gD4y_eLRZ9v7U4ncDyZZg9zCcgNHmBIye1YuEMllerA83-RsFom5UZbyDdysy92AariyXtkg4qkujvjUyGfN4i0VDuaXH2JKCqtMg9flhuE2zyzasqCcgZwx30IGPquShLwCEbkAbqr5_lHaYkL2T-5Hh3bC1g6_0sORG_Lutx_oUVilcpySt41T0Y4nJd-KgySPDskUpZRpMEMj2e2FW-SRYymQuqYY1ftODZWzvtfQ.jpg" alt="browser use" decoding="async">
+        <span class="dur">video</span>
+      </div>
+      <div class="info">
+        <div class="title">browser use + hermes agent</div>
+        <div class="meta">
+          <span>free cloud browser automation. unlimited hours. no setup.</span>
+          <span class="tag">tutorial</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/fieldtheory-cli/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/rV6J3jhPq9_NHscs0574zYBxay1FD5oz6u8HvVbWlb4itwz2ymQlQr-b1foJk7NNKJKSHqiB03efYb9p7kaOVqVBVI6g5JDqtHca5pwvv-oVESDtcs2uVfXpwi9MXhF9qT9NVsr54cOSbmLvraxJjleuLWgcvYVA6RhPcwdxHazY47bZgHh5Vx0vwWbPzOESPZ9SHoefAZz_Z2i6S4TLmP-dyXBTLJpagL2htKGpl4hrRFMSpwVtWCBTeKbgFin1p4_OTaIr7_WaLOr4wg1VN2vG6wtDwr69RAToyJcQe28i3BTua3VfrZ3aNh-Zd5cRsrgbmtmFelfIS35zWnQKDQ.jpg" alt="fieldtheory" decoding="async">
+        <span class="dur">video</span>
+      </div>
+      <div class="info">
+        <div class="title">fieldtheory cli</div>
+        <div class="meta">
+          <span>sync your x bookmarks locally. no api. no oauth.</span>
+          <span class="tag">tool</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/digital-whip/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/CNMXAx5TljZsHtZmQ4-ApQpk2wqWnlSGVF3U_TnijaGdGg11Rdckwv5mxDqFfAgL_NNUVi-8w6GZITFIDyd50QU5CmKd4tv17Nkrl3nhf2wn9CIqKDskRIJ0ZaFLQJOc_rDfBf5aEnPawkiHCtdoX0p8reWeY67bFwnbS-L8ZUYfOXjUKIK0bqQE8pn0_8SWZZHEycAE3nd7EcJjwOJ8UFcnDowBQprRJGCZK22jULCTqvXzdTIQ2FF-MpIlpCtL1B9aFJmJrmwOwyM_Mn1nvYfGCFl0jtDzMfzQuEb36H2Al2T_dax8yZaZLn1Llcv5wAwlh3SDFcv5FyHRYX347w.jpg" alt="digital whip" decoding="async">
+        <span class="dur">video</span>
+      </div>
+      <div class="info">
+        <div class="title">digital whip</div>
+        <div class="meta">
+          <span>someone built a usb device to make claude work faster</span>
+          <span class="tag">hardware</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/yc-wishlist-2026/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/rutb62QEOXgEnJdiNUPgHQElAWtKzuqBWCnFXwwspWN71l_n33Mq7xH6FBZ1jAgzNW4RXOSdbWG25XmeJLJnd4fA4nuGFXVNaNUD1cHRieqKoahrGsQMxZQ2RvvgW4VQ2Dc7U9tvPZ4woeziFUagmAc76fgShT0tnZls-UzsEu-ACv94NsFSS_j8qaxGILIfj4dbQ31Pu4C15r7u9lCgHzB-qLB7X3AuAzNl1JG8yBqZLOUC8XTWJYTL3zJ7sbWigZ_N3IXMpZExYkMFQrLS_FvpJ8OjSMTyknDDHge-aKjGpgxc47LnA6Q9E-dn8qK1lRe2ASD5NBrB7e5kZY-T1w.jpg" alt="yc" decoding="async">
+      </div>
+      <div class="info">
+        <div class="title">YC summer 2026 startup wishlist</div>
+        <div class="meta">
+          <span>what the biggest accelerator wants to fund this year</span>
+          <span class="tag">analysis</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/meta-muse-spark/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/bX2mjHyVcj5VR6v0UtP3uK0IyKLTkGff4QS_sjgUm6GmhTGseimRORj3l0bdSCM6EHhbFZZ8E3joDlQ40i8rWnox9t27EM9oxKn0w-p_6hJfIpMa34QaNQ2hipbDYn39KiVjjtid3ovbsU9tZOFl1ASwDptB5a6jJRbYWVkE9-JRB0N1AFyAyay3RRoaeVwL56XY4UL5Hci_-_08qcnXiV3TIqb2AvSBNOwl_0xp_99DhR16q2kKXaGK_QE6UpTqYfZJq3TSDChwJDQCVyKY17x8JHiV-TI5iFAmVDW8lbjpyOtEriw1Tqi-SqSRNQoKS0QwPNA3T428YHwfZ9aIqQ.jpg" alt="muse spark" decoding="async">
+      </div>
+      <div class="info">
+        <div class="title">muse spark</div>
+        <div class="meta">
+          <span>meta superintelligence labs' first model. leads on multimodal benchmarks.</span>
+          <span class="tag">news</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/articles/toyota-seat/" class="card">
+      <div class="thumb">
+        <img src="https://cdn4.telesco.pe/file/DxQ5k89R7uf2gzQVO_tySLqn4unO5W60hEW5eTm7j7lG88p7FpRF0MuZgs2YQFf8SjGoX5C3ZDAyX1dDt2bnowc7I8OpCNDaeQtpaKadH8DEsvsc6vMihiT3ZfNw9-zah0tZCZqcvUTlV9EJ0x7chkZp6-hRS4GCSQwEJ37SCBpEdxcJ111zwTzqb3_iOY9fgjOZ828WLhkl4ZtrDza3BkHwjP2hr_fv9NL0DfjnEoMEjTq1OPndpZIK6jIL1kfveWUdTPLiJK8pnQWE30SwUQjpe68xKcYrCRdnhftwGI3F1j0Cv2x4njJ3izaODCuPSozMavEKgiZX290d46gwhA.jpg" alt="toyota seat" decoding="async">
+      </div>
+      <div class="info">
+        <div class="title">toyota is selling car seats as desk chairs</div>
+        <div class="meta">
+          <span>$3,100 and the seatbelt buckle is a usb hub</span>
+          <span class="tag">product</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">ray</a> — <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>notes on tools, systems, and things that should not work but do.</div>
+  </div>
+</footer>
+
+<script>
+// sticky header hide/show
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100){header.classList.add('hidden');}
+  else{header.classList.remove('hidden');}
+  lastY=y;
+},{passive:true});
+</script>
+
 </body>
 </html>

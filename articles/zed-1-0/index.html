@@ -5,75 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zed 1.0 — ray</title>
 <meta property="og:title" content="zed 1.0">
-<meta property="og:description" content="the code editor built by the atom team, now out of beta. multiplayer by default. written in rust.">
+<meta property="og:description" content="the ide hits version one. what they built, what they skipped, and whether it is enough.">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#090909;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.8;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:560px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.title{font-size:2.4rem;font-weight:300;color:#d4d0c6;margin-top:64px;margin-bottom:10px;letter-spacing:-0.02em;line-height:1.15}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:72px}
-
-.body p{margin-bottom:2em;font-weight:300}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.pquote{margin:2.5em 0;padding:1.5em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.2rem;color:#d4d0c6;line-height:1.5;font-weight:300;font-style:italic}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:2rem}
-  .sub{margin-bottom:56px}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="title">zed 1.0</div>
-  <div class="sub">the code editor built by the atom team, now out of beta. multiplayer by default. written in rust.</div>
+<div class="article-layout">
+  <main class="article-main">
 
-  <div class="body">
-    <p>i used zed when it first came out. it was fast, which was refreshing after years of electron editors, but it was also bare. no git integration. no multi-buffer support. no remote development. you could edit a single file very quickly and that was about it. it felt like a promise rather than a product. the foundation was solid but the house was unfinished.</p>
+    <article class="article-wrapper">
 
-    <p>four years later the house is finished. zed is now at version 1.0 and it has everything i was missing. git integration that shows inline blame and diff hunks directly in the editor. multi-buffer editing that lets you open multiple files in a single pane and edit them simultaneously. remote development that streams the editor ui to a local machine while the language server and compilation run on the server. parallel ai agents that can edit different parts of the codebase concurrently without stepping on each other. the speed is still there, but now there is functionality to match.</p>
+      <div class="article-hero">
+        <img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt="zed editor interface" decoding="async" onclick="openLightbox(this.src)">
+        <div class="caption">zed 1.0 editor interface.</div>
+      </div>
 
-    <div class="pquote">the team that built atom learned from their first product. they know how electron editors fail, and they built the opposite.</div>
+      <header class="article-header">
+        <div class="label">product</div>
+        <h1>zed 1.0</h1>
+        <div class="subtitle">the ide hits version one. what they built, what they skipped, and whether it is enough.</div>
+        <div class="meta">
+          <span class="reading-time">5 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
 
-    <p>the multiplayer implementation is the headline. zed opens every project as a shared workspace. you can invite collaborators by link, see their cursors in real time, and edit the same file simultaneously without the lag that kills flow in other tools. the team calls it channel-based collaboration: a persistent shared context that includes not just the code but the terminal, the ai chat, and the file tree. when you join a channel, you join the entire environment.</p>
+      <div class="article-body">
+        <p>zed announced version 1.0 after years of public beta. the ide is built in rust with a custom gpu-accelerated rendering engine. it is fast. opening a million-line repository is instant. the ui is minimal, the latency is low, and the memory footprint is smaller than electron-based competitors. the tradeoff is that extensions are limited, the ecosystem is small, and many features users expect from mature ides are still missing.</p>
 
-    <p>the rendering engine is built on gpui, a custom rust framework that draws the entire interface with the gpu. this means no dom, no css, no javascript in the rendering path. the result is consistent frame times, no jank when scrolling large files, and crisp text at any scale. on a modern mac, zed scrolls a million-line file without dropping a frame. this is not a benchmark trick. it is the baseline.</p>
+        <p>the 1.0 release focused on stability and collaboration. zed has real-time multiplayer editing built in, not bolted on. multiple users can edit the same file with cursors visible, without the lag that makes google docs feel heavy in a codebase. this is the feature zed's founders, who previously built atom at github, care about most. they believe coding is collaborative and the tools should reflect that.</p>
 
-    <p>rust is not just an implementation detail. it shapes what the editor can do. memory safety without garbage collection means zed can spawn threads freely, parallelize syntax highlighting across cores, and keep the ui responsive while background tasks run. the language also enforces discipline. the zed codebase has fewer classes of bugs by construction, which matters when you are building infrastructure that developers live inside for hours every day.</p>
+        <p>the ai integration is native, not a sidebar plugin. you can generate, edit, and explain code inline. the model runs in the cloud but the interface is integrated into the editor's command palette. there is no chat window taking up screen space. the model's output streams directly into the buffer. this sounds small but it changes the rhythm of ai-assisted coding from "switch contexts, paste, clean up" to "ask, receive, continue."</p>
 
-    <p>the ai integration is native, not bolted on. a built-in assistant panel can reference the current file, the current project, or the entire codebase. it uses the context to generate, explain, and refactor code. because the assistant runs in the same process as the editor, it has direct access to the abstract syntax tree, not just the text. this means structural operations like "extract this into a function" or "rename this variable across the project" happen with semantic accuracy.</p>
+        <p>what is missing: a debugger, a robust extension marketplace, support for remote development over ssh, and native support for many languages beyond the core set. zed's position is that they will add these, but 1.0 means the core is solid, not that the product is finished. the risk is that users who need a debugger today will not wait. the opportunity is that users who are tired of slow, heavy ides will switch for speed and stay for the features as they arrive.</p>
 
-    <p>the extension model is still evolving. zed 1.0 ships with support for language servers and tree-sitter grammars, but the full plugin api is not yet open. the team has committed to releasing it, and the architecture suggests it will be wasm-based, meaning extensions run in a sandboxed environment. this is slower to ship than a javascript api but safer for users.</p>
+        <p>the business model is subscription-based for teams, free for individuals. this is the inverse of vscode, which is free for everyone and monetizes through microsoft's cloud services. zed needs to convince companies that real-time collaboration is worth paying for, and that the speed difference is meaningful enough to overcome the friction of switching. it is a hard pitch. developers are loyal to their tools and the switching cost is high.</p>
 
-    <p>the pricing is unusual for a developer tool. zed is free for individuals and open source projects. teams pay per seat for the multiplayer features. the ai assistant has its own usage-based pricing, though you can bring your own api key and pay the provider directly. the team is explicit that they do not want to be an ai company. the editor is the product. the ai is a feature.</p>
+        <p>whether zed succeeds depends on whether the developer tools market has room for a new commercial ide. vscode dominates. jetbrains is entrenched. vim and emacs never die. zed's bet is that performance and collaboration are differentiators large enough to carve out a space. 1.0 is the starting line, not the finish. the next year will determine if anyone shows up to race.</p>
+      </div>
 
-    <p>there are limitations. zed is mac-only at 1.0, with linux and windows builds in progress. the extension ecosystem is smaller than vscode's by orders of magnitude. and the learning curve is real if you are coming from an electron editor. the keybindings are different, the settings are configured in json rather than a gui, and the visual language is minimal to the point of austerity.</p>
+    </article>
 
-    <p>but if you value speed, if you work in teams, or if you are tired of editors that feel like web apps, zed is the most credible alternative to have launched in years. the atom team learned from their first product. they know how electron editors fail, and they built the opposite. it took four years. the foundation feels right.</p>
-  </div>
+  </main>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="/articles/gemma-4-phone/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">gemma 4 on a phone</div>
+          <div class="a">google's new model running local on android</div>
+        </div>
+      </a>
+      <a href="/articles/realities-terminal/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">vibe coding straight to your eyeballs</div>
+          <div class="a">the vr headset that runs ai in your field of view</div>
+        </div>
+      </a>
+    </div>
+  </aside>
+
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

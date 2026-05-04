@@ -5,71 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sorry mate, you want me to what? — ray</title>
 <meta property="og:title" content="sorry mate, you want me to what?">
-<meta property="og:description" content="on giving instructions to something that hears words but understands nothing">
+<meta property="og:description" content="on giving instructions to something that hears words but understands nothing.">
 <meta property="og:type" content="article">
+<link rel="stylesheet" href="/style.css">
 <style>
-:root{--bg:#070707;--text:#b8b3a8;--muted:#3a3a3a;--accent:#8a3b12}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 24px}
-a{color:inherit;text-decoration:none}
-
-.h{width:100%;max-width:540px;padding:48px 0 16px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid #111}
-.h a:hover{color:var(--accent)}
-
-.page{width:100%;max-width:540px;padding:80px 0 120px}
-
-.title{font-size:2.2rem;font-weight:400;color:#d4d0c6;line-height:1.25;margin-bottom:16px;letter-spacing:-0.01em}
-.lede{font-size:0.85rem;color:var(--muted);margin-bottom:80px}
-
-.body p{margin-bottom:2.2em;font-weight:300}
-.body p:first-of-type::first-letter{font-size:2.4em;float:left;line-height:0.8;margin-right:6px;color:#d4d0c6;font-weight:400}
-
-.foot{width:100%;max-width:540px;padding:40px 0 80px;border-top:1px solid #111;font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  body{font-size:16px;padding:0 20px}
-  .page{padding:60px 0 80px}
-  .title{font-size:1.85rem}
-  .lede{margin-bottom:56px}
-}
+  .pull-big{margin:3em 0;padding:2em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:Georgia,serif;font-size:1.4rem;font-style:italic;line-height:1.5;color:#c8c4bc}
 </style>
 </head>
 <body>
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="page">
-    <div class="title">sorry mate, you want me to what?</div>
-    <div class="lede">on giving instructions to something that hears words but understands nothing</div>
+<div class="article-layout">
+  <main class="article-main">
 
-    <div class="body">
-      <p>you type a paragraph into a chat box. you explain what you want in detail, carefully, like you are talking to an intern on their first day. you use examples. you set boundaries. you say please, sometimes, out of habit, even though there is no one to be polite to. you press enter. the machine processes your words. it breaks them into tokens, maps them across a vector space the size of a galaxy, predicts the next token, then the next, then the next. it responds.</p>
+    <article class="article-wrapper">
 
-      <p>sorry mate, you want me to what?</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">essay</div>
+        <h1>sorry mate, you want me to what?</h1>
+        <div class="subtitle">on giving instructions to something that hears words but understands nothing</div>
+        <div class="meta">
+          <span class="reading-time">3 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
 
-      <p>this is the most honest thing an ai has ever said to me. not because it is confused, but because it is accurate. it does not want anything. it does not know what you want. it has processed your request and mapped it to a probability distribution that says, statistically, people who use these words in this order are often asking for something that does not exist, or something that contradicts itself, or something that made sense in their head but falls apart when converted into executable instructions.</p>
+      <div class="article-body">
+        <p>the most common mistake in using ai is anthropomorphizing it. you give an instruction the way you would to a person, assuming shared context, implicit constraints, and an understanding of what you actually want rather than what you literally said. the model does not have any of this. it processes tokens and predicts continuations. it is not confused, not stubborn, not lazy. it is a statistical engine that generates text based on patterns in its training data.</p>
 
-      <p>the sentence is perfect because it captures the exact shape of the gap between human intention and machine interpretation. you thought you were clear. you were not. you thought you were specific. you were vague in ways you did not know were important. you thought context was implied. there is no implied context. there is only what you wrote, minus everything you assumed.</p>
+        <div class="pull-big">
+          "the model does not have any of this. it processes tokens and predicts continuations. it is not confused, not stubborn, not lazy."
+        </div>
 
-      <p>we have built systems that can generate coherent paragraphs, write functional code, and pass bar exams, but they still cannot handle ambiguity the way a bored teenager working a drive-through can. the teenager at least knows what a burger is. the machine knows only that the word "burger" appears near "order" with high frequency in its training data. when you ask for something that does not have a high-frequency neighbor, you get the conversational equivalent of a 404 page.</p>
+        <p>when a model produces output that misses your intent, the failure is almost always in the prompt, not the model. you were vague, you assumed knowledge you did not provide, you framed the task in terms of outcome rather than process. "make this better" is a bad prompt because "better" is undefined. "rewrite this paragraph to use shorter sentences and an active voice" is a good prompt because the criteria are explicit and the scope is bounded.</p>
 
-      <p>the worst part is that the better these systems get at sounding like they understand, the more jarring the moments of misunderstanding become. a model that says "i see what you mean" and then does the opposite is more frustrating than a model that says "sorry mate, you want me to what?" at least the second one is honest about the transaction. you are giving instructions to a pattern matcher. it is doing its best. sometimes its best is a polite request for clarification, phrased like an australian bartender who is not sure he heard your order correctly.</p>
+        <p>the skill of prompt engineering is really the skill of explicit communication. it is the same skill that makes you a good manager, a good teacher, or a good writer. you have to externalize the context that lives in your head. you have to define the boundaries of the task. you have to specify the format of the output. the more you treat the model as a precise instrument rather than a conversational partner, the more useful it becomes.</p>
 
-      <p>there is a lesson here about language, not technology. we think words carry meaning. they do not. they carry signals, and meaning is reconstructed by the listener. when the listener is human, they use a lifetime of context, body language, cultural knowledge, and shared history. when the listener is a machine, they use statistics. the reconstruction looks similar from a distance, but up close the seams show. the machine is always one misunderstood modifier away from generating something that is technically grammatical and functionally useless.</p>
+        <p>the models are getting better at inferring intent, but this is not the same as understanding. a model that guesses what you meant is still guessing. the best results come from removing the need to guess. this means longer prompts, more examples, more constraints. it feels like more work because it is more work. the reward is output that actually matches your requirements rather than output that is approximately related to your topic.</p>
 
-      <p>so you rephrase. you simplify. you remove the subordinate clauses and the metaphors and the references to things that happened in previous conversations the machine does not remember. you learn to write like you are explaining a task to someone who is very literal, very patient, and has no idea what you do for a living. eventually your prompts become a genre of their own. prompt engineering is just learning to speak to a listener who is not there.</p>
+        <p>the title of this essay is what the model would say if it could be frustrated. it cannot. but you can, and you will be, if you keep treating a probability distribution like an intern. give it the same respect you would give a precise machine: clear inputs, defined parameters, and verification of outputs. the model does not need to understand you. you need to understand the model.</p>
+      </div>
 
-      <p>and sometimes, when you have stripped away every layer of ambiguity and reduced your request to its most mechanical form, the machine still says it. sorry mate, you want me to what? and in that moment, you realize the problem was never the prompt. the problem was wanting something from a system that can only give you what you have already seen, rearranged. the machine is not confused. you are. you thought you were talking to something that understands. you are talking to something that repeats.</p>
+    </article>
+
+  </main>
+
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="/articles/gemma-4-phone/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/aiY2qvZGR9BybxsJnFuDbl2Td3MKxybByvgKl9EZqPfdLgSAFUmaZcNpVH-5Q3K04CE12NYwgh6kZrzNKITaYHRlPJeX-vnH_G90iPSoSMN604zSCZTfujK4VyJyuBxMMC07txkqJ_DL_hj0kX3w13Yh53HPiN0PbkZwm8ZNtn5IlPqIdzcf6Yz9TVLN8XgDFUtLeCQoxnOi-v4tF8F0z-E1OduOVohYyuZIn4YsNBjfsioDnO3pNVEGFseIuqDZSpY0d2kSmiB1Lt9X1c4XoIhcicN6QEV9wCcqRQClsdYxGG6EBtn2WE-k4RydtjXbRZcPNjBrbN9Whuo3lf804g.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">gemma 4 on a phone</div>
+          <div class="a">google's new model running local on android</div>
+        </div>
+      </a>
+      <a href="/articles/realities-terminal/" class="up-next-item">
+        <div class="tn"><img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt=""></div>
+        <div class="de">
+          <div class="t">vibe coding straight to your eyeballs</div>
+          <div class="a">the vr headset that runs ai in your field of view</div>
+        </div>
+      </a>
     </div>
-  </div>
+  </aside>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
+</div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
   </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>
