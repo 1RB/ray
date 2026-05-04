@@ -279,6 +279,18 @@
 
 <script src="/ray.js"></script>
 <script>
+// view transitions: assign names to clicked card before navigation
+if(document.startViewTransition){
+  document.querySelectorAll('.card, .hero-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.querySelector('.thumb img, .hero-media img');
+      const title = card.querySelector('.title, .hero-title');
+      if(img) img.style.viewTransitionName = 'vt-hero';
+      if(title) title.style.viewTransitionName = 'vt-title';
+    });
+  });
+}
+
 let lastY=0;
 const header=document.getElementById('siteHeader');
 window.addEventListener('scroll',()=>{
