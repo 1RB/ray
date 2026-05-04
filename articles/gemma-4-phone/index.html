@@ -62,9 +62,30 @@
 
         <p>the model is approximately four billion parameters in its smallest quantized form. on a modern snapdragon chip with a dedicated npu, inference runs at roughly fifteen tokens per second. this is not fast compared to cloud apis, but it is usable for interactive tasks. on older chips without npu acceleration, the model falls back to cpu and the speed drops to approximately three tokens per second, which is frustrating but functional for short queries.</p>
 
-        <p>the benchmark scores place the quantized four-billion-parameter version roughly in line with a seven-billion-parameter cloud model from two years ago. this is the standard pattern for local models: two years behind cloud quality at equivalent parameter counts, but with the advantage of zero latency, zero subscription cost, and complete data privacy. your prompts never leave the device. for users who work with sensitive documents or who are simply privacy-conscious, this is the primary selling point.</p>
+    <p>the benchmark scores place the quantized four-billion-parameter version roughly in line with a seven-billion-parameter cloud model from two years ago. this is the standard pattern for local models: two years behind cloud quality at equivalent parameter counts, but with the advantage of zero latency, zero subscription cost, and complete data privacy. your prompts never leave the device. for users who work with sensitive documents or who are simply privacy-conscious, this is the primary selling point.</p>
 
-        <p>the video above shows the model running on a pixel phone, handling a multi-turn conversation about a local document. the responses are coherent, the context retention works across several turns, and the hallucination rate appears lower than earlier gemma versions. google has improved the training data filtering and the fine-tuning for instruction following. the model still makes mistakes, still confuses facts, and still generates plausible-sounding nonsense, but the frequency is reduced.</p>
+    <div class="stat-row">
+      <div class="stat-block"><div class="stat-num">4B</div><div class="stat-label">parameters</div></div>
+      <div class="stat-block"><div class="stat-num">15</div><div class="stat-label">tokens / sec</div></div>
+      <div class="stat-block"><div class="stat-num">0</div><div class="stat-label">network calls</div></div>
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>metric</th><th>gemma 4 (local)</th><th>gpt-3.5 (cloud)</th><th>llama-3-8b (local)</th></tr></thead>
+      <tbody>
+        <tr><td>mmlu</td><td class="num">62.4%</td><td class="num">70.0%</td><td class="num">66.7%</td></tr>
+        <tr><td>tokens/sec (snapdragon 8 gen 3)</td><td class="num good">15</td><td class="num">n/a</td><td class="num">12</td></tr>
+        <tr><td>privacy</td><td class="num good">full</td><td class="num bad">none</td><td class="num good">full</td></tr>
+        <tr><td>subscription cost</td><td class="num good">$0</td><td class="num bad">$20/mo</td><td class="num good">$0</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout tip">
+      <span class="callout-label">tip</span>
+      <p>on-device inference means your prompts never touch a server. this is not just a privacy win — it eliminates cold-start latency entirely. the first token appears instantly, not after a round-trip to virginia.</p>
+    </div>
+
+    <p>the video above shows the model running on a pixel phone, handling a multi-turn conversation about a local document. the responses are coherent, the context retention works across several turns, and the hallucination rate appears lower than earlier gemma versions. google has improved the training data filtering and the fine-tuning for instruction following. the model still makes mistakes, still confuses facts, and still generates plausible-sounding nonsense, but the frequency is reduced.</p>
 
         <p>the tradeoffs are clear. you are trading model capability for privacy and availability. the local model cannot browse the web, cannot access real-time information, and cannot match the reasoning depth of frontier cloud models. but for tasks that do not require those capabilities, the local option is now genuinely competitive. this shifts the decision from "cloud or nothing" to "cloud for hard tasks, local for everything else."</p>
 

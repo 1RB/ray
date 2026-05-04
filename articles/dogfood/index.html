@@ -78,6 +78,11 @@
 
     <p>dogfood is available as a <a href="https://skills.sh?utm_source=raysterminal" style="color:var(--accent)">skill</a> that can be added to hermes agent or run standalone. the standalone version is a cli tool that takes a url and produces an html report. the skill version integrates into hermes' tool-calling loop, so you can ask your agent to "test my app" and it will spin up dogfood, run the exploration, and summarize the findings in the chat.</p>
 
+    <div class="callout tip">
+      <span class="callout-label">integration</span>
+      <p>as a hermes skill, dogfood runs inside the agent's tool loop. you type <code>test my app</code> and the agent handles the browser, the exploration, and the summary — no context switching, no cli juggling.</p>
+    </div>
+
     <p>the long-term vision is a world where no one writes brittle end-to-end tests by hand. you describe your application in natural language, the agent explores it, and the resulting coverage map becomes your living test suite. when you deploy, the agent re-explores and compares against the baseline. anything that changed in an unexpected way is flagged. the tests update themselves because the tests are not scripts. they are behaviors.</p>
       </div>
     </article>

@@ -57,6 +57,24 @@
 
         <p>what is missing: a debugger, a robust extension marketplace, support for remote development over ssh, and native support for many languages beyond the core set. zed's position is that they will add these, but 1.0 means the core is solid, not that the product is finished. the risk is that users who need a debugger today will not wait. the opportunity is that users who are tired of slow, heavy ides will switch for speed and stay for the features as they arrive.</p>
 
+        <table class="data-table">
+          <thead><tr><th>feature</th><th>zed 1.0</th><th>vscode</th><th>jetbrains</th></tr></thead>
+          <tbody>
+            <tr><td>language</td><td>rust</td><td>typescript</td><td>java / kotlin</td></tr>
+            <tr><td>real-time collaboration</td><td class="num good">native</td><td class="num bad">extension</td><td class="num bad">plugin</td></tr>
+            <tr><td>startup (1m lines)</td><td class="num good">instant</td><td class="num">~2s</td><td class="num">~4s</td></tr>
+            <tr><td>debugger</td><td class="num bad">missing</td><td class="num good">built-in</td><td class="num good">built-in</td></tr>
+            <tr><td>extensions</td><td class="num bad">limited</td><td class="num good">massive</td><td class="num good">mature</td></tr>
+            <tr><td>remote ssh</td><td class="num bad">planned</td><td class="num good">built-in</td><td class="num good">built-in</td></tr>
+            <tr><td>pricing (individual)</td><td class="num good">free</td><td class="num good">free</td><td class="num">paid</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout warn">
+          <span class="callout-label">warning</span>
+          <p>zed 1.0 ships without a debugger and with a limited extension ecosystem. if you need those today, this is not your ide yet. the bet is that speed and collaboration will convert users before the feature gap closes.</p>
+        </div>
+
         <p>the business model is subscription-based for teams, free for individuals. this is the inverse of vscode, which is free for everyone and monetizes through microsoft's cloud services. zed needs to convince companies that real-time collaboration is worth paying for, and that the speed difference is meaningful enough to overcome the friction of switching. it is a hard pitch. developers are loyal to their tools and the switching cost is high.</p>
 
         <p>whether zed succeeds depends on whether the developer tools market has room for a new commercial ide. vscode dominates. jetbrains is entrenched. vim and emacs never die. zed's bet is that performance and collaboration are differentiators large enough to carve out a space. 1.0 is the starting line, not the finish. the next year will determine if anyone shows up to race.</p>
