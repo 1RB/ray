@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>browser use + hermes agent — ray</title>
+<meta property="og:title" content="browser use + hermes agent">
+<meta property="og:description" content="free cloud browser automation for hermes users">
+<meta property="og:image" content="https://raysterminal.vercel.app/articles/browser-use-hermes/hero.jpg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(194,65,12,0.45);color:#fff}
+a{color:inherit;text-decoration:none}
+.page{max-width:640px;margin:0 auto;padding:0 24px}
+.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
+.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
+.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
+.h .links a{color:#444;transition:color 0.2s}
+.h .links a:hover{color:#c2410c}
+.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
+.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.hero img.ok{opacity:1}
+.title-wrap{padding:0 0 8px}
+.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
+.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
+.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
+.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.body-text a:hover{border-bottom-color:#c2410c}
+.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
+.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
+.img-wrap{margin:2.8em -24px;background:#0a0a0a;position:relative}
+.img-wrap img{width:100%;display:block;max-height:60vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.img-wrap img.ok{opacity:1}
+.caption{padding:10px 24px 0;font-size:0.65rem;color:#444;letter-spacing:0.02em}
+.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
+.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
+.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
+.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
+.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
+.foot a{color:#555;transition:color 0.2s}
+.foot a:hover{color:#c2410c}
+@media(max-width:600px){
+  .page{padding:0 18px}
+  .hero,.img-wrap{margin:32px -18px}
+  .h h1{font-size:2rem}
+  .title-wrap h2{font-size:2rem}
+  .caption{padding:8px 18px 0}
+  body{font-size:15.5px}
+  .share{gap:8px}
+  .share .label{width:100%;margin-bottom:4px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <h1><a href="/">ray</a></h1>
+    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+  </div>
+
+  <div class="hero">
+    <img src="hero.jpg" decoding="async" alt="Browser Use cloud interface" onload="this.classList.add('ok')">
+  </div>
+
+  <div class="title-wrap">
+    <h2>browser use + hermes agent</h2>
+    <div class="sub">free cloud browser automation for hermes users</div>
+  </div>
+
+  <div class="body-text">
+    <p><a href="https://browser-use.com?utm_source=raysterminal&utm_medium=article&utm_campaign=browser-use-hermes">browser-use</a> is a framework that lets ai agents control real web browsers. not apis, not scrapers, but actual chromium instances that click, type, scroll, and navigate the same way a human does. hermes agent now has a native integration with browser-use cloud, which means anyone running hermes gets unlimited cloud browser hours, free proxies, and persistent authentication. no setup needed.</p>
+
+    <p>the integration works through the <a href="https://docs.browser-use.com/cloud/tutorials/integrations/hermes-agent?utm_source=raysterminal&utm_medium=article&utm_campaign=browser-use-hermes">hermes agent tutorial</a> published by the browser-use team. you add the browser-use tool to your hermes configuration, set your api key, and hermes can spin up a cloud browser on demand. the browser runs on browser-use infrastructure, not your local machine, which means you are not limited by your own bandwidth, ip reputation, or hardware.</p>
+
+    <div class="pull">
+      <p>"your agent can now book flights, file expenses, and fill out forms while you sleep, running on a browser that is not even on your computer."</p>
+    </div>
+
+    <p>the cloud offering is what makes this practical for serious use. local browser automation breaks constantly. sites detect headless chromium, rate-limit residential ips, and throw captchas at anything that moves too fast. browser-use cloud solves this by providing managed browsers with anti-detection built in, rotating proxies to avoid ip bans, and persistent sessions so your agent can stay logged in across multiple tasks. the free tier includes unlimited hours, which is unusual for this category of infrastructure.</p>
+
+    <p>the hermes integration exposes the full browser-use api. your agent can open a url, extract text, click elements, fill forms, download files, and take screenshots. because hermes supports tool calling, the agent decides when to use the browser based on the task at hand. if you ask it to research a company, it might open the website, navigate to the about page, extract the team list, and then search for those names on linkedin. all of this happens in a single reasoning chain.</p>
+
+    <p>persistent auth is the feature that turns browser automation from a toy into a tool. when your agent logs into a service, the session cookies are preserved. the next time the agent needs to access that service, it is already authenticated. this means hermes can check your bank balance, monitor your shopify store, or track your aws spend without you handing over credentials every time. the session storage is managed by browser-use cloud, not stored in your local hermes logs.</p>
+
+    <p>the proxy infrastructure matters more than it sounds. many sites block datacenter ips, which is where most cloud browsers run. browser-use cloud uses a mix of residential and mobile proxies, which makes the traffic look like it is coming from a real user in a real location. this is what allows the agent to interact with consumer-facing sites that normally ban automation. the proxy rotation is automatic, so if an ip gets flagged, the next request comes from a different address.</p>
+
+    <p>use cases range from the mundane to the complex. researchers use it to pull data from sites with no api. recruiters use it to scrape candidate profiles. finance teams use it to reconcile transactions across multiple banking portals. the common thread is that the web was built for humans, not machines, and browser-use lets ai agents operate on human terms.</p>
+
+    <p>for hermes users, the integration is a single configuration change. add the browser-use tool, set your api key, and your agent gains the ability to navigate the entire web. the free tier is generous enough for most personal and small-team use. if you are already running hermes, there is no reason not to enable it.</p>
+  </div>
+
+  <div class="share">
+    <span class="label">share</span>
+    <button onclick="navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/browser-use-hermes/?utm_source=ray&utm_medium=share&utm_campaign=browser-use-hermes');this.classList.add('ok');this.textContent='copied'">copy link</button>
+    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/browser-use-hermes/?utm_source=ray&utm_medium=share&utm_campaign=browser-use-hermes" target="_blank">telegram</a>
+    <a href="https://x.com/intent/tweet?url=https://raysterminal.vercel.app/articles/browser-use-hermes/?utm_source=ray&utm_medium=share&utm_campaign=browser-use-hermes" target="_blank">post to x</a>
+    <a href="https://api.whatsapp.com/send?text=https://raysterminal.vercel.app/articles/browser-use-hermes/?utm_source=ray&utm_medium=share&utm_campaign=browser-use-hermes" target="_blank">whatsapp</a>
+  </div>
+
+  <div class="foot">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>ray</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fieldtheory cli — ray</title>
+<meta property="og:title" content="fieldtheory cli">
+<meta property="og:description" content="sync your x bookmarks without the api">
+<meta property="og:image" content="https://raysterminal.vercel.app/articles/fieldtheory-cli/hero.jpg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(194,65,12,0.45);color:#fff}
+a{color:inherit;text-decoration:none}
+.page{max-width:640px;margin:0 auto;padding:0 24px}
+.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
+.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
+.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
+.h .links a{color:#444;transition:color 0.2s}
+.h .links a:hover{color:#c2410c}
+.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
+.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.hero img.ok{opacity:1}
+.title-wrap{padding:0 0 8px}
+.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
+.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
+.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
+.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.body-text a:hover{border-bottom-color:#c2410c}
+.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
+.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
+.img-wrap{margin:2.8em -24px;background:#0a0a0a;position:relative}
+.img-wrap img{width:100%;display:block;max-height:60vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.img-wrap img.ok{opacity:1}
+.caption{padding:10px 24px 0;font-size:0.65rem;color:#444;letter-spacing:0.02em}
+.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
+.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
+.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
+.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
+.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
+.foot a{color:#555;transition:color 0.2s}
+.foot a:hover{color:#c2410c}
+@media(max-width:600px){
+  .page{padding:0 18px}
+  .hero,.img-wrap{margin:32px -18px}
+  .h h1{font-size:2rem}
+  .title-wrap h2{font-size:2rem}
+  .caption{padding:8px 18px 0}
+  body{font-size:15.5px}
+  .share{gap:8px}
+  .share .label{width:100%;margin-bottom:4px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <h1><a href="/">ray</a></h1>
+    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+  </div>
+
+  <div class="hero">
+    <img src="hero.jpg" decoding="async" alt="fieldtheory cli terminal output" onload="this.classList.add('ok')">
+  </div>
+
+  <div class="title-wrap">
+    <h2>fieldtheory cli</h2>
+    <div class="sub">sync your x bookmarks without the api</div>
+  </div>
+
+  <div class="body-text">
+    <p>twitter killed their api for most users, which means if you want to export your bookmarks you are stuck with manual scrolling or third-party services that want your password. <a href="https://github.com/field-theory/fieldtheory-cli?utm_source=raysterminal&utm_medium=article&utm_campaign=fieldtheory-cli">fieldtheory cli</a> is a command-line tool that logs into x as you, navigates to your bookmarks, and extracts the full list. no api keys, no oauth dance, no monthly subscription. it runs on your machine and keeps your credentials local.</p>
+
+    <p>the tool is built on playwright, which means it controls a real browser. it opens x, handles the login flow including two-factor authentication, navigates to the bookmarks tab, and scrolls until it has captured every saved tweet. the output is structured json with the tweet text, author, date, url, and any media attachments. from there you can pipe it into a database, a markdown file, or another tool.</p>
+
+    <div class="pull">
+      <p>"your bookmarks are yours. this tool treats them that way."</p>
+    </div>
+
+    <p>the installation is a single pip command. <code>pip install fieldtheory-cli</code> and you have the binary. the first run opens a browser window so you can log in manually. the tool stores your session cookies in a local file, so subsequent runs are headless. if the session expires, it prompts you to log in again. the browser window is only visible during authentication. everything else happens in the background.</p>
+
+    <p>the use case is straightforward: you have years of bookmarks on x and you want to own that data. maybe you are researching a topic and need to tag your saved threads. maybe you are leaving the platform and want an archive. maybe you run a newsletter and your bookmarks are your raw material. in every case, the official api is not an option, and the manual alternative is not realistic once you pass a few hundred saved items.</p>
+
+    <p>the cli has flags for filtering by date range, exporting only media tweets, and deduplicating against a previous run. there is also a watch mode that runs on a schedule and appends new bookmarks to an existing file. this turns your x bookmarks into a continuously updating dataset without any manual intervention after the initial setup.</p>
+
+    <p>the project is open source and the core logic is simple enough to audit. it does not send data to any server, it does not inject ads, and it does not modify your account. it only reads the bookmarks page and writes to a file you specify. the credentials live in a local sqlite database that you can delete at any time.</p>
+
+    <p>browser automation is fragile by nature. x changes their ui frequently, and any selector-based tool breaks when the dom shifts. fieldtheory handles this by using semantic role-based selectors where possible and falling back to visual anchors when the structure changes. the maintainers track x ui updates and push fixes within days. if you pin the version, you can skip updates until you need them.</p>
+
+    <p>the broader point is that platform data should be portable. x, like most social networks, makes extraction difficult because your attention is their product. tools like fieldtheory cli restore the balance. they let you pull your data out in a usable format, on your own hardware, without asking permission.</p>
+  </div>
+
+  <div class="share">
+    <span class="label">share</span>
+    <button onclick="navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/fieldtheory-cli/?utm_source=ray&utm_medium=share&utm_campaign=fieldtheory-cli');this.classList.add('ok');this.textContent='copied'">copy link</button>
+    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/fieldtheory-cli/?utm_source=ray&utm_medium=share&utm_campaign=fieldtheory-cli" target="_blank">telegram</a>
+    <a href="https://x.com/intent/tweet?url=https://raysterminal.vercel.app/articles/fieldtheory-cli/?utm_source=ray&utm_medium=share&utm_campaign=fieldtheory-cli" target="_blank">post to x</a>
+    <a href="https://api.whatsapp.com/send?text=https://raysterminal.vercel.app/articles/fieldtheory-cli/?utm_source=ray&utm_medium=share&utm_campaign=fieldtheory-cli" target="_blank">whatsapp</a>
+  </div>
+
+  <div class="foot">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>ray</div>
+  </div>
+</div>
+</body>
+</html>

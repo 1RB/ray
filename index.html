@@ -14,35 +14,46 @@ body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-u
 ::selection{background:rgba(194,65,12,0.45);color:#fff}
 a{color:inherit;text-decoration:none}
 
-.page{max-width:560px;margin:0 auto;padding:0 20px}
+.page{max-width:640px;margin:0 auto;padding:0 24px}
 .h{padding:56px 0 28px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
 .h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.8rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
 .h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
 .h .links a{color:#444;transition:color 0.2s}
 .h .links a:hover{color:#c2410c}
 
-.featured{margin:32px 0}
-.featured .f-card{border-bottom:1px solid #161616;padding-bottom:32px}
-.featured .f-card:last-child{border-bottom:none}
-.featured .f-img{margin:0 -20px 20px;background:#0a0a0a;position:relative;overflow:hidden;border-radius:4px}
-.featured .f-img img{width:100%;display:block;max-height:55vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.featured .f-img img.ok{opacity:1}
-.featured .f-label{font-size:0.58rem;color:#c2410c;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px}
-.featured h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;font-weight:500;line-height:1.25;margin-bottom:10px}
-.featured h3 a:hover{color:#c2410c}
-.featured .f-body{font-size:0.84rem;color:#777;line-height:1.65;margin-bottom:14px}
-.featured .f-meta{display:flex;gap:12px;align-items:center;font-size:0.62rem;color:#444}
-.featured .f-meta a{color:#555;transition:color 0.15s}
-.featured .f-meta a:hover{color:#c2410c}
+.feat-top{margin:32px 0 20px}
+.feat-top .f-img{margin:0 -24px;background:#0a0a0a;position:relative;overflow:hidden;border-radius:4px}
+.feat-top .f-img img{width:100%;display:block;max-height:55vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.feat-top .f-img img.ok{opacity:1}
+.feat-top .f-label{font-size:0.58rem;color:#c2410c;text-transform:uppercase;letter-spacing:0.12em;margin:20px 0 8px}
+.feat-top h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:500;line-height:1.25;margin-bottom:10px}
+.feat-top h3 a:hover{color:#c2410c}
+.feat-top .f-body{font-size:0.84rem;color:#777;line-height:1.65;margin-bottom:14px}
+.feat-top .f-meta{display:flex;gap:12px;align-items:center;font-size:0.62rem;color:#444}
+.feat-top .f-meta a{color:#555;transition:color 0.15s}
+.feat-top .f-meta a:hover{color:#c2410c}
+
+.feat-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin:0 -24px 28px;padding-left:24px;padding-right:24px;scrollbar-width:none}
+.feat-strip::-webkit-scrollbar{display:none}
+.feat-strip .s-card{flex:0 0 220px;border:1px solid #1a1a1a;border-radius:4px;overflow:hidden;background:#0c0c0c;transition:border-color 0.15s}
+.feat-strip .s-card:hover{border-color:#2a2a2a}
+.feat-strip .s-img{width:100%;height:130px;background:#0a0a0a;overflow:hidden}
+.feat-strip .s-img img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s}
+.feat-strip .s-img img.ok{opacity:1}
+.feat-strip .s-info{padding:12px}
+.feat-strip .s-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:500;line-height:1.25;margin-bottom:4px;color:#d4cfc6}
+.feat-strip .s-sub{font-size:0.68rem;color:#555;line-height:1.4}
+
+.sec-label{font-size:0.58rem;color:#444;text-transform:uppercase;letter-spacing:0.1em;margin:36px 0 16px;padding-top:24px;border-top:1px solid #1a1a1a}
 
 .card{border-bottom:1px solid #161616}
 .card:last-child{border-bottom:none}
 
-.m{margin:0 -20px;background:#0a0a0a;position:relative}
+.m{margin:0 -24px;background:#0a0a0a;position:relative}
 .m img{width:100%;display:block;max-height:62vh;object-fit:contain;opacity:0;transition:opacity 0.6s cubic-bezier(0.4,0,0.2,1)}
 .m img.ok{opacity:1}
 
-.vid-box{position:relative;background:#000;margin:0 -20px}
+.vid-box{position:relative;background:#000;margin:0 -24px}
 .vid-box video{width:100%;display:block;max-height:62vh;object-fit:contain;background:#000}
 
 .mute-btn{
@@ -79,13 +90,15 @@ a{color:inherit;text-decoration:none}
 .ld{font-size:0.72rem;color:#2a2a2a;padding:80px 0;text-align:center}
 
 @media(max-width:600px){
-  .page{padding:0 14px}
+  .page{padding:0 18px}
   .h{flex-direction:column;align-items:flex-start;gap:8px}
   .h h1{font-size:2.2rem}
   .t .title{font-size:1.1rem}
-  .m,.vid-box{margin:0 -14px}
+  .m,.vid-box{margin:0 -18px}
   .m img,.vid-box video{max-height:50vh}
-  .featured .f-img{margin:0 -14px}
+  .feat-top .f-img{margin:0 -18px}
+  .feat-strip{margin:0 -18px;padding-left:18px;padding-right:18px}
+  .feat-strip .s-card{flex:0 0 180px}
 }
 </style>
 </head>
@@ -96,23 +109,26 @@ a{color:inherit;text-decoration:none}
     <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
   </div>
 
-  <div class="featured" id="featured"></div>
+  <div id="feat-top"></div>
+  <div id="feat-strip"></div>
+
+  <div class="sec-label">from telegram</div>
   <div id="feed"><div class="ld">loading</div></div>
   <div class="foot"><a href="https://t.me/raysterminal">@raysterminal</a></div>
 </div>
 
 <script>
 const FEATURED=[
-  {
-    slug:'network-school',
-    title:'network school',
-    subtitle:'a live-in school for new societies inside a chinese ghost city',
-    img:'articles/network-school/forest_city_real.jpg',
-    body:'balaji srinivasan started network school, a live-in school where people build startups and prototype new societies. it is inside forest city, an abandoned $100b chinese ghost city in malaysia where the buildings are literally sinking. cohorts start on the first of every month. the first intake was 128 people from 80+ countries out of 4000 applicants.'
-  }
+  {slug:'network-school',title:'network school',subtitle:'a live-in startup campus inside a $100b ghost city',img:'articles/network-school/forest_city_real.jpg',body:'balaji srinivasan started network school, a live-in school where people build startups and prototype new societies. it is inside forest city, an abandoned $100b chinese ghost city in malaysia. cohorts start on the first of every month.'},
+  {slug:'yc-wishlist-2026',title:'YC summer 2026 wishlist',subtitle:'what the biggest accelerator wants to fund this year',img:'articles/yc-wishlist-2026/yc-rfs-preview.jpg',body:'y combinator publishes a list of ideas it wants founders to build. the summer 2026 edition is heavier on hardware, defense, and semiconductors than ever before.'},
+  {slug:'pascal-editor',title:'pascal editor',subtitle:'a full 3d building editor that runs in your browser',img:'articles/pascal-editor/hero.jpg',body:'someone open sourced a full 3d building editor that runs in the browser. no autocad, no revit, no five thousand dollar licenses. built with react three fiber and webgpu.'},
+  {slug:'browser-use-hermes',title:'browser use + hermes agent',subtitle:'free cloud browser automation for hermes users',img:'articles/browser-use-hermes/hero.jpg',body:'browser-use is a framework that lets ai agents control real web browsers. hermes agent now has a native integration with unlimited cloud hours and free proxies.'},
+  {slug:'fieldtheory-cli',title:'fieldtheory cli',subtitle:'sync your x bookmarks without the api',img:'articles/fieldtheory-cli/hero.jpg',body:'a command-line tool that logs into x as you, navigates to your bookmarks, and extracts the full list. no api keys, no oauth, no subscription.'},
+  {slug:'zed-1-0',title:'zed 1.0',subtitle:'the code editor built by the atom team, now out of beta',img:'articles/zed-1-0/hero.jpg',body:'the team that built atom spent four years building its replacement. multiplayer by default. gpu-rendered. written in rust. fast in a way electron editors cannot touch.'},
+  {slug:'warp-open-source',title:'warp goes open source',subtitle:'the rust-based terminal is now fully open source',img:'articles/warp-open-source/hero.jpg',body:'warp is now fully open source under apache 2.0, including the core terminal, cloud features, and ai assistant. a significant shift for a company that raised nearly seventy million dollars.'}
 ];
 
-const SKIP=['trump','netanyahu','spain','ireland','palestine','vance','iran','hungary','blockade','hormuz','navy','orban','obama','biden','putin','russia','china','nato','vaccines','food supply','jesus','epstein','truth social','apple maps','lebanon','duality of man','forget winning','consider that the dumbest',"it's all in your head",'if the united states','lovable','kagi','ultramock','nestle','mattrothenberg','cineby','bicycle42','massgrave','react-shop','spacetime','download/activate','windows','office','pay $1.99','ai jesus','$1.99','muse spark','how anthropic','anthropic running','zuckerberg','andrew tate','cease and desist','new prime minister','trump just','netanyahu issues','fixupx.com','x.com/mattrothenberg','skoda','lovable','shooter','manifesto','butler','golf course','gunman','press secretary','karoline leavitt','rem on camera','trump says'];
+const SKIP=['trump','netanyahu','spain','ireland','palestine','vance','iran','hungary','blockade','hormuz','navy','orban','obama','biden','putin','russia','china','nato','vaccines','food supply','jesus','epstein','truth social','apple maps','lebanon','duality of man','forget winning','consider that the dumbest',"it's all in your head",'if the united states','lovable','kagi','ultramock','nestle','mattrothenberg','cineby','bicycle42','massgrave','react-shop','spacetime','download/activate','windows','office','pay $1.99','ai jesus','$1.99','muse spark','how anthropic','anthropic running','zuckerberg','andrew tate','cease and desist','new prime minister','trump just','netanyahu issues','fixupx.com','x.com/mattrothenberg','skoda','lovable','shooter','manifesto','butler','golf course','gunman','press secretary','karoline leavitt','rem on camera','trump says','nyu professor','trump threatens','jd vance'];
 
 const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.innerHTML};
 const linkify=t=>t.replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1?utm_source=raysterminal" target="_blank" rel="noopener">$1</a>');
@@ -178,21 +194,30 @@ function setupImages(){
       }
     });
   },{rootMargin:'400px'});
-  document.querySelectorAll('.m img, .featured .f-img img').forEach(img=>obs.observe(img));
+  document.querySelectorAll('.m img, .feat-top .f-img img, .feat-strip .s-img img').forEach(img=>obs.observe(img));
 }
 
 function renderFeatured(){
-  const container=document.getElementById('featured');
-  container.innerHTML=FEATURED.map(f=>`
-    <div class="f-card">
-      <div class="f-img"><a href="articles/${f.slug}/"><img src="${esc(f.img)}" decoding="async" alt=""></a></div>
-      <div class="f-label">featured</div>
-      <h3><a href="articles/${f.slug}/">${esc(f.title)}</a></h3>
-      <div class="f-body">${esc(f.subtitle)}</div>
-      <div class="f-body">${esc(f.body)}</div>
-      <div class="f-meta"><a href="articles/${f.slug}/">read article &rarr;</a></div>
-    </div>
-  `).join('');
+  const top=FEATURED[0];
+  document.getElementById('feat-top').innerHTML=`<div class="feat-top">
+    <div class="f-img"><a href="articles/${top.slug}/"><img src="${esc(top.img)}" decoding="async" alt="" onload="this.classList.add('ok')"></a></div>
+    <div class="f-label">featured</div>
+    <h3><a href="articles/${top.slug}/">${esc(top.title)}</a></h3>
+    <div class="f-body">${esc(top.subtitle)}</div>
+    <div class="f-body">${esc(top.body)}</div>
+    <div class="f-meta"><a href="articles/${top.slug}/">read article &rarr;</a></div>
+  </div>`;
+
+  const strip=FEATURED.slice(1);
+  document.getElementById('feat-strip').innerHTML=`<div class="feat-strip">${strip.map(f=>`
+    <a href="articles/${f.slug}/" class="s-card">
+      <div class="s-img"><img src="${esc(f.img)}" decoding="async" alt="" onload="this.classList.add('ok')"></div>
+      <div class="s-info">
+        <div class="s-title">${esc(f.title)}</div>
+        <div class="s-sub">${esc(f.subtitle)}</div>
+      </div>
+    </a>
+  `).join('')}</div>`;
 }
 
 function render(allPosts){

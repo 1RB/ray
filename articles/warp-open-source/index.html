@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>warp goes open source — ray</title>
+<meta property="og:title" content="warp goes open source">
+<meta property="og:description" content="the rust-based terminal is now fully open source">
+<meta property="og:image" content="https://raysterminal.vercel.app/articles/warp-open-source/hero.jpg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(194,65,12,0.45);color:#fff}
+a{color:inherit;text-decoration:none}
+.page{max-width:640px;margin:0 auto;padding:0 24px}
+.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
+.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
+.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
+.h .links a{color:#444;transition:color 0.2s}
+.h .links a:hover{color:#c2410c}
+.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
+.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.hero img.ok{opacity:1}
+.title-wrap{padding:0 0 8px}
+.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
+.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
+.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
+.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.body-text a:hover{border-bottom-color:#c2410c}
+.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
+.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
+.img-wrap{margin:2.8em -24px;background:#0a0a0a;position:relative}
+.img-wrap img{width:100%;display:block;max-height:60vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.img-wrap img.ok{opacity:1}
+.caption{padding:10px 24px 0;font-size:0.65rem;color:#444;letter-spacing:0.02em}
+.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
+.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
+.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
+.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
+.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
+.foot a{color:#555;transition:color 0.2s}
+.foot a:hover{color:#c2410c}
+@media(max-width:600px){
+  .page{padding:0 18px}
+  .hero,.img-wrap{margin:32px -18px}
+  .h h1{font-size:2rem}
+  .title-wrap h2{font-size:2rem}
+  .caption{padding:8px 18px 0}
+  body{font-size:15.5px}
+  .share{gap:8px}
+  .share .label{width:100%;margin-bottom:4px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <h1><a href="/">ray</a></h1>
+    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+  </div>
+
+  <div class="hero">
+    <img src="hero.jpg" decoding="async" alt="Warp terminal interface" onload="this.classList.add('ok')">
+  </div>
+
+  <div class="title-wrap">
+    <h2>warp goes open source</h2>
+    <div class="sub">the rust-based terminal is now fully open source</div>
+  </div>
+
+  <div class="body-text">
+    <p><a href="https://warp.dev?utm_source=raysterminal&utm_medium=article&utm_campaign=warp-open-source">warp</a>, the terminal built in rust with a modern interface and collaborative features, is now fully open source. the entire codebase is on github under the apache 2.0 license, including the core terminal emulator, the warp drive cloud features, and the ai assistant. this is a significant shift for a company that raised nearly seventy million dollars in venture funding.</p>
+
+    <p>the decision to open source was announced alongside warp's public launch. the team argues that a terminal is infrastructure, and infrastructure should be inspectable. users have been asking for this since the first private beta. the concern was never about the ui, which was always polished. it was about trusting a closed-source program with shell access to your machine. that concern is now gone.</p>
+
+    <div class="pull">
+      <p>"a terminal is infrastructure. infrastructure should be inspectable."</p>
+    </div>
+
+    <p>the technical architecture is built on a custom gpu renderer, similar to zed. the terminal surface is drawn with metal on macos and vulkan on linux, which means scrolling is smooth, ligatures render correctly, and the interface stays responsive even when streaming thousands of lines of output. the rust core handles the pty, the shell integration, and the protocol that syncs state between local and remote sessions.</p>
+
+    <p>the collaborative features are what differentiate warp from other modern terminals. warp drive lets teams share command palettes, notebooks, and environment variables. when you join a team, you get access to the shared command history, which means you can find the exact incantation your teammate used to deploy last tuesday without searching slack. the notebooks are particularly useful: executable markdown documents that mix shell commands, output, and prose. they function as living runbooks that anyone on the team can execute.</p>
+
+    <p>the ai assistant, called warp ai, is integrated into the input line. you can type a question in natural language and warp translates it to shell commands, explains what flags do, or suggests fixes when a command fails. because warp owns the entire terminal stack, it has access to the exit codes, the stderr, and the command history, which gives the ai more context than a generic assistant would have. the ai features require a warp account and have usage limits on the free tier.</p>
+
+    <p>open sourcing the full codebase, including the cloud components, is unusual. most companies open source the client and keep the server proprietary. warp took the opposite approach, publishing the warp drive sync protocol and the server implementation. this means you can self-host the collaborative features if you do not want to use their cloud. the team is betting that the managed service will still win on convenience, and that transparency will attract enterprise customers who need to audit their tools.</p>
+
+    <p>the build process is straightforward for a rust project. clone the repo, install the dependencies, and compile. the repository is large because it includes the ui assets, the font files, and the machine learning models for the ai features. but the core terminal compiles quickly, and the team provides clear documentation for getting a development build running.</p>
+
+    <p>there are tradeoffs. warp is still macos and linux only, with windows support planned. the interface is opinionated, with a block-based output system that some users love and others find intrusive. and while the code is open, the roadmap and governance are controlled by the company, not a community foundation. this is open source in the pragmatic sense, not the ideological sense.</p>
+
+    <p>for users who have been waiting to switch from iterm or alacritty, the open source release removes the final barrier. you can audit the code, contribute fixes, and run a fork if you disagree with the direction. for the team, it is a bet that transparency will build trust faster than features alone. in a category as personal as the terminal, trust matters.</p>
+  </div>
+
+  <div class="share">
+    <span class="label">share</span>
+    <button onclick="navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/warp-open-source/?utm_source=ray&utm_medium=share&utm_campaign=warp-open-source');this.classList.add('ok');this.textContent='copied'">copy link</button>
+    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/warp-open-source/?utm_source=ray&utm_medium=share&utm_campaign=warp-open-source" target="_blank">telegram</a>
+    <a href="https://x.com/intent/tweet?url=https://raysterminal.vercel.app/articles/warp-open-source/?utm_source=ray&utm_medium=share&utm_campaign=warp-open-source" target="_blank">post to x</a>
+    <a href="https://api.whatsapp.com/send?text=https://raysterminal.vercel.app/articles/warp-open-source/?utm_source=ray&utm_medium=share&utm_campaign=warp-open-source" target="_blank">whatsapp</a>
+  </div>
+
+  <div class="foot">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>ray</div>
+  </div>
+</div>
+</body>
+</html>
