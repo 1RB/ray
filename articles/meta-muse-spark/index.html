@@ -7,67 +7,37 @@
 <meta property="og:title" content="muse spark">
 <meta property="og:description" content="meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal benchmarks.">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#0a0a0a;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:700px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.meta-bar{margin:40px 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:32px;flex-wrap:wrap;font-size:0.78rem;color:var(--dim)}
-.meta-item{display:flex;flex-direction:column;gap:2px}
-.meta-key{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
-.meta-val{color:#d4d0c6}
-
-.title{font-size:1.6rem;font-weight:400;color:#d4d0c6;margin-bottom:6px;letter-spacing:-0.01em;line-height:1.25}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:40px}
-
-.body p{margin-bottom:1.6em;font-weight:300}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.table{margin:32px 0}
-.table-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #0f0f0f;font-size:0.85rem;align-items:center}
-.table-row:first-child{padding-top:0;border-bottom:1px solid var(--line);font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
-.table-row:last-child{border-bottom:none}
-.table-name{color:#d4d0c6}
-.table-val{color:var(--dim)}
-
-.note{font-size:0.78rem;color:var(--muted);margin-top:16px;line-height:1.5}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .table-row{grid-template-columns:1fr 1fr;gap:8px;padding:10px 0}
-  .table-row:first-child{display:none}
-  .table-row span:nth-child(1){grid-column:1/-1;color:#d4d0c6;font-size:0.9rem}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="meta-bar">
-    <div class="meta-item"><span class="meta-key">org</span><span class="meta-val">meta superintelligence labs</span></div>
-    <div class="meta-item"><span class="meta-key">model</span><span class="meta-val">muse spark</span></div>
-    <div class="meta-item"><span class="meta-key">release</span><span class="meta-val">may 2026</span></div>
-    <div class="meta-item"><span class="meta-key">weights</span><span class="meta-val">not released</span></div>
-  </div>
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
 
-  <div class="title">muse spark</div>
-  <div class="sub">meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal perception, health queries, and visual reasoning.</div>
-
-  <div class="body">
-    <p>meta has a division called <strong>superintelligence labs</strong>. it sounds like something from a science fiction novel where the antagonist is a well-meaning research group that accidentally ends the world. in reality it is meta's attempt to build foundation models that compete with the closed labs: openai, anthropic, google deepmind. muse spark is their first public result, and the benchmarks suggest they are not starting from zero.</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">analysis</div>
+        <h1>muse spark</h1>
+        <div class="subtitle">meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal perception, health queries, and visual reasoning.</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+      <div class="article-body">
+<p>meta has a division called <strong>superintelligence labs</strong>. it sounds like something from a science fiction novel where the antagonist is a well-meaning research group that accidentally ends the world. in reality it is meta's attempt to build foundation models that compete with the closed labs: openai, anthropic, google deepmind. muse spark is their first public result, and the benchmarks suggest they are not starting from zero.</p>
 
     <p>the model leads or ties on three categories: multimodal perception, health queries, and visual reasoning. multimodal perception means the model can process images, video, audio, and text together and answer questions that require cross-referencing between them. health queries means medical questions, symptom analysis, drug interaction checks. visual reasoning means puzzles, charts, diagrams, spatial relationships. these are the categories where current frontier models are strongest, so matching them on the first attempt is significant.</p>
 
@@ -102,12 +72,55 @@ a{color:inherit;text-decoration:none}
     <p>the release strategy is cautious. no api, no weights, no pricing. just a technical report and a promise of more to come. this is the playbook anthropic used for its early releases: establish credibility with benchmarks, then open access gradually. the difference is that meta has a history of open-weight releases, so the community expects them to publish eventually. if they do not, the goodwill they have built with the open-source ai community will erode. if they do, and the weights are competitive, the landscape shifts.</p>
 
     <p>for now, muse spark is a signal. it tells the other labs that meta is not just playing with open models for developer goodwill. they are building serious frontier capability in a dedicated research group with serious resources. the name is silly. the benchmarks are not. in this industry, the benchmarks are what matter. everything else is marketing.</p>
-  </div>
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="joe-liemandt-education/" class="up-next-item">
+        <div class="de">
+          <div class="t">joe liemandt education</div>
+          <div class="a">on education as a system for producing credentials</div>
+        </div>
+      </a>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+    </div>
+  </aside>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

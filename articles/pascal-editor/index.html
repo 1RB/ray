@@ -7,52 +7,37 @@
 <meta property="og:title" content="pascal editor">
 <meta property="og:description" content="a full 3d building editor that runs in your browser. no autocad. no revit. no five thousand dollar licenses.">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#0a0a0a;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:680px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.title{font-size:2.2rem;font-weight:400;color:#d4d0c6;margin-top:48px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.2}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:48px}
-
-.body p{margin-bottom:1.6em;font-weight:300}
-.body a{color:var(--accent)}
-
-.stack{margin:32px 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stack-row{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid #0f0f0f;font-size:0.88rem;align-items:flex-start}
-.stack-row:last-child{border-bottom:none}
-.stack-key{font-family:'SF Mono',monospace;font-size:0.78rem;color:#d4d0c6;min-width:110px;padding-top:1px}
-.stack-val{color:var(--dim);line-height:1.5}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:1.8rem}
-  .stack-row{flex-direction:column;gap:4px}
-  .stack-key{min-width:auto}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="title">pascal editor</div>
-  <div class="sub">a full 3d building editor that runs in your browser. no autocad. no revit. no five thousand dollar licenses.</div>
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
 
-  <div class="body">
-    <p>someone just open sourced a full 3d building editor that runs in the browser. it is called <a href="https://github.com/ponifex/pascal-editor?utm_source=raysterminal">pascal editor</a>, built with react three fiber and webgpu for near-native speed. the features are what you would expect from professional architecture software, except it loads in a tab. real-time building design with parametric walls, floors, roofs, and openings. live material editing. first-person walkthrough mode. and it exports to standard formats so you can take your model elsewhere when you are done.</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">tool</div>
+        <h1>pascal editor</h1>
+        <div class="subtitle">a full 3d building editor that runs in your browser. no autocad. no revit. no five thousand dollar licenses.</div>
+        <div class="meta">
+          <span class="reading-time">3 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+      <div class="article-body">
+<p>someone just open sourced a full 3d building editor that runs in the browser. it is called <a href="https://github.com/ponifex/pascal-editor?utm_source=raysterminal">pascal editor</a>, built with react three fiber and webgpu for near-native speed. the features are what you would expect from professional architecture software, except it loads in a tab. real-time building design with parametric walls, floors, roofs, and openings. live material editing. first-person walkthrough mode. and it exports to standard formats so you can take your model elsewhere when you are done.</p>
 
     <div class="stack">
       <div class="stack-row">
@@ -88,12 +73,55 @@ a{color:inherit;text-decoration:none}
     <p>the broader implication is that professional-grade 3d software is now a commodity. the moat of the incumbents was never the algorithms, which are well documented in textbooks. it was the distribution, the certification pipelines, and the lock-in of proprietary file formats. a browser-based editor with open formats breaks all three.</p>
 
     <p>for architects, this means you can sketch in pascal editor, present in the same tab, and export to your contractor without buying a license. for developers, it means you can embed building design into any web application. for students, it means you can learn parametric modeling without a lab computer. the project is early. there are bugs, missing features, and the documentation is thin. but the foundation is solid. the rendering is fast, the geometry is clean, and the architecture is extensible. if you have ever wanted to design a building and been blocked by software costs or operating system requirements, this is the tool that removes those barriers.</p>
-  </div>
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="nvidia-five-trillion/" class="up-next-item">
+        <div class="de">
+          <div class="t">nvidia five trillion</div>
+          <div class="a">on chip design at five trillion dollar scale</div>
+        </div>
+      </a>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+    </div>
+  </aside>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

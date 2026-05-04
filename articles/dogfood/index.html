@@ -7,60 +7,37 @@
 <meta property="og:title" content="dogfood">
 <meta property="og:description" content="an agent-browser skill that uses your app like a real user. no scripts. no manual qa.">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#0b0b0b;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:'SF Mono',Monaco,'Cascadia Code','Roboto Mono',Consolas,'Courier New',monospace;font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:680px;margin:0 auto;padding:0 28px}
-
-.h{padding:40px 0 16px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,sans-serif}
-.h a:hover{color:var(--accent)}
-
-.cmd-block{margin:48px 0;padding:24px;background:#0e0e0e;border:1px solid #1a1a1a;font-size:0.85rem;color:#7a756a;line-height:1.6}
-.cmd-line{display:block;padding:2px 0}
-.cmd-line::before{content:"$ ";color:var(--muted)}
-
-.title{font-size:1.8rem;font-weight:400;color:#d4d0c6;margin-top:40px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.2;font-family:system-ui,-apple-system,sans-serif}
-.sub{font-size:0.82rem;color:var(--dim);margin-bottom:48px;font-family:system-ui,-apple-system,sans-serif}
-
-.body p{margin-bottom:1.6em;font-weight:400}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.feature{margin:28px 0;padding:20px 0;border-top:1px solid #0f0f0f}
-.feature-title{font-size:0.8rem;color:#d4d0c6;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;font-family:system-ui,-apple-system,sans-serif}
-.feature-desc{font-size:0.85rem;color:var(--dim);line-height:1.6}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between;font-family:system-ui,-apple-system,sans-serif}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:1.5rem}
-  .cmd-block{padding:18px}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="cmd-block">
-    <span class="cmd-line">dogfood --url https://your-app.com</span>
-    <span class="cmd-line">exploring... 14 pages crawled</span>
-    <span class="cmd-line">3 edge cases found</span>
-    <span class="cmd-line">report saved to ./dogfood-report.html</span>
-  </div>
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
 
-  <div class="title">dogfood</div>
-  <div class="sub">an agent-browser skill that uses your app like a real user. no scripts. no manual qa.</div>
-
-  <div class="body">
-    <p>chris tate built a thing called <strong>dogfood</strong>. the name comes from the expression "eating your own dog food," which means using the product you built. but tate took it literally. his tool is an agent that navigates your web application the way a real user would, finds the things that break, and tells you about them. it is qa automation without the automation scripts. you point it at a url and it explores.</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">video</div>
+        <h1>dogfood</h1>
+        <div class="subtitle">an agent-browser skill that uses your app like a real user. no scripts. no manual qa.</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+      <div class="article-body">
+<p>chris tate built a thing called <strong>dogfood</strong>. the name comes from the expression "eating your own dog food," which means using the product you built. but tate took it literally. his tool is an agent that navigates your web application the way a real user would, finds the things that break, and tells you about them. it is qa automation without the automation scripts. you point it at a url and it explores.</p>
 
     <p>the traditional approach to web app testing is to write scripts that simulate user flows. you script the login, the checkout, the form submission, the navigation. then you run those scripts every time you deploy. the problem is that scripts only test what you thought to script. they do not find the edge case where a user clicks the back button after adding an item to cart, or refreshes the page during a payment, or opens the same form in two tabs. users are creative in ways that qa engineers, however experienced, are not.</p>
 
@@ -98,12 +75,55 @@ a{color:inherit;text-decoration:none}
     <p>dogfood is available as a <a href="https://skills.sh?utm_source=raysterminal" style="color:var(--accent)">skill</a> that can be added to hermes agent or run standalone. the standalone version is a cli tool that takes a url and produces an html report. the skill version integrates into hermes' tool-calling loop, so you can ask your agent to "test my app" and it will spin up dogfood, run the exploration, and summarize the findings in the chat.</p>
 
     <p>the long-term vision is a world where no one writes brittle end-to-end tests by hand. you describe your application in natural language, the agent explores it, and the resulting coverage map becomes your living test suite. when you deploy, the agent re-explores and compares against the baseline. anything that changed in an unexpected way is flagged. the tests update themselves because the tests are not scripts. they are behaviors.</p>
-  </div>
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="digital-whip/" class="up-next-item">
+        <div class="de">
+          <div class="t">digital whip</div>
+          <div class="a">someone built a usb device to make claude work faster</div>
+        </div>
+      </a>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+    </div>
+  </aside>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

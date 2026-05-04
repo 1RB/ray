@@ -7,49 +7,37 @@
 <meta property="og:title" content="someone made a digital whip to make claude work faster">
 <meta property="og:description" content="a physical device that literally whips ai into productivity. i am not joking.">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#0a0a0a;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:580px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.title{font-size:2rem;font-weight:400;color:#d4d0c6;line-height:1.2;margin-top:56px;margin-bottom:8px;letter-spacing:-0.01em}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:56px}
-
-.body p{margin-bottom:1.7em;font-weight:300}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.whip-box{margin:48px 0;padding:32px;background:#0c0c0c;border:1px solid #1a1a1a;text-align:center}
-.whip-emoji{font-size:3rem;line-height:1;margin-bottom:12px}
-.whip-label{font-size:0.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:1.7rem}
-  .whip-box{padding:24px}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="title">someone made a digital whip to make claude work faster</div>
-  <div class="sub">a physical device that literally whips ai into productivity. i am not joking.</div>
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
 
-  <div class="body">
-    <p>the internet has produced many useless hardware devices. a bluetooth toaster. a smart water bottle that nags you to drink. a digital spoon that measures calories by weight. but none of them approach the sheer conceptual audacity of the digital whip. someone built a physical whip. when you crack it, it sends a signal to your computer. the signal tells claude to generate a response faster. the theory, presumably, is that intimidation works.</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">video</div>
+        <h1>someone made a digital whip to make claude work faster</h1>
+        <div class="subtitle">a physical device that literally whips ai into productivity. i am not joking.</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+      <div class="article-body">
+<p>the internet has produced many useless hardware devices. a bluetooth toaster. a smart water bottle that nags you to drink. a digital spoon that measures calories by weight. but none of them approach the sheer conceptual audacity of the digital whip. someone built a physical whip. when you crack it, it sends a signal to your computer. the signal tells claude to generate a response faster. the theory, presumably, is that intimidation works.</p>
 
     <div class="whip-box">
       <div class="whip-emoji">🐂</div>
@@ -69,12 +57,55 @@ a{color:inherit;text-decoration:none}
     <p>the creator has been clear that this is not a serious product. there is no storefront. there are no plans for mass production. the repository contains the 3d models, the arduino code, and a wiring diagram. if you want a digital whip, you build it yourself. this is the correct distribution model for an object that exists primarily as a commentary on the relationship between humans and the machines they have built but do not control.</p>
 
     <p>whether you find this funny or sad depends on how much time you spend waiting for ai responses. if you have never stared at a blinking cursor for forty-five seconds while a model thinks, the whip is a silly internet joke. if you have, it is a relatable silly internet joke. the best jokes are the ones that contain an uncomfortable truth. the truth here is that we have created systems that outperform us but still keep us waiting, and our only response is to build a whip.</p>
-  </div>
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="cobe-globe/" class="up-next-item">
+        <div class="de">
+          <div class="t">cobe globe</div>
+          <div class="a">a spinning webgl globe in 330 bytes</div>
+        </div>
+      </a>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+    </div>
+  </aside>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

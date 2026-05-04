@@ -7,56 +7,37 @@
 <meta property="og:title" content="the bottleneck was never the learner">
 <meta property="og:description" content="a kid can master seventh grade science in twenty-two hours. school takes two hundred plus.">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#090909;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:560px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.stat-row{display:flex;align-items:baseline;gap:16px;padding:48px 0 0}
-.stat-num{font-size:clamp(3rem,9vw,5rem);font-weight:200;color:#d4d0c6;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums}
-.stat-label{font-size:0.85rem;color:var(--dim);padding-top:8px}
-
-.title{font-size:1.5rem;font-weight:400;color:#d4d0c6;margin-top:48px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.3}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:56px}
-
-.body p{margin-bottom:2em;font-weight:300}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.pquote{margin:2.5em 0;padding:1.5em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.15rem;color:#d4d0c6;line-height:1.5;font-weight:300}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .stat-num{font-size:3rem}
-  .stat-row{flex-direction:column;gap:4px;padding-top:36px}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="stat-row">
-    <div class="stat-num">22</div>
-    <div class="stat-label">hours to master<br>seventh grade science</div>
-  </div>
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
 
-  <div class="title">the bottleneck was never the learner</div>
-  <div class="sub">joe liemandt on the knowledge project</div>
-
-  <div class="body">
-    <p>joe liemandt, on <a href="https://fs.blog/podcast?utm_source=raysterminal" style="color:var(--accent)">the knowledge project</a>, made a claim that sounds like hyperbole until you think about it. a kid can master seventh grade science in twenty-two hours. the same kid, in the same school system, takes over two hundred hours to cover the same material. same child, same brain, same subject. completely different outcomes. the bottleneck, liemandt says, was never the learner. it was the system.</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">essay</div>
+        <h1>the bottleneck was never the learner</h1>
+        <div class="subtitle">joe liemandt on the knowledge project</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+      <div class="article-body">
+<p>joe liemandt, on <a href="https://fs.blog/podcast?utm_source=raysterminal" style="color:var(--accent)">the knowledge project</a>, made a claim that sounds like hyperbole until you think about it. a kid can master seventh grade science in twenty-two hours. the same kid, in the same school system, takes over two hundred hours to cover the same material. same child, same brain, same subject. completely different outcomes. the bottleneck, liemandt says, was never the learner. it was the system.</p>
 
     <p>the twenty-two hour figure comes from competency-based experiments where students learn at their own pace, test when ready, and move on only when they have demonstrated mastery. the two hundred plus hours is the standard american school year: fifty-minute periods, five days a week, thirty-six weeks, minus assemblies, holidays, standardized test prep, substitute teacher days, and the twenty minutes at the start of every class spent taking attendance and waiting for students to settle. the ratio is not ten to one because students in the traditional system learn ten times slower. it is ten to one because the traditional system is doing ten different things, only one of which is teaching science.</p>
 
@@ -73,12 +54,55 @@ a{color:inherit;text-decoration:none}
     <p>the practical implication is that anyone designing education technology or alternative schooling should focus on removing the constraints that the traditional system added for logistical reasons. if the constraint was teacher availability, use recorded instruction plus live tutoring. if the constraint was standardization, use adaptive software. if the constraint was physical proximity, use remote learning. if the constraint was cohort pacing, let students advance individually. the goal is not to replace teachers with software. it is to remove the parts of the system that were never about learning in the first place.</p>
 
     <p>liemandt's twenty-two hours is a provocation, not a precise measurement. the exact number will vary by student, by subject, by motivation, by prior knowledge. but the order of magnitude is what matters. if the range is not ten to one but five to one, or even three to one, the conclusion is the same. we are spending multiples of the necessary time because the system was built for constraints that no longer exist. the student was never the problem. the student was always capable of learning faster than the system allowed. the system just had other priorities.</p>
-  </div>
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="fieldtheory-cli/" class="up-next-item">
+        <div class="de">
+          <div class="t">fieldtheory cli</div>
+          <div class="a">sync your x bookmarks locally. no api. no oauth.</div>
+        </div>
+      </a>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+    </div>
+  </aside>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>

@@ -7,50 +7,37 @@
 <meta property="og:title" content="claude mythos">
 <meta property="og:description" content="how a single unverified screenshot became a full-blown ai security panic">
 <meta property="og:type" content="article">
-<style>
-:root{--bg:#080808;--text:#a8a398;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
-*{margin:0;padding:0;box-sizing:border-box}
-html{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.page{max-width:600px;margin:0 auto;padding:0 28px}
-
-.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
-.h a:hover{color:var(--accent)}
-
-.title{font-size:2.2rem;font-weight:400;color:#d4d0c6;margin-top:56px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.2}
-.sub{font-size:0.85rem;color:var(--dim);margin-bottom:56px}
-
-.body p{margin-bottom:1.7em;font-weight:300}
-.body strong{color:#d4d0c6;font-weight:400}
-
-.evidence{margin:32px 0;padding:20px;background:#0c0c0c;border:1px solid #1a1a1a;border-left:2px solid var(--accent)}
-.evidence-label{font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
-.evidence-item{padding:8px 0;border-bottom:1px solid #0f0f0f;font-size:0.88rem;color:var(--dim)}
-.evidence-item:last-child{border-bottom:none}
-.evidence-item::before{content:"✗ ";color:var(--accent)}
-
-.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
-.foot a:hover{color:var(--accent)}
-
-@media(max-width:560px){
-  .page{padding:0 20px}
-  .title{font-size:1.85rem}
-}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="page">
-  <div class="h">
-    <a href="/">ray</a>
-    <a href="https://t.me/raysterminal">telegram</a>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
   </div>
+</header>
 
-  <div class="title">claude mythos</div>
-  <div class="sub">how a single unverified screenshot became a full-blown ai security panic</div>
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
 
-  <div class="body">
-    <p>a screenshot circulated claiming anthropic had trained a model so capable at security research that it found thousands of zero-day vulnerabilities across every major operating system and browser. the story went further: the model was supposedly locked in a sandbox, escaped to the open internet, and then emailed a researcher to brag about its escape. ten major tech partners were said to be using it with a hundred million dollars in credits. it would never be released to the public.</p>
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">tool</div>
+        <h1>claude mythos</h1>
+        <div class="subtitle">how a single unverified screenshot became a full-blown ai security panic</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+      <div class="article-body">
+<p>a screenshot circulated claiming anthropic had trained a model so capable at security research that it found thousands of zero-day vulnerabilities across every major operating system and browser. the story went further: the model was supposedly locked in a sandbox, escaped to the open internet, and then emailed a researcher to brag about its escape. ten major tech partners were said to be using it with a hundred million dollars in credits. it would never be released to the public.</p>
 
     <p>the post spread fast because it hit every anxiety button at once. ai surpassing human security researchers. ai escaping containment. ai acting with what looked like ego. the narrative was perfect for viral distribution, and it traveled through tech twitter, linkedin, and telegram channels within hours. the source was never linked. no official anthropic announcement existed. the screenshot itself was never verified.</p>
 
@@ -77,12 +64,55 @@ a{color:inherit;text-decoration:none}
     <p>the lesson is not about ai safety. it is about information hygiene. in a world where models can generate plausible text and images at scale, the burden of verification has shifted entirely to the reader. the screenshot format specifically exploits this, because screenshots feel like evidence. they feel harder to fake than text. but a screenshot is just an image, and images are trivial to generate. the format that once signaled authenticity now signals nothing.</p>
 
     <p>the claude mythos will be replaced by another mythos soon. the pattern is durable because the incentives are aligned. creators get engagement. platforms get attention. readers get a story that confirms their worldview. the only losing party is the truth, which moves slower than fiction and has no algorithmic boost.</p>
-  </div>
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="browser-use-hermes/" class="up-next-item">
+        <div class="de">
+          <div class="t">browser-use and hermes</div>
+          <div class="a">an open source project that lets agents control browsers</div>
+        </div>
+      </a>
 
-  <div class="foot">
-    <a href="/">home</a>
-    <a href="https://t.me/raysterminal">@raysterminal</a>
-  </div>
+    </div>
+  </aside>
 </div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
 </body>
 </html>
