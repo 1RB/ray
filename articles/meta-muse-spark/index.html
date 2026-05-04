@@ -14,6 +14,20 @@
   .stat-row .s .n{font-size:1.6rem;color:#e4e0d8;font-weight:500;font-variant-numeric:tabular-nums}
   .stat-row .s .l{font-size:0.72rem;color:var(--text-faint);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 

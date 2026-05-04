@@ -11,6 +11,20 @@
 <style>.article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
   .code-inline{font-family:var(--font-mono);font-size:0.85rem;background:var(--elevated);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--line);display:block;margin:1em 0;color:#a09888}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 

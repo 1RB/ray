@@ -273,45 +273,69 @@ sub,sup{font-family:var(--font-mono);font-size:0.75em}
 }
 
 ::view-transition-group(root) {
-  animation-duration: 0.45s;
+  animation-duration: 0.5s;
 }
 
 ::view-transition-old(root) {
-  animation: vtRootOut 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: vtRootOut 0.5s cubic-bezier(0.32, 0, 0.24, 1) both;
 }
 
 ::view-transition-new(root) {
-  animation: vtRootIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: vtRootIn 0.5s cubic-bezier(0.32, 0, 0.24, 1) both;
+}
+
+::view-transition-group(vt-hero) {
+  animation-duration: 0.5s;
 }
 
 ::view-transition-old(vt-hero) {
-  animation: vtScaleOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: vtScaleOut 0.5s cubic-bezier(0.32, 0, 0.24, 1) both;
 }
 
 ::view-transition-new(vt-hero) {
-  animation: vtScaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: vtScaleIn 0.5s cubic-bezier(0.32, 0, 0.24, 1) both;
+}
+
+::view-transition-group(vt-title) {
+  animation-duration: 0.4s;
 }
 
 ::view-transition-old(vt-title) {
-  animation: vtSlideUpOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: vtSlideUpOut 0.4s cubic-bezier(0.32, 0, 0.24, 1) both;
 }
 
 ::view-transition-new(vt-title) {
-  animation: vtSlideUpIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: vtSlideUpIn 0.4s cubic-bezier(0.32, 0, 0.24, 1) both;
 }
 
 @keyframes vtRootOut {
-  from { opacity: 1; transform: scale(1) translateY(0); }
-  to { opacity: 0; transform: scale(0.98) translateY(-8px); }
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(-40px) scale(0.97); }
 }
 
 @keyframes vtRootIn {
-  from { opacity: 0; transform: scale(1.02) translateY(8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: translateX(40px) scale(1.03); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
 }
-@keyframes vtScaleOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(0.96)}}
-@keyframes vtScaleIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:scale(1)}}
-@keyframes vtSlideUpOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-12px)}}
-@keyframes vtSlideUpIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes vtScaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.92); }
+}
+
+@keyframes vtScaleIn {
+  from { opacity: 0; transform: scale(1.08); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes vtSlideUpOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-16px); }
+}
+
+@keyframes vtSlideUpIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp 0.6s ease both}

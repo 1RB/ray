@@ -14,6 +14,20 @@
   .spec-pill{display:inline-block;background:var(--elevated);border:1px solid var(--line);padding:3px 10px;border-radius:20px;font-size:0.78rem;color:var(--text-dim);margin:0 6px 6px 0}
   .article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 

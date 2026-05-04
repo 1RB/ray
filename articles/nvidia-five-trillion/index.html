@@ -13,6 +13,20 @@
   .big-num .num{font-size:clamp(3rem,8vw,5rem);font-weight:200;color:#e4e0d8;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums}
   .big-num .label{font-size:0.85rem;color:var(--text-dim);margin-top:8px}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 

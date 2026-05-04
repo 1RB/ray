@@ -13,6 +13,20 @@
   .retro-term .comment{color:#4a4a4a}
   .retro-term .keyword{color:#8a7a60}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 

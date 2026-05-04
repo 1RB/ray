@@ -290,9 +290,10 @@
 
 <script src="/ray.js"></script>
 <script>
-// view-transition names + prefetch on interaction
+// view-transition names + aggressive preload/prerender
 (function(){
-  const prefetchCache = new Set();
+  const preloadCache = new Set();
+  const prerenderCache = new Set();
 
   function assignVT(card){
     document.querySelectorAll('.card [style*="view-transition-name"], .hero-card [style*="view-transition-name"]').forEach(el => {
@@ -305,18 +306,41 @@
   }
 
   document.querySelectorAll('.card, .hero-card').forEach(card => {
-    card.addEventListener('mousedown', () => assignVT(card));
-    card.addEventListener('focus', () => assignVT(card));
+    const href = card.getAttribute('href');
+    if(!href) return;
+
+    // Prefetch on hover (lightweight)
     card.addEventListener('mouseenter', () => {
-      const href = card.getAttribute('href');
-      if(href && !prefetchCache.has(href)){
-        prefetchCache.add(href);
+      if(!preloadCache.has(href)){
+        preloadCache.add(href);
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = href;
         document.head.appendChild(link);
       }
     });
+
+    // Prerender on mousedown (full render in hidden tab)
+    card.addEventListener('mousedown', () => {
+      assignVT(card);
+      if(!prerenderCache.has(href)){
+        prerenderCache.add(href);
+        const link = document.createElement('link');
+        link.rel = 'prerender';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+    });
+
+    card.addEventListener('focus', () => assignVT(card));
+  });
+
+  // Backup: pageswap fires synchronously before the old page is captured
+  window.addEventListener('pageswap', () => {
+    const active = document.activeElement;
+    if(active && (active.classList.contains('card') || active.classList.contains('hero-card'))){
+      assignVT(active);
+    }
   });
 })();
 

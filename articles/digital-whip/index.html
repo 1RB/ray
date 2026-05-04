@@ -14,6 +14,20 @@
   .hw-spec .k{font-size:0.72rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
   .hw-spec .v{font-size:0.9rem;color:#e4e0d8}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 

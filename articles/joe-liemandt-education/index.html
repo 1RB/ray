@@ -11,6 +11,20 @@
 <style>.article-header h1{font-family:Georgia,serif;font-weight:400;font-style:italic}
   .pull-quote{margin:2.5em 0;padding:1.6em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:Georgia,serif;font-size:1.2rem;font-style:italic;line-height:1.5;color:#b8b3a8}
 </style>
+<script>
+// Prerender homepage for instant back-navigation
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
 </head>
 <body>
 
