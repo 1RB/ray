@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>network school, forest city — ray</title>
+<meta property="og:title" content="network school, forest city">
+<meta property="og:description" content="a live-in school for new societies inside a chinese ghost city">
+<meta property="og:image" content="https://raysterminal.vercel.app/articles/network-school/forest_city_real.jpg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -42,7 +47,13 @@ a{color:inherit;text-decoration:none}
 .img-wrap img.ok{opacity:1}
 .caption{padding:10px 24px 0;font-size:0.65rem;color:#444;letter-spacing:0.02em}
 
-.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444}
+.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
+.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
+.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
+.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
+
+.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
 .foot a{color:#555;transition:color 0.2s}
 .foot a:hover{color:#c2410c}
 
@@ -53,6 +64,8 @@ a{color:inherit;text-decoration:none}
   .title-wrap h2{font-size:2rem}
   .caption{padding:8px 18px 0}
   body{font-size:15.5px}
+  .share{gap:8px}
+  .share .label{width:100%;margin-bottom:4px}
 }
 </style>
 </head>
@@ -105,10 +118,27 @@ a{color:inherit;text-decoration:none}
     <p>So you have Mandarin road signs and buildings sinking into seagrass beds and shirtless fitness tests and a live-in school prototyping new countries inside a defaulted hundred-billion-dollar Chinese boondoggle that was built on protected wetlands and is now a tax-free zone. The signage is still in Chinese. The seagrass is still split in two. The land is still subsiding. And a few hundred people are living in a luxury hotel trying to figure out how to start new societies from first principles.</p>
   </div>
 
+  <div class="share">
+    <span class="label">share</span>
+    <button onclick="copyLink(this)">copy link</button>
+    <a href="https://x.com/intent/tweet?text=network+school+-+a+live-in+school+for+new+societies+inside+a+chinese+ghost+city&url=https://raysterminal.vercel.app/articles/network-school/" target="_blank" rel="noopener">post to x</a>
+    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/network-school/&text=network+school+-+a+live-in+school+for+new+societies+inside+a+chinese+ghost+city" target="_blank" rel="noopener">post to telegram</a>
+  </div>
+
   <div class="foot">
-    <span><a href="https://ns.com" target="_blank" rel="noopener">ns.com</a></span>
-    <span><a href="https://balajis.com/p/network-school-2025" target="_blank" rel="noopener">balajis.com/p/network-school-2025</a></span>
+    <span><a href="https://ns.com?utm_source=raysterminal" target="_blank" rel="noopener">ns.com</a></span>
+    <span><a href="https://balajis.com/p/network-school-2025?utm_source=raysterminal" target="_blank" rel="noopener">balajis.com/p/network-school-2025</a></span>
   </div>
 </div>
+
+<script>
+function copyLink(el){
+  navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/network-school/').then(()=>{
+    el.textContent='copied';
+    el.classList.add('ok');
+    setTimeout(()=>{el.textContent='copy link';el.classList.remove('ok')},1500);
+  });
+}
+</script>
 </body>
 </html>
