@@ -8,6 +8,11 @@
 <meta property="og:description" content="a company now worth more than the entire gdp of japan, the uk, and india">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
+  .big-num{margin:2em 0;text-align:center;padding:2em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .big-num .num{font-size:clamp(3rem,8vw,5rem);font-weight:200;color:#e4e0d8;letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums}
+  .big-num .label{font-size:0.85rem;color:var(--text-dim);margin-top:8px}
+</style>
 </head>
 <body>
 
@@ -111,5 +116,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>

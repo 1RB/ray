@@ -8,11 +8,11 @@
 <meta property="og:description" content="realities terminal. the vr headset that runs ai in your field of view.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
-<style>
-  .video-hero{background:#000;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin:0 -24px 32px}
+<style>.video-hero{background:#000;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin:0 -24px 32px}
   @media(min-width:1100px){.video-hero{margin:0 0 32px}}
   .video-hero video{width:100%;display:block;max-height:50vh}
   .spec-pill{display:inline-block;background:var(--elevated);border:1px solid var(--line);padding:3px 10px;border-radius:20px;font-size:0.78rem;color:var(--text-dim);margin:0 6px 6px 0}
+  .article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
 </style>
 </head>
 <body>
@@ -129,5 +129,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>

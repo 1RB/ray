@@ -8,6 +8,10 @@
 <meta property="og:description" content="an agent-browser skill that uses your app like a real user. no scripts. no manual qa.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
+  .bug-report{margin:1.5em 0;padding:16px 20px;background:#0a0808;border:1px solid #1a1010;border-left:2px solid #8a3b12;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim)}
+  .bug-report .sev{color:#c87050;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;display:block}
+</style>
 </head>
 <body>
 
@@ -125,5 +129,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>

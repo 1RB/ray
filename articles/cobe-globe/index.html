@@ -8,6 +8,9 @@
 <meta property="og:description" content="a five kilobyte webgl globe library for landing pages. ultra-light. customizable. smooth as hell.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
+  .code-inline{font-family:var(--font-mono);font-size:0.85rem;background:var(--elevated);padding:12px 16px;border-radius:var(--radius);border:1px solid var(--line);display:block;margin:1em 0;color:#a09888}
+</style>
 </head>
 <body>
 
@@ -104,5 +107,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>

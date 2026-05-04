@@ -8,6 +8,11 @@
 <meta property="og:description" content="an open source project that lets agents control browsers. the implications and the limitations.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:var(--font-mono);font-weight:400}
+  .log-block{margin:1.5em 0;padding:16px 20px;background:#080808;border:1px solid #151515;border-left:2px solid var(--accent);font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.6}
+  .log-block .ok{color:#5a8a5a}
+  .log-block .err{color:#8a4a4a}
+</style>
 </head>
 <body>
 
@@ -56,5 +61,6 @@ function openLightbox(src){document.getElementById('lightbox-img').src=src;docum
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
+<script src="/ray.js"></script>
 </body>
 </html>

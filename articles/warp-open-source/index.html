@@ -8,6 +8,10 @@
 <meta property="og:description" content="the rust-based terminal is now fully open source. all seventy million dollars of it.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
+  .article-hero{overflow:hidden;border-radius:var(--radius)}
+  .article-hero img{filter:grayscale(30%) contrast(1.05)}
+</style>
 </head>
 <body>
 
@@ -117,5 +121,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>

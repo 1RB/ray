@@ -8,6 +8,11 @@
 <meta property="og:description" content="a full 3d building editor that runs in your browser. no autocad. no revit. no five thousand dollar licenses.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.02em}
+  .retro-term{font-family:var(--font-mono);font-size:0.82rem;background:#080808;border:1px solid #1a1a1a;border-radius:var(--radius);padding:14px 18px;margin:1.5em 0;color:#a09888;line-height:1.6}
+  .retro-term .comment{color:#4a4a4a}
+  .retro-term .keyword{color:#8a7a60}
+</style>
 </head>
 <body>
 
@@ -123,5 +128,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>

@@ -8,6 +8,14 @@
 <meta property="og:description" content="how a single unverified screenshot became a full-blown ai security panic">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="/style.css">
+<style>.article-header h1{font-family:Georgia,serif;font-weight:400;font-style:italic}
+  .evidence{margin:32px 0;padding:20px;background:#0c0c0c;border:1px solid #1a1a1a;border-left:2px solid var(--accent)}
+  .evidence-label{font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+  .evidence-item{padding:8px 0;border-bottom:1px solid #0f0f0f;font-size:0.88rem;color:var(--text-dim)}
+  .evidence-item:last-child{border-bottom:none}
+  .evidence-item::before{content:"✗ ";color:var(--accent)}
+  .article-body{font-family:system-ui,sans-serif}
+</style>
 </head>
 <body>
 
@@ -114,5 +122,6 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('a
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
+<script src="/ray.js"></script>
 </body>
 </html>
