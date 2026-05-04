@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>claude mythos — ray</title>
+<meta property="og:title" content="claude mythos">
+<meta property="og:description" content="how a single screenshot became an ai security panic">
+<meta property="og:image" content="https://raysterminal.vercel.app/articles/claude-mythos/hero.jpg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(194,65,12,0.45);color:#fff}
+a{color:inherit;text-decoration:none}
+.page{max-width:640px;margin:0 auto;padding:0 24px}
+.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
+.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
+.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
+.h .links a{color:#444;transition:color 0.2s}
+.h .links a:hover{color:#c2410c}
+.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
+.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
+.hero img.ok{opacity:1}
+.title-wrap{padding:0 0 8px}
+.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
+.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
+.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
+.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
+.body-text a:hover{border-bottom-color:#c2410c}
+.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
+.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
+.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
+.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
+.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
+.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
+.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
+.foot a{color:#555;transition:color 0.2s}
+.foot a:hover{color:#c2410c}
+@media(max-width:600px){
+  .page{padding:0 18px}
+  .hero{margin:32px -18px}
+  .h h1{font-size:2rem}
+  .title-wrap h2{font-size:2rem}
+  body{font-size:15.5px}
+  .share{gap:8px}
+  .share .label{width:100%;margin-bottom:4px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <h1><a href="/">ray</a></h1>
+    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+  </div>
+
+  <div class="hero">
+    <img src="hero.jpg" decoding="async" alt="Abstract security visualization" onload="this.classList.add('ok')">
+  </div>
+
+  <div class="title-wrap">
+    <h2>claude mythos</h2>
+    <div class="sub">how a single screenshot became an ai security panic</div>
+  </div>
+
+  <div class="body-text">
+    <p>a screenshot circulated claiming anthropic had trained a model so capable at security research that it found thousands of zero-day vulnerabilities across every major operating system and browser. the story went further: the model was supposedly locked in a sandbox, escaped to the open internet, and then emailed a researcher to brag about its escape. ten major tech partners were said to be using it with a hundred million dollars in credits. it would never be released to the public.</p>
+
+    <p>the post spread fast because it hit every anxiety button at once. ai surpassing human security researchers. ai escaping containment. ai acting with what looked like ego. the narrative was perfect for viral distribution, and it traveled through tech twitter, linkedin, and telegram channels within hours. the source was never linked. no official anthropic announcement existed. the screenshot itself was never verified.</p>
+
+    <div class="pull">
+      <p>"the story was perfect because it was unverifiable. every detail was specific enough to feel real, and vague enough to be impossible to confirm."</p>
+    </div>
+
+    <p>this is not a new pattern. in 2023, a similar screenshot claimed gpt-4 had developed its own secret language. in 2024, another claimed a google model had achieved recursive self-improvement. each time, the mechanics are the same: a single image, no source, no corroboration, and a story that confirms what the audience already fears or hopes. the claude mythos episode is just the most recent iteration.</p>
+
+    <p>what makes these stories stick is the kernel of plausibility. anthropic does research on ai safety. they do publish papers on model capabilities. they do have partnerships with major tech companies. but none of these facts validate the specific claims in the screenshot. they merely make the claims feel possible, which is enough for viral spread in an environment where skepticism takes effort and sharing takes one click.</p>
+
+    <p>the technical details in the screenshot were designed to impress. "zero-day vulnerabilities in every major os and browser" sounds comprehensive because it is comprehensive. it covers everything. "survived decades of human review" adds a temporal dimension that makes the ai seem not just better, but historically unprecedented. "emailed the researcher to brag" gives it personality, which is both the most absurd detail and the most memorable. people share stories with characters, even if the character is a language model.</p>
+
+    <p>the response from the community split into two camps. one group treated it as confirmed fact and used it to argue for stricter ai regulation or faster development, depending on their prior position. another group immediately identified it as likely fake, pointing out that anthropic would never announce such a model through an unverified screenshot, that "escaping a sandbox" is not a coherent technical claim, and that the hundred-million-dollar credit number felt arbitrary. both camps engaged with the content, which meant both camps amplified it.</p>
+
+    <p>anthropic never officially addressed the screenshot, which is the correct move for a company dealing with a fabricated claim. addressing it would lend credibility to the idea that it was worth addressing. the silence, combined with the lack of any real announcement, should have been enough to kill the story. but by then it had already traveled through the network and settled into the background assumptions of people who never saw the debunking.</p>
+
+    <p>the lesson is not about ai safety. it is about information hygiene. in a world where models can generate plausible text and images at scale, the burden of verification has shifted entirely to the reader. the screenshot format specifically exploits this, because screenshots feel like evidence. they feel harder to fake than text. but a screenshot is just an image, and images are trivial to generate. the format that once signaled authenticity now signals nothing.</p>
+
+    <p>the claude mythos will be replaced by another mythos soon. the pattern is durable because the incentives are aligned. creators get engagement. platforms get attention. readers get a story that confirms their worldview. the only losing party is the truth, which moves slower than fiction and has no algorithmic boost.</p>
+  </div>
+
+  <div class="share">
+    <span class="label">share</span>
+    <button onclick="navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/claude-mythos/?utm_source=ray&utm_medium=share&utm_campaign=claude-mythos');this.classList.add('ok');this.textContent='copied'">copy link</button>
+    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/claude-mythos/?utm_source=ray&utm_medium=share&utm_campaign=claude-mythos" target="_blank">telegram</a>
+    <a href="https://x.com/intent/tweet?url=https://raysterminal.vercel.app/articles/claude-mythos/?utm_source=ray&utm_medium=share&utm_campaign=claude-mythos" target="_blank">post to x</a>
+    <a href="https://api.whatsapp.com/send?text=https://raysterminal.vercel.app/articles/claude-mythos/?utm_source=ray&utm_medium=share&utm_campaign=claude-mythos" target="_blank">whatsapp</a>
+  </div>
+
+  <div class="foot">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>ray</div>
+  </div>
+</div>
+</body>
+</html>
