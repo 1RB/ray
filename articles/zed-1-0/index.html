@@ -5,111 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zed 1.0 — ray</title>
 <meta property="og:title" content="zed 1.0">
-<meta property="og:description" content="the code editor built by the atom team, now out of beta">
-<meta property="og:image" content="https://raysterminal.vercel.app/articles/zed-1-0/hero.jpg">
+<meta property="og:description" content="the code editor built by the atom team, now out of beta. multiplayer by default. written in rust.">
 <meta property="og:type" content="article">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#090909;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-x:hidden}
-body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
-::selection{background:rgba(194,65,12,0.45);color:#fff}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.8;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.page{max-width:640px;margin:0 auto;padding:0 24px}
-.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
-.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
-.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
-.h .links a{color:#444;transition:color 0.2s}
-.h .links a:hover{color:#c2410c}
-.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
-.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.hero img.ok{opacity:1}
-.title-wrap{padding:0 0 8px}
-.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
-.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
-.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
-.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
-.body-text a:hover{border-bottom-color:#c2410c}
-.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
-.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
-.img-wrap{margin:2.8em -24px;background:#0a0a0a;position:relative}
-.img-wrap img{width:100%;display:block;max-height:60vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.img-wrap img.ok{opacity:1}
-.caption{padding:10px 24px 0;font-size:0.65rem;color:#444;letter-spacing:0.02em}
-.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
-.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
-.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
-.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
-.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
-.foot a{color:#555;transition:color 0.2s}
-.foot a:hover{color:#c2410c}
-@media(max-width:600px){
-  .page{padding:0 18px}
-  .hero,.img-wrap{margin:32px -18px}
-  .h h1{font-size:2rem}
-  .title-wrap h2{font-size:2rem}
-  .caption{padding:8px 18px 0}
-  body{font-size:15.5px}
-  .share{gap:8px}
-  .share .label{width:100%;margin-bottom:4px}
+.page{max-width:560px;margin:0 auto;padding:0 28px}
+
+.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
+.h a:hover{color:var(--accent)}
+
+.title{font-size:2.4rem;font-weight:300;color:#d4d0c6;margin-top:64px;margin-bottom:10px;letter-spacing:-0.02em;line-height:1.15}
+.sub{font-size:0.85rem;color:var(--dim);margin-bottom:72px}
+
+.body p{margin-bottom:2em;font-weight:300}
+.body strong{color:#d4d0c6;font-weight:400}
+
+.pquote{margin:2.5em 0;padding:1.5em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.2rem;color:#d4d0c6;line-height:1.5;font-weight:300;font-style:italic}
+
+.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
+.foot a:hover{color:var(--accent)}
+
+@media(max-width:560px){
+  .page{padding:0 20px}
+  .title{font-size:2rem}
+  .sub{margin-bottom:56px}
 }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="h">
-    <h1><a href="/">ray</a></h1>
-    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+    <a href="/">ray</a>
+    <a href="https://t.me/raysterminal">telegram</a>
   </div>
 
-  <div class="hero">
-    <img src="hero.jpg" decoding="async" alt="Zed editor interface" onload="this.classList.add('ok')">
-  </div>
+  <div class="title">zed 1.0</div>
+  <div class="sub">the code editor built by the atom team, now out of beta. multiplayer by default. written in rust.</div>
 
-  <div class="title-wrap">
-    <h2>zed 1.0</h2>
-    <div class="sub">the code editor built by the atom team, now out of beta</div>
-  </div>
+  <div class="body">
+    <p>i used zed when it first came out. it was fast, which was refreshing after years of electron editors, but it was also bare. no git integration. no multi-buffer support. no remote development. you could edit a single file very quickly and that was about it. it felt like a promise rather than a product. the foundation was solid but the house was unfinished.</p>
 
-  <div class="body-text">
-    <p>the team that built atom, github's first editor, has spent the last four years building its replacement. <a href="https://zed.dev?utm_source=raysterminal&utm_medium=article&utm_campaign=zed-1-0">zed</a> is now at version 1.0, and it is a different kind of code editor. multiplayer by default. gpu-rendered. written in rust. and fast in a way that electron-based editors cannot touch.</p>
+    <p>four years later the house is finished. zed is now at version 1.0 and it has everything i was missing. git integration that shows inline blame and diff hunks directly in the editor. multi-buffer editing that lets you open multiple files in a single pane and edit them simultaneously. remote development that streams the editor ui to a local machine while the language server and compilation run on the server. parallel ai agents that can edit different parts of the codebase concurrently without stepping on each other. the speed is still there, but now there is functionality to match.</p>
 
-    <p>the multiplayer implementation is the headline feature. zed opens every project as a shared workspace. you can invite collaborators by link, see their cursors in real time, and edit the same file simultaneously without the lag that kills flow in other tools. the team calls it "channel-based" collaboration: a persistent shared context that includes not just the code but the terminal, the ai chat, and the file tree. when you join a channel, you join the entire environment, not just a single buffer.</p>
+    <div class="pquote">the team that built atom learned from their first product. they know how electron editors fail, and they built the opposite.</div>
 
-    <div class="pull">
-      <p>"zed treats coding as a multiplayer game by default. every project is a shared world."</p>
-    </div>
+    <p>the multiplayer implementation is the headline. zed opens every project as a shared workspace. you can invite collaborators by link, see their cursors in real time, and edit the same file simultaneously without the lag that kills flow in other tools. the team calls it channel-based collaboration: a persistent shared context that includes not just the code but the terminal, the ai chat, and the file tree. when you join a channel, you join the entire environment.</p>
 
-    <p>the rendering engine is built on gpui, a custom rust framework that draws the entire interface with the gpu. this means no dom, no css, no javascript in the rendering path. the result is consistent frame times, no jank when scrolling large files, and crisp text at any scale. on a modern mac, zed scrolls a million-line file without dropping a frame. this is not a benchmark trick. it is the baseline experience.</p>
+    <p>the rendering engine is built on gpui, a custom rust framework that draws the entire interface with the gpu. this means no dom, no css, no javascript in the rendering path. the result is consistent frame times, no jank when scrolling large files, and crisp text at any scale. on a modern mac, zed scrolls a million-line file without dropping a frame. this is not a benchmark trick. it is the baseline.</p>
 
-    <p>rust is not just an implementation detail. it shapes what the editor can do. memory safety without garbage collection means zed can spawn threads freely, parallelize syntax highlighting across cores, and keep the ui responsive while background tasks run. the language also enforces discipline: the zed codebase has fewer classes of bugs by construction, which matters when you are building infrastructure that developers live inside for hours every day.</p>
+    <p>rust is not just an implementation detail. it shapes what the editor can do. memory safety without garbage collection means zed can spawn threads freely, parallelize syntax highlighting across cores, and keep the ui responsive while background tasks run. the language also enforces discipline. the zed codebase has fewer classes of bugs by construction, which matters when you are building infrastructure that developers live inside for hours every day.</p>
 
-    <p>the ai integration is native, not bolted on. zed has a built-in assistant panel that can reference the current file, the current project, or the entire codebase. it uses the context to generate, explain, and refactor code. because the assistant runs in the same process as the editor, it has direct access to the abstract syntax tree, not just the text. this means it can perform structural operations like "extract this into a function" or "rename this variable across the project" with semantic accuracy.</p>
+    <p>the ai integration is native, not bolted on. a built-in assistant panel can reference the current file, the current project, or the entire codebase. it uses the context to generate, explain, and refactor code. because the assistant runs in the same process as the editor, it has direct access to the abstract syntax tree, not just the text. this means structural operations like "extract this into a function" or "rename this variable across the project" happen with semantic accuracy.</p>
 
-    <p>the extension model is still evolving. zed 1.0 ships with support for language servers and tree-sitter grammars, but the full plugin api is not yet open. the team has committed to releasing it, and the architecture suggests it will be wasm-based, meaning extensions run in a sandboxed environment without direct access to the editor internals. this is slower to ship than a javascript api but safer for users.</p>
+    <p>the extension model is still evolving. zed 1.0 ships with support for language servers and tree-sitter grammars, but the full plugin api is not yet open. the team has committed to releasing it, and the architecture suggests it will be wasm-based, meaning extensions run in a sandboxed environment. this is slower to ship than a javascript api but safer for users.</p>
 
-    <p>the pricing model is unusual for a developer tool. zed is free for individuals and open source projects. teams pay per seat for the multiplayer features, with the exact pricing tiered by organization size. the ai assistant has its own usage-based pricing, though you can bring your own api key and pay the provider directly. the team is explicit that they do not want to be an ai company. the editor is the product. the ai is a feature.</p>
+    <p>the pricing is unusual for a developer tool. zed is free for individuals and open source projects. teams pay per seat for the multiplayer features. the ai assistant has its own usage-based pricing, though you can bring your own api key and pay the provider directly. the team is explicit that they do not want to be an ai company. the editor is the product. the ai is a feature.</p>
 
-    <p>there are limitations. zed is mac-only at 1.0, with linux and windows builds in progress. the extension ecosystem is smaller than vscode's by orders of magnitude. and the learning curve is real if you are coming from an electron editor: the keybindings are different, the settings are configured in json rather than a gui, and the visual language is minimal to the point of austerity.</p>
+    <p>there are limitations. zed is mac-only at 1.0, with linux and windows builds in progress. the extension ecosystem is smaller than vscode's by orders of magnitude. and the learning curve is real if you are coming from an electron editor. the keybindings are different, the settings are configured in json rather than a gui, and the visual language is minimal to the point of austerity.</p>
 
-    <p>but if you value speed, if you work in teams, or if you are tired of editors that feel like web apps, zed is the most credible alternative to have launched in years. the atom team learned from their first product. they know how electron editors fail, and they built the opposite.</p>
-  </div>
-
-  <div class="share">
-    <span class="label">share</span>
-    <button onclick="navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/zed-1-0/?utm_source=ray&utm_medium=share&utm_campaign=zed-1-0');this.classList.add('ok');this.textContent='copied'">copy link</button>
-    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/zed-1-0/?utm_source=ray&utm_medium=share&utm_campaign=zed-1-0" target="_blank">telegram</a>
-    <a href="https://x.com/intent/tweet?url=https://raysterminal.vercel.app/articles/zed-1-0/?utm_source=ray&utm_medium=share&utm_campaign=zed-1-0" target="_blank">post to x</a>
-    <a href="https://api.whatsapp.com/send?text=https://raysterminal.vercel.app/articles/zed-1-0/?utm_source=ray&utm_medium=share&utm_campaign=zed-1-0" target="_blank">whatsapp</a>
+    <p>but if you value speed, if you work in teams, or if you are tired of editors that feel like web apps, zed is the most credible alternative to have launched in years. the atom team learned from their first product. they know how electron editors fail, and they built the opposite. it took four years. the foundation feels right.</p>
   </div>
 
   <div class="foot">
-    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
-    <div>ray</div>
+    <a href="/">home</a>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
   </div>
 </div>
 </body>

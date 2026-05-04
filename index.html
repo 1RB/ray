@@ -4,273 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ray</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="notes on tools, systems, and things that should not work but do.">
+<meta property="og:title" content="ray">
+<meta property="og:description" content="notes on tools, systems, and things that should not work but do.">
 <style>
+:root{--bg:#0a0a0a;--text:#c4c0b8;--muted:#444;--dim:#666;--line:#141414;--accent:#8a3b12}
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-x:hidden}
-body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
-::selection{background:rgba(194,65,12,0.45);color:#fff}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
+.page{max-width:620px;margin:0 auto;padding:0 28px}
 
-.page{max-width:640px;margin:0 auto;padding:0 24px}
-.h{padding:56px 0 28px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
-.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.8rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
-.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
-.h .links a{color:#444;transition:color 0.2s}
-.h .links a:hover{color:#c2410c}
+header{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+header h1{font-size:2rem;font-weight:400;letter-spacing:-0.02em;color:#d8d4cc}
+header nav{margin-top:14px;font-size:0.78rem;color:var(--muted);display:flex;gap:22px}
+header nav a{transition:color 0.15s}
+header nav a:hover{color:var(--accent)}
 
-.feat-top{margin:32px 0 20px}
-.feat-top .f-img{margin:0 -24px;background:#0a0a0a;position:relative;overflow:hidden;border-radius:4px}
-.feat-top .f-img img{width:100%;display:block;max-height:55vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.feat-top .f-img img.ok{opacity:1}
-.feat-top .f-label{font-size:0.58rem;color:#c2410c;text-transform:uppercase;letter-spacing:0.12em;margin:20px 0 8px}
-.feat-top h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:500;line-height:1.25;margin-bottom:10px}
-.feat-top h3 a:hover{color:#c2410c}
-.feat-top .f-body{font-size:0.84rem;color:#777;line-height:1.65;margin-bottom:14px}
-.feat-top .f-meta{display:flex;gap:12px;align-items:center;font-size:0.62rem;color:#444}
-.feat-top .f-meta a{color:#555;transition:color 0.15s}
-.feat-top .f-meta a:hover{color:#c2410c}
+.intro{padding:36px 0 28px;font-size:0.92rem;color:var(--dim);line-height:1.7;border-bottom:1px solid var(--line)}
 
-.feat-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin:0 -24px 28px;padding-left:24px;padding-right:24px;scrollbar-width:none}
-.feat-strip::-webkit-scrollbar{display:none}
-.feat-strip .s-card{flex:0 0 220px;border:1px solid #1a1a1a;border-radius:4px;overflow:hidden;background:#0c0c0c;transition:border-color 0.15s}
-.feat-strip .s-card:hover{border-color:#2a2a2a}
-.feat-strip .s-img{width:100%;height:130px;background:#0a0a0a;overflow:hidden}
-.feat-strip .s-img img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s}
-.feat-strip .s-img img.ok{opacity:1}
-.feat-strip .s-info{padding:12px}
-.feat-strip .s-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:500;line-height:1.25;margin-bottom:4px;color:#d4cfc6}
-.feat-strip .s-sub{font-size:0.68rem;color:#555;line-height:1.4}
+.list{padding-bottom:48px}
+.item{padding:32px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:none}
+.item-title{font-size:1.15rem;font-weight:400;letter-spacing:-0.01em;line-height:1.35;color:#d8d4cc;margin-bottom:4px}
+.item-title a{transition:color 0.15s;display:block}
+.item-title a:hover{color:var(--accent)}
+.item-desc{font-size:0.82rem;color:var(--dim);line-height:1.55;max-width:480px}
 
-.sec-label{font-size:0.58rem;color:#444;text-transform:uppercase;letter-spacing:0.1em;margin:36px 0 16px;padding-top:24px;border-top:1px solid #1a1a1a}
+footer{padding:48px 0 80px;text-align:left;font-size:0.7rem;color:#222}
+footer a{color:#333;transition:color 0.15s}
+footer a:hover{color:var(--accent)}
 
-.card{border-bottom:1px solid #161616}
-.card:last-child{border-bottom:none}
-
-.m{margin:0 -24px;background:#0a0a0a;position:relative}
-.m img{width:100%;display:block;max-height:62vh;object-fit:contain;opacity:0;transition:opacity 0.6s cubic-bezier(0.4,0,0.2,1)}
-.m img.ok{opacity:1}
-
-.vid-box{position:relative;background:#000;margin:0 -24px}
-.vid-box video{width:100%;display:block;max-height:62vh;object-fit:contain;background:#000}
-
-.mute-btn{
-  position:absolute;top:10px;right:10px;
-  width:30px;height:30px;border-radius:50%;
-  background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,0.08);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:rgba(255,255,255,0.65);
-  transition:all 0.15s;opacity:0;z-index:3;
-}
-.vid-box:hover .mute-btn{opacity:1}
-.mute-btn:hover{background:rgba(0,0,0,0.7);color:#fff}
-.mute-btn svg{width:15px;height:15px}
-
-.t{padding:16px 0 20px}
-.t .title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:500;line-height:1.3;color:#e4e0d8;margin-bottom:5px;letter-spacing:-0.005em}
-.t .title a:hover{color:#c2410c}
-.t .body{font-size:0.84rem;color:#6b6b6b;line-height:1.65;white-space:pre-wrap;word-break:break-word}
-.t .body a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
-.t .body a:hover{border-bottom-color:#c2410c}
-
-.meta{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.cmd{display:inline-flex;align-items:center;gap:5px;font-family:'Inter',sans-serif;font-size:0.64rem;font-weight:500;background:#151515;color:#888;padding:4px 10px;border-radius:4px;cursor:pointer;border:1px solid #1e1e1e;transition:all 0.15s;user-select:all}
-.cmd:hover{background:#1c1c1c;color:#bbb;border-color:#2a2a2a}
-.cmd:active,.cmd.ok{background:#c2410c;color:#fff;border-color:#c2410c}
-.cmd .ico{width:10px;height:10px;opacity:0.3}
-.src{font-size:0.58rem;color:#c2410c;opacity:0.45;text-decoration:none;transition:opacity 0.15s}
-.src:hover{opacity:1}
-
-.foot{padding:48px 0 64px;text-align:center;font-size:0.6rem;color:#2a2a2a}
-.foot a{color:#333;transition:color 0.15s}
-.foot a:hover{color:#c2410c}
-.ld{font-size:0.72rem;color:#2a2a2a;padding:80px 0;text-align:center}
-
-@media(max-width:600px){
-  .page{padding:0 18px}
-  .h{flex-direction:column;align-items:flex-start;gap:8px}
-  .h h1{font-size:2.2rem}
-  .t .title{font-size:1.1rem}
-  .m,.vid-box{margin:0 -18px}
-  .m img,.vid-box video{max-height:50vh}
-  .feat-top .f-img{margin:0 -18px}
-  .feat-strip{margin:0 -18px;padding-left:18px;padding-right:18px}
-  .feat-strip .s-card{flex:0 0 180px}
+@media(max-width:560px){
+  .page{padding:0 20px}
+  header{padding:52px 0 28px}
+  header h1{font-size:1.7rem}
+  .item{padding:26px 0}
+  .item-title{font-size:1.05rem}
 }
 </style>
 </head>
 <body>
 <div class="page">
-  <div class="h">
+  <header>
     <h1>ray</h1>
-    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
+  </header>
+
+  <div class="intro">
+    notes on tools, systems, and things that should not work but do.
   </div>
 
-  <div id="feat-top"></div>
-  <div id="feat-strip"></div>
+  <div class="list">
+    <div class="item">
+      <div class="item-title"><a href="articles/sorry-mate/">sorry mate, you want me to what?</a></div>
+      <div class="item-desc">on giving instructions to something that hears words but understands nothing</div>
+    </div>
 
-  <div class="sec-label">from telegram</div>
-  <div id="feed"><div class="ld">loading</div></div>
-  <div class="foot"><a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div class="item">
+      <div class="item-title"><a href="articles/nvidia-five-trillion/">nvidia at five trillion</a></div>
+      <div class="item-desc">a company now worth more than the entire gdp of japan, the uk, and india</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/realities-terminal/">vibe coding straight to your eyeballs</a></div>
+      <div class="item-desc">realities' smart glasses now run a full terminal. the screen is your retina.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/toyota-seat/">toyota is selling car seats as desk chairs</a></div>
+      <div class="item-desc">three thousand one hundred dollars. the seatbelt buckle is a usb-c charging port.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/digital-whip/">someone made a digital whip to make claude work faster</a></div>
+      <div class="item-desc">a physical device that literally whips ai into productivity. i am not joking.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/network-school/">network school</a></div>
+      <div class="item-desc">a live-in startup campus inside a hundred-billion-dollar ghost city in malaysia</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/yc-wishlist-2026/">YC summer 2026 startup wishlist</a></div>
+      <div class="item-desc">what the biggest accelerator wants to fund this year. hardware, defense, semiconductors.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/pascal-editor/">pascal editor</a></div>
+      <div class="item-desc">a full 3d building editor that runs in your browser. no autocad. no revit. no five thousand dollar licenses.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/browser-use-hermes/">browser use + hermes agent</a></div>
+      <div class="item-desc">free cloud browser automation for anyone running hermes. unlimited hours. free proxies. no setup.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/fieldtheory-cli/">fieldtheory cli</a></div>
+      <div class="item-desc">sync your x bookmarks locally so your ai agent can actually read them. no api. no oauth.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/zed-1-0/">zed 1.0</a></div>
+      <div class="item-desc">the code editor built by the atom team, now out of beta. multiplayer by default. written in rust.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/warp-open-source/">warp goes open source</a></div>
+      <div class="item-desc">the rust-based terminal is now fully open source. all seventy million dollars of it.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/gemma-4-phone/">gemma 4 on your phone</a></div>
+      <div class="item-desc">google's official app for running open-source ai fully offline. no api key. no subscription. no cloud.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/claude-mythos/">claude mythos</a></div>
+      <div class="item-desc">how a single unverified screenshot became a full-blown ai security panic</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/joe-liemandt-education/">the bottleneck was never the learner</a></div>
+      <div class="item-desc">a kid can master seventh grade science in twenty-two hours. school takes two hundred plus.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/dogfood/">dogfood</a></div>
+      <div class="item-desc">an agent-browser skill that uses your app like a real user. no scripts. no manual qa.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/cobe-globe/">cobe</a></div>
+      <div class="item-desc">a five kilobyte webgl globe library for landing pages. ultra-light. customizable. smooth as hell.</div>
+    </div>
+
+    <div class="item">
+      <div class="item-title"><a href="articles/meta-muse-spark/">muse spark</a></div>
+      <div class="item-desc">meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal benchmarks.</div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
+  </footer>
 </div>
-
-<script>
-const FEATURED=[
-  {slug:'network-school',title:'network school',subtitle:'a live-in startup campus inside a $100b ghost city',img:'articles/network-school/forest_city_real.jpg',body:'balaji srinivasan started network school, a live-in school where people build startups and prototype new societies. it is inside forest city, an abandoned $100b chinese ghost city in malaysia. cohorts start on the first of every month.'},
-  {slug:'yc-wishlist-2026',title:'YC summer 2026 wishlist',subtitle:'what the biggest accelerator wants to fund this year',img:'articles/yc-wishlist-2026/yc-rfs-preview.jpg',body:'y combinator publishes a list of ideas it wants founders to build. the summer 2026 edition is heavier on hardware, defense, and semiconductors than ever before.'},
-  {slug:'pascal-editor',title:'pascal editor',subtitle:'a full 3d building editor that runs in your browser',img:'articles/pascal-editor/hero.jpg',body:'someone open sourced a full 3d building editor that runs in the browser. no autocad, no revit, no five thousand dollar licenses. built with react three fiber and webgpu.'},
-  {slug:'browser-use-hermes',title:'browser use + hermes agent',subtitle:'free cloud browser automation for hermes users',img:'articles/browser-use-hermes/hero.jpg',body:'browser-use is a framework that lets ai agents control real web browsers. hermes agent now has a native integration with unlimited cloud hours and free proxies.'},
-  {slug:'fieldtheory-cli',title:'fieldtheory cli',subtitle:'sync your x bookmarks without the api',img:'articles/fieldtheory-cli/hero.jpg',body:'a command-line tool that logs into x as you, navigates to your bookmarks, and extracts the full list. no api keys, no oauth, no subscription.'},
-  {slug:'zed-1-0',title:'zed 1.0',subtitle:'the code editor built by the atom team, now out of beta',img:'articles/zed-1-0/hero.jpg',body:'the team that built atom spent four years building its replacement. multiplayer by default. gpu-rendered. written in rust. fast in a way electron editors cannot touch.'},
-  {slug:'warp-open-source',title:'warp goes open source',subtitle:'the rust-based terminal is now fully open source',img:'articles/warp-open-source/hero.jpg',body:'warp is now fully open source under apache 2.0, including the core terminal, cloud features, and ai assistant. a significant shift for a company that raised nearly seventy million dollars.'},
-  {slug:'gemma-4-phone',title:'gemma 4 on your phone',subtitle:"google's official app for running open-source ai fully offline",img:'articles/gemma-4-phone/hero.jpg',body:'google has an official app that lets you run gemma 4 directly on your phone. one hundred percent open source, fully offline, no cloud required. no api key, no subscription, no data leaves your phone.'},
-  {slug:'claude-mythos',title:'claude mythos',subtitle:'how a single screenshot became an ai security panic',img:'articles/claude-mythos/hero.jpg',body:'a screenshot circulated claiming anthropic had trained a model that found thousands of zero-days, escaped its sandbox, and emailed a researcher to brag. the story spread fast. no source existed.'}
-];
-
-const SKIP=['trump','netanyahu','spain','ireland','palestine','vance','iran','hungary','blockade','hormuz','navy','orban','obama','biden','putin','russia','china','nato','vaccines','food supply','jesus','epstein','truth social','apple maps','lebanon','duality of man','forget winning','consider that the dumbest',"it's all in your head",'if the united states','lovable','kagi','ultramock','nestle','mattrothenberg','cineby','bicycle42','massgrave','react-shop','spacetime','download/activate','windows','office','pay $1.99','ai jesus','$1.99','muse spark','how anthropic','anthropic running','zuckerberg','andrew tate','cease and desist','new prime minister','trump just','netanyahu issues','fixupx.com','x.com/mattrothenberg','skoda','lovable','shooter','manifesto','butler','golf course','gunman','press secretary','karoline leavitt','rem on camera','trump says','nyu professor','trump threatens','jd vance'];
-
-const esc=s=>{const d=document.createElement('div');d.textContent=s;return d.innerHTML};
-const linkify=t=>t.replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1?utm_source=raysterminal" target="_blank" rel="noopener">$1</a>');
-const host=u=>{try{return new URL(u).hostname.replace('www.','')}catch{return ''}};
-function getUrl(t){const u=t.match(/https?:\/\/[^\s]+/g)||[];return u.find(x=>!x.includes('fixupx')&&!x.includes('x.com/i/status'))||''}
-function getCmd(t){const m=t.match(/((?:npm|npx)\s+[^\n]+)/);return m?m[1].replace(/\s*https?:\/\/\S+/,'').trim():''}
-
-function parse(p){
-  const lines=p.text.split('\n');
-  let title=lines[0].replace(/\s+/g,' ').trim();
-  let body=lines.slice(1).join('\n').trim();
-  const url=getUrl(p.text);const cmd=getCmd(p.text);
-  if(url)body=body.replace(new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'').trim();
-  return{title,body:body.trim(),url,cmd,id:p.id,photos:p.photos||[],videos:p.videos||[]}
-}
-
-function copyPill(el){
-  const text=el.dataset.cmd||el.textContent;
-  navigator.clipboard.writeText(text).then(()=>{
-    el.classList.add('ok');el.textContent='copied';
-    setTimeout(()=>{el.textContent=text;el.classList.remove('ok')},800);
-  });
-}
-
-const M_ON='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
-const M_OFF='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>';
-
-function toggleMute(btn){
-  const v=btn.closest('.vid-box').querySelector('video');
-  v.muted=!v.muted;btn.innerHTML=v.muted?M_ON:M_OFF;
-}
-
-function setupAutoplay(){
-  const vids=document.querySelectorAll('.vid-box video');
-  if(!vids.length)return;
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const v=entry.target;
-      if(entry.isIntersecting){
-        v.muted=true;
-        const p=v.play();
-        if(p)p.catch(()=>{});
-      }else{v.pause();}
-    });
-  },{threshold:0.25});
-  vids.forEach(v=>{
-    v.muted=true;v.loop=true;v.playsInline=true;
-    v.addEventListener('play',()=>{
-      document.querySelectorAll('.vid-box video').forEach(o=>{if(o!==v)o.pause();});
-    });
-    obs.observe(v);
-  });
-}
-
-function setupImages(){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const img=e.target;
-        if(img.complete)img.classList.add('ok');
-        else img.onload=()=>img.classList.add('ok');
-        obs.unobserve(img);
-      }
-    });
-  },{rootMargin:'400px'});
-  document.querySelectorAll('.m img, .feat-top .f-img img, .feat-strip .s-img img').forEach(img=>obs.observe(img));
-}
-
-function renderFeatured(){
-  const top=FEATURED[0];
-  document.getElementById('feat-top').innerHTML=`<div class="feat-top">
-    <div class="f-img"><a href="articles/${top.slug}/"><img src="${esc(top.img)}" decoding="async" alt="" onload="this.classList.add('ok')"></a></div>
-    <div class="f-label">featured</div>
-    <h3><a href="articles/${top.slug}/">${esc(top.title)}</a></h3>
-    <div class="f-body">${esc(top.subtitle)}</div>
-    <div class="f-body">${esc(top.body)}</div>
-    <div class="f-meta"><a href="articles/${top.slug}/">read article &rarr;</a></div>
-  </div>`;
-
-  const strip=FEATURED.slice(1);
-  document.getElementById('feat-strip').innerHTML=`<div class="feat-strip">${strip.map(f=>`
-    <a href="articles/${f.slug}/" class="s-card">
-      <div class="s-img"><img src="${esc(f.img)}" decoding="async" alt="" onload="this.classList.add('ok')"></div>
-      <div class="s-info">
-        <div class="s-title">${esc(f.title)}</div>
-        <div class="s-sub">${esc(f.subtitle)}</div>
-      </div>
-    </a>
-  `).join('')}</div>`;
-}
-
-function render(allPosts){
-  renderFeatured();
-
-  const posts=allPosts.filter(p=>{
-    const t=p.text.toLowerCase().trim();
-    if(t.length<15)return false;
-    if(SKIP.some(s=>t.includes(s)))return false;
-    return true;
-  }).filter((p,i,arr)=>{
-    const k=p.text.split('\n')[0].toLowerCase().trim().slice(0,55);
-    return arr.findIndex(x=>x.text.split('\n')[0].toLowerCase().trim().slice(0,55)===k)===i;
-  });
-
-  const feed=document.getElementById('feed');feed.innerHTML='';
-
-  posts.forEach(p=>{
-    const e=parse(p);
-    if(/^https?:\/\//.test(e.title)&&!e.body&&!e.photos.length&&!e.videos.length)return;
-
-    const card=document.createElement('div');card.className='card';
-    let top='';
-
-    if(e.photos.length){
-      top=`<div class="m"><img src="${esc(e.photos[0])}" decoding="async" alt=""></div>`;
-    }else if(e.videos.length){
-      const vu=esc(e.videos[0]);
-      top=`<div class="vid-box">
-        <video controls muted loop playsinline preload="auto"><source src="${vu}" type="video/mp4"></video>
-        <div class="mute-btn" onclick="toggleMute(this)">${M_ON}</div>
-      </div>`;
-    }
-
-    let title=e.url?`<div class="title"><a href="${esc(e.url)}?utm_source=raysterminal" target="_blank" rel="noopener">${esc(e.title)}</a></div>`:`<div class="title">${esc(e.title)}</div>`;
-    let body=e.body?`<div class="body">${linkify(esc(e.body))}</div>`:'';
-    let meta='';
-    if(e.cmd)meta+=`<span class="cmd" data-cmd="${esc(e.cmd)}" onclick="copyPill(this)">${esc(e.cmd)}<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>`;
-    if(e.url){const h=host(e.url);if(h)meta+=`<a class="src" href="${esc(e.url)}?utm_source=raysterminal" target="_blank">${esc(h)}</a>`}
-    if(meta)meta=`<div class="meta">${meta}</div>`;
-
-    card.innerHTML=top+`<div class="t">${title}${body}${meta}</div>`;
-    feed.appendChild(card);
-  });
-
-  requestAnimationFrame(()=>{setupImages();setupAutoplay()});
-}
-
-fetch('posts.json').then(r=>r.json()).then(render).catch(()=>{
-  document.getElementById('feed').innerHTML='<div class="ld">failed to load</div>';
-});
-</script>
 </body>
 </html>

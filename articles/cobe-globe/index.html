@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cobe — ray</title>
+<meta property="og:title" content="cobe">
+<meta property="og:description" content="a five kilobyte webgl globe library for landing pages. ultra-light. customizable. smooth as hell.">
+<meta property="og:type" content="article">
+<style>
+:root{--bg:#0a0a0a;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{max-width:600px;margin:0 auto;padding:0 28px}
+
+.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
+.h a:hover{color:var(--accent)}
+
+.size-block{margin:56px 0;text-align:center;padding:48px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.size-num{font-size:clamp(4rem,14vw,8rem);font-weight:200;color:#d4d0c6;letter-spacing:-0.04em;line-height:1}
+.size-unit{font-size:1rem;color:var(--dim);margin-top:4px}
+.size-label{font-size:0.75rem;color:var(--muted);margin-top:12px;text-transform:uppercase;letter-spacing:0.08em}
+
+.title{font-size:1.6rem;font-weight:400;color:#d4d0c6;margin-bottom:6px;letter-spacing:-0.01em;line-height:1.25}
+.sub{font-size:0.85rem;color:var(--dim);margin-bottom:48px}
+
+.body p{margin-bottom:1.7em;font-weight:300}
+.body strong{color:#d4d0c6;font-weight:400}
+
+.code{margin:24px 0;padding:16px 20px;background:#0e0e0e;border:1px solid #1a1a1a;font-family:'SF Mono',Monaco,monospace;font-size:0.82rem;color:#7a756a;line-height:1.6;overflow-x:auto}
+
+.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
+.foot a:hover{color:var(--accent)}
+
+@media(max-width:560px){
+  .page{padding:0 20px}
+  .size-num{font-size:5rem}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <a href="/">ray</a>
+    <a href="https://t.me/raysterminal">telegram</a>
+  </div>
+
+  <div class="size-block">
+    <div class="size-num">5</div>
+    <div class="size-unit">kilobytes</div>
+    <div class="size-label">gzipped webgl globe</div>
+  </div>
+
+  <div class="title">cobe</div>
+  <div class="sub">a five kilobyte webgl globe library for landing pages. ultra-light. customizable. smooth as hell.</div>
+
+  <div class="body">
+    <p>shuding built a globe that weighs five kilobytes. not fifty. not five hundred. five. after gzip. this is a complete, interactive, hardware-accelerated three-dimensional earth that you can spin, zoom, and customize, in a package smaller than most hero images. the average web developer's ego is larger than this library.</p>
+
+    <div class="code">npm i cobe</div>
+
+    <p>the implementation is a single webgl context rendering a sphere with a custom shader. the shader handles the atmosphere glow, the night lights, the rotation, and the mouse interaction. there is no external dependency on three.js, babylon, or any other 3d framework. the entire library is self-contained because shuding wrote the glsl by hand and optimized the geometry to the minimum viable sphere. this is the opposite of the modern javascript ecosystem, where a simple modal dialog pulls in seventeen transitive dependencies and a twelve-megabyte bundle.</p>
+
+    <p>the api is minimal by necessity. you create a canvas, pass it to cobe, and configure options. marker positions, colors, rotation speed, atmosphere thickness. the defaults are tasteful: a dark earth with city lights, subtle atmosphere, slow rotation. it looks expensive. it is free. you can drop it onto any landing page and immediately signal global presence, international reach, or just good taste. the rotation is smooth because it runs on the gpu. the interaction is smooth because the event handling is throttled correctly. the bundle is small because there is no framework abstraction layer between the code and the gpu.</p>
+
+    <p>the use cases are specific. this is not a general-purpose mapping library. it is a decoration. it exists to make a landing page feel more considered. a saas company with customers in multiple countries. a conference with international speakers. a developer tool with a global user base. the globe says "we are everywhere" without requiring a mapbox api key or a google maps integration or a ten-second load time.</p>
+
+    <p>what makes cobe notable is not just the size. it is the proof that webgl does not require a framework. developers have been taught that 3d on the web means importing three.js, setting up a scene, a camera, a renderer, lights, materials, and then fighting the framework to get what you actually want. shuding skipped all of that. he wrote the shaders he needed, the geometry he needed, and nothing else. the result is faster, smaller, and more reliable than any framework-based equivalent because there is no framework to break.</p>
+
+    <p>the customization options are exposed through a simple javascript object. you can change the base color of the earth, the color of the markers, the intensity of the atmosphere, the speed of rotation, and the zoom level. you can add markers by passing latitude and longitude coordinates. the markers glow. the earth rotates. the atmosphere diffuses light at the edges. it is the same visual language that apple and stripe use on their landing pages, except apple's globe is a video file and stripe's is a custom webgl implementation that probably took an engineer six months. cobe took shuding a weekend, and it is available to anyone who types npm install.</p>
+
+    <p>the library is open source and the license is permissive. you can use it commercially, modify it, or learn from it. the repository includes a live demo and documentation. the code is readable. the shaders are commented. this is rare in a javascript ecosystem that increasingly treats code as opaque infrastructure. you can read cobe's source and understand exactly how it works. this is part of the point. the minimal size is not just a performance optimization. it is a statement about what is necessary versus what is assumed.</p>
+
+    <p>if you have a landing page that needs to feel global, and you do not want to add a framework, and you do not want to load a video, and you do not want to pay for a mapping api, cobe is the answer. five kilobytes. one canvas. no dependencies. smooth as hell. this is what web development looks like when someone decides to care about the user before they care about the developer experience.</p>
+  </div>
+
+  <div class="foot">
+    <a href="/">home</a>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
+  </div>
+</div>
+</body>
+</html>

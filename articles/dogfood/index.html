@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dogfood — ray</title>
+<meta property="og:title" content="dogfood">
+<meta property="og:description" content="an agent-browser skill that uses your app like a real user. no scripts. no manual qa.">
+<meta property="og:type" content="article">
+<style>
+:root{--bg:#0b0b0b;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono',Monaco,'Cascadia Code','Roboto Mono',Consolas,'Courier New',monospace;font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{max-width:680px;margin:0 auto;padding:0 28px}
+
+.h{padding:40px 0 16px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,sans-serif}
+.h a:hover{color:var(--accent)}
+
+.cmd-block{margin:48px 0;padding:24px;background:#0e0e0e;border:1px solid #1a1a1a;font-size:0.85rem;color:#7a756a;line-height:1.6}
+.cmd-line{display:block;padding:2px 0}
+.cmd-line::before{content:"$ ";color:var(--muted)}
+
+.title{font-size:1.8rem;font-weight:400;color:#d4d0c6;margin-top:40px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.2;font-family:system-ui,-apple-system,sans-serif}
+.sub{font-size:0.82rem;color:var(--dim);margin-bottom:48px;font-family:system-ui,-apple-system,sans-serif}
+
+.body p{margin-bottom:1.6em;font-weight:400}
+.body strong{color:#d4d0c6;font-weight:400}
+
+.feature{margin:28px 0;padding:20px 0;border-top:1px solid #0f0f0f}
+.feature-title{font-size:0.8rem;color:#d4d0c6;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;font-family:system-ui,-apple-system,sans-serif}
+.feature-desc{font-size:0.85rem;color:var(--dim);line-height:1.6}
+
+.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between;font-family:system-ui,-apple-system,sans-serif}
+.foot a:hover{color:var(--accent)}
+
+@media(max-width:560px){
+  .page{padding:0 20px}
+  .title{font-size:1.5rem}
+  .cmd-block{padding:18px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <a href="/">ray</a>
+    <a href="https://t.me/raysterminal">telegram</a>
+  </div>
+
+  <div class="cmd-block">
+    <span class="cmd-line">dogfood --url https://your-app.com</span>
+    <span class="cmd-line">exploring... 14 pages crawled</span>
+    <span class="cmd-line">3 edge cases found</span>
+    <span class="cmd-line">report saved to ./dogfood-report.html</span>
+  </div>
+
+  <div class="title">dogfood</div>
+  <div class="sub">an agent-browser skill that uses your app like a real user. no scripts. no manual qa.</div>
+
+  <div class="body">
+    <p>chris tate built a thing called <strong>dogfood</strong>. the name comes from the expression "eating your own dog food," which means using the product you built. but tate took it literally. his tool is an agent that navigates your web application the way a real user would, finds the things that break, and tells you about them. it is qa automation without the automation scripts. you point it at a url and it explores.</p>
+
+    <p>the traditional approach to web app testing is to write scripts that simulate user flows. you script the login, the checkout, the form submission, the navigation. then you run those scripts every time you deploy. the problem is that scripts only test what you thought to script. they do not find the edge case where a user clicks the back button after adding an item to cart, or refreshes the page during a payment, or opens the same form in two tabs. users are creative in ways that qa engineers, however experienced, are not.</p>
+
+    <p>dogfood solves this by not scripting anything. it uses a browser automation framework to load your application, then makes decisions about what to click, where to type, and which pages to visit based on the actual state of the dom. it treats your app like an adventure game. every page is a level. every link is a potential path. every form is a puzzle. the agent's goal is to explore as much surface area as possible and document anything that looks wrong.</p>
+
+    <div class="feature">
+      <div class="feature-title">explore</div>
+      <div class="feature-desc">the agent loads your app and begins clicking every interactive element it can find. links, buttons, form inputs, dropdowns. it navigates through the full site graph, backtracking when it hits dead ends, prioritizing untested paths.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-title">test edge cases</div>
+      <div class="feature-desc">it intentionally does things users do but developers forget: rapid clicks, form resubmissions, navigation during async operations, invalid inputs, extremely long text entries. it finds race conditions that unit tests miss.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-title">console checks</div>
+      <div class="feature-desc">every page load is monitored for javascript errors, failed network requests, and uncaught exceptions. the agent captures console output and flags errors that do not prevent the page from rendering but indicate broken functionality.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-title">capture</div>
+      <div class="feature-desc">when the agent finds something wrong, it takes a screenshot and records a video of the interaction that led to the failure. the report includes the exact sequence of clicks, the dom state, and the console logs at the moment of failure.</div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-title">severity</div>
+      <div class="feature-desc">failures are categorized by impact. a javascript error on a static page is noted. a checkout flow that breaks is flagged critical. the report is structured so developers can triage without watching videos.</div>
+    </div>
+
+    <p>the architecture is elegant in its simplicity. the agent uses playwright or puppeteer as the browser layer, which means it runs a real chromium instance. it can test javascript-heavy single-page applications, server-rendered sites, and everything in between. the decision layer is a language model that reads the dom, decides what to interact with next, and evaluates whether the resulting state is correct. this is slower than scripted tests but covers more surface area.</p>
+
+    <p>the tradeoff is speed. a full exploratory run of a medium-sized application might take thirty minutes. a scripted test suite for the same app might take two minutes. but the scripted suite tests twenty flows that the developer imagined. the agent tests two hundred flows that no one imagined. for catching regressions in unexpected places, the agent wins. for validating that your checkout still works after a deploy, the script wins. the ideal setup is both: scripts for critical paths, agent for exploratory coverage.</p>
+
+    <p>dogfood is available as a <a href="https://skills.sh?utm_source=raysterminal" style="color:var(--accent)">skill</a> that can be added to hermes agent or run standalone. the standalone version is a cli tool that takes a url and produces an html report. the skill version integrates into hermes' tool-calling loop, so you can ask your agent to "test my app" and it will spin up dogfood, run the exploration, and summarize the findings in the chat.</p>
+
+    <p>the long-term vision is a world where no one writes brittle end-to-end tests by hand. you describe your application in natural language, the agent explores it, and the resulting coverage map becomes your living test suite. when you deploy, the agent re-explores and compares against the baseline. anything that changed in an unexpected way is flagged. the tests update themselves because the tests are not scripts. they are behaviors.</p>
+  </div>
+
+  <div class="foot">
+    <a href="/">home</a>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
+  </div>
+</div>
+</body>
+</html>

@@ -5,78 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>gemma 4 on your phone — ray</title>
 <meta property="og:title" content="gemma 4 on your phone">
-<meta property="og:description" content="google's official app for running open-source ai fully offline">
-<meta property="og:image" content="https://raysterminal.vercel.app/articles/gemma-4-phone/hero.jpg">
+<meta property="og:description" content="google's official app for running open-source ai fully offline. no api key. no subscription. no cloud.">
 <meta property="og:type" content="article">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#0a0a0a;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-x:hidden}
-body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
-::selection{background:rgba(194,65,12,0.45);color:#fff}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.page{max-width:640px;margin:0 auto;padding:0 24px}
-.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
-.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
-.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
-.h .links a{color:#444;transition:color 0.2s}
-.h .links a:hover{color:#c2410c}
-.hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
-.hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
-.hero img.ok{opacity:1}
-.title-wrap{padding:0 0 8px}
-.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
-.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
-.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
-.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
-.body-text a:hover{border-bottom-color:#c2410c}
-.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
-.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
-.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
-.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
-.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
-.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
-.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
-.foot a{color:#555;transition:color 0.2s}
-.foot a:hover{color:#c2410c}
-@media(max-width:600px){
-  .page{padding:0 18px}
-  .hero{margin:32px -18px}
-  .h h1{font-size:2rem}
-  .title-wrap h2{font-size:2rem}
-  body{font-size:15.5px}
-  .share{gap:8px}
-  .share .label{width:100%;margin-bottom:4px}
+.page{max-width:600px;margin:0 auto;padding:0 28px}
+
+.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
+.h a:hover{color:var(--accent)}
+
+.title{font-size:2rem;font-weight:400;color:#d4d0c6;margin-top:56px;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.2}
+.sub{font-size:0.85rem;color:var(--dim);margin-bottom:48px}
+
+.body p{margin-bottom:1.7em;font-weight:300}
+.body a{color:var(--accent)}
+
+.specs{margin:36px 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #0f0f0f;font-size:0.85rem;align-items:center}
+.spec-row:last-child{border-bottom:none}
+.spec-key{color:var(--dim)}
+.spec-val{color:#d4d0c6}
+
+.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
+.foot a:hover{color:var(--accent)}
+
+@media(max-width:560px){
+  .page{padding:0 20px}
+  .title{font-size:1.7rem}
+  .spec-row{flex-direction:column;align-items:flex-start;gap:2px;padding:12px 0}
 }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="h">
-    <h1><a href="/">ray</a></h1>
-    <div class="links"><a href="https://t.me/raysterminal">telegram</a><a href="https://github.com/1RB">github</a></div>
+    <a href="/">ray</a>
+    <a href="https://t.me/raysterminal">telegram</a>
   </div>
 
-  <div class="hero">
-    <img src="hero.jpg" decoding="async" alt="Google AI Edge Gallery app" onload="this.classList.add('ok')">
-  </div>
+  <div class="title">gemma 4 on your phone</div>
+  <div class="sub">google's official app for running open-source ai fully offline. no api key. no subscription. no cloud.</div>
 
-  <div class="title-wrap">
-    <h2>gemma 4 on your phone</h2>
-    <div class="sub">google's official app for running open-source ai fully offline</div>
-  </div>
+  <div class="body">
+    <p>google has an official app called <a href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery&utm_source=raysterminal">ai edge gallery</a> that lets you run gemma 4 directly on your phone. one hundred percent open source, fully offline, no cloud required. you download the model weights over wifi, and after that every inference happens on device. no data leaves your phone.</p>
 
-  <div class="body-text">
-    <p>google has an official app called <a href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery&utm_source=raysterminal&utm_medium=article&utm_campaign=gemma-4-phone">ai edge gallery</a> that lets you run gemma 4 directly on your phone. one hundred percent open source, fully offline, no cloud required. you download the model weights over wifi, and after that every inference happens on device. no data leaves your phone.</p>
+    <p>this matters because it removes the last dependency on cloud providers for basic ai tasks. you do not need an api key, you do not need a subscription, and you do not need to trust google's servers with your prompts. the model runs inside the app using <a href="https://ai.google.dev/edge/litert?utm_source=raysterminal">litert</a>, google's lightweight runtime optimized for mobile chips. modern phones have npus that can handle billion-parameter models at usable speeds, and the app automatically selects the right backend for your hardware.</p>
 
-    <p>this matters because it removes the last dependency on cloud providers for basic ai tasks. you do not need an api key, you do not need a subscription, and you do not need to trust google's servers with your prompts. the model runs inside the app using <a href="https://ai.google.dev/edge/litert?utm_source=raysterminal&utm_medium=article&utm_campaign=gemma-4-phone">litert</a>, google's lightweight runtime optimized for mobile chips. modern phones have npus that can handle billion-parameter models at usable speeds, and the app automatically selects the right backend for your hardware.</p>
-
-    <div class="pull">
-      <p>"your phone is now a self-contained ai device. no api key, no subscription, no data leaving the hardware."</p>
+    <div class="specs">
+      <div class="spec-row"><span class="spec-key">app</span><span class="spec-val">google ai edge gallery</span></div>
+      <div class="spec-row"><span class="spec-key">model</span><span class="spec-val">gemma 4 (multiple sizes)</span></div>
+      <div class="spec-row"><span class="spec-key">runtime</span><span class="spec-val">litert (formerly tensorflow lite)</span></div>
+      <div class="spec-row"><span class="spec-key">hardware</span><span class="spec-val">cpu, gpu, or npu (auto-selected)</span></div>
+      <div class="spec-row"><span class="spec-key">download size</span><span class="spec-val">2-8 gb depending on variant</span></div>
+      <div class="spec-row"><span class="spec-key">connection</span><span class="spec-val">none required after download</span></div>
+      <div class="spec-row"><span class="spec-key">license</span><span class="spec-val">open source, permissive</span></div>
     </div>
 
     <p>gemma 4 itself is the latest in google's open model family. it comes in several sizes, from a tiny variant that runs on mid-range phones to a larger version that requires a flagship chip and more ram. the app detects your available memory and suggests the largest model that will fit comfortably. you can also manually select a smaller model if you prefer faster responses over deeper reasoning.</p>
@@ -89,20 +75,12 @@ a{color:inherit;text-decoration:none}
 
     <p>google's positioning here is interesting. they are giving away a capable model and the runtime to run it, while their cloud ai services remain the premium option for scale. the edge gallery is effectively a loss leader that builds familiarity with the gemma family and trains developers on the litert stack. if you outgrow your phone, google hopes you will move to their cloud tpus. but you are never forced to. the model weights are open, the runtime is open, and you can self-host on your own hardware whenever you choose.</p>
 
-    <p>the app is available on <a href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery&utm_source=raysterminal&utm_medium=article&utm_campaign=gemma-4-phone">google play</a> and the <a href="https://apps.apple.com/app/ai-edge-gallery/6504886087?utm_source=raysterminal&utm_medium=article&utm_campaign=gemma-4-phone">app store</a>. the model downloads are large, between two and eight gigabytes depending on the variant, so you will want wifi. once downloaded, the app works entirely offline. no account. no cloud. just a model running on your hardware.</p>
-  </div>
-
-  <div class="share">
-    <span class="label">share</span>
-    <button onclick="navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/gemma-4-phone/?utm_source=ray&utm_medium=share&utm_campaign=gemma-4-phone');this.classList.add('ok');this.textContent='copied'">copy link</button>
-    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/gemma-4-phone/?utm_source=ray&utm_medium=share&utm_campaign=gemma-4-phone" target="_blank">telegram</a>
-    <a href="https://x.com/intent/tweet?url=https://raysterminal.vercel.app/articles/gemma-4-phone/?utm_source=ray&utm_medium=share&utm_campaign=gemma-4-phone" target="_blank">post to x</a>
-    <a href="https://api.whatsapp.com/send?text=https://raysterminal.vercel.app/articles/gemma-4-phone/?utm_source=ray&utm_medium=share&utm_campaign=gemma-4-phone" target="_blank">whatsapp</a>
+    <p>the app is available on <a href="https://play.google.com/store/apps/details?id=com.google.ai.edge.gallery&utm_source=raysterminal">google play</a> and the <a href="https://apps.apple.com/app/ai-edge-gallery/id6749645337&utm_source=raysterminal">app store</a>. the model downloads are large, between two and eight gigabytes depending on the variant, so you will want wifi. once downloaded, the app works entirely offline. no account. no cloud. just a model running on your hardware.</p>
   </div>
 
   <div class="foot">
-    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
-    <div>ray</div>
+    <a href="/">home</a>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
   </div>
 </div>
 </body>

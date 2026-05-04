@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vibe coding straight to your eyeballs — ray</title>
+<meta property="og:title" content="vibe coding straight to your eyeballs">
+<meta property="og:description" content="realities' smart glasses now run a full terminal. the screen is your retina.">
+<meta property="og:type" content="article">
+<style>
+:root{--bg:#0a0a0a;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{max-width:620px;margin:0 auto;padding:0 28px}
+
+.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
+.h a:hover{color:var(--accent)}
+
+.title{font-size:2.2rem;font-weight:400;color:#d4d0c6;line-height:1.2;margin-top:56px;margin-bottom:10px;letter-spacing:-0.01em}
+.sub{font-size:0.85rem;color:var(--dim);margin-bottom:56px}
+
+.body p{margin-bottom:1.7em;font-weight:300}
+.body strong{color:#d4d0c6;font-weight:400}
+
+.pill{display:inline-block;font-size:0.72rem;color:var(--dim);background:#111;border:1px solid #1a1a1a;padding:3px 10px;border-radius:3px;margin-right:6px;margin-bottom:6px}
+
+.quote{margin:2.5em 0;padding:1.5em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.25rem;color:#d4d0c6;line-height:1.45;font-weight:300}
+
+.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
+.foot a:hover{color:var(--accent)}
+
+@media(max-width:560px){
+  .page{padding:0 20px}
+  .title{font-size:1.85rem}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <a href="/">ray</a>
+    <a href="https://t.me/raysterminal">telegram</a>
+  </div>
+
+  <div class="title">vibe coding straight to your eyeballs</div>
+  <div class="sub">realities' smart glasses now run a full terminal. the screen is your retina.</div>
+
+  <div class="body">
+    <p>there is a specific kind of programmer who codes while walking. they dictate commits into their phone on the train. they review pull requests at the grocery store. they have learned to think in syntax while their body is doing something else entirely. for this person, the laptop was never the ideal form factor. it requires a surface, a lap, a cafe table. it demands that you stop moving.</p>
+
+    <p><strong>realities</strong> makes smart glasses that project a display directly into your field of vision. not a phone screen reflected in a mirror. not a watch. an actual heads-up display, floating in the air in front of you, visible only to you. and someone figured out how to run a full terminal on them.</p>
+
+    <p>the implementation uses the glasses' built-in display as a terminal output device. you connect a bluetooth keyboard, or use voice input, or gesture controls, and the glasses render the shell session in your peripheral vision. the resolution is not desktop-monitor sharp, but it is readable. the text floats at a comfortable focal distance, so your eyes do not strain. the background is transparent, so you can walk, navigate a city, or hold a conversation while a build process runs in the corner of your vision.</p>
+
+    <div class="quote">the screen is no longer a rectangle on your desk. it is wherever you are looking.</div>
+
+    <p>the use cases are obvious to anyone who has ever needed to ssh into a server while their hands are full. deploy a fix while carrying groceries. check logs while cooking. run a database migration while on a treadmill. these are not hypothetical scenarios. these are exactly the situations where someone has thought, "i wish i could see a terminal right now," and then realized they could.</p>
+
+    <p>the glasses run a lightweight linux environment locally, or they can stream from a remote machine via ssh or mosh. the latency is low enough for interactive use because the display pipeline is local. only the computation happens elsewhere. this is the correct architecture for wearable terminals. rendering locally and computing remotely eliminates the lag that kills interactive sessions on fully cloud-dependent devices.</p>
+
+    <p>the battery life is the current limitation. four to six hours of active terminal use, depending on brightness and whether you are also running the glasses' other features like camera recording or audio playback. for a full workday, you need a mid-day charge or a battery pack. but four hours is enough for a commute, a coffee shop session, or a long walk where you want to write code while moving.</p>
+
+    <p>the social aspect is stranger than the technical one. wearing smart glasses in public is still a statement. people assume you are recording them, or that you are not paying attention. the terminal use case does not help with this perception. typing on an invisible keyboard while staring into space looks, from the outside, like a psychotic break. there is no way to signal to strangers that you are working. you just look like you are having a conversation with yourself.</p>
+
+    <p>but for the specific subset of developers who value mobility over social appearance, this is the closest we have come to the fantasy of computing as an ambient layer. not a device you sit down at, but a capability you wear. the terminal is the right interface for this because it is lightweight, text-based, and works over intermittent connections. you do not need a mouse. you do not need precise gestures. you need text, and a way to send it somewhere else to be executed.</p>
+
+    <p>whether this becomes a mainstream developer tool or remains a niche curiosity depends on whether the glasses themselves become normal. if smart glasses follow the path of headphones, moving from conspicuous to invisible over a decade, then the terminal use case will seem obvious in retrospect. if they follow the path of google glass, becoming a symbol of tech culture that the mainstream rejects, then vibe coding on your eyeballs will remain a party trick for enthusiasts. either way, the capability exists now. you can write code while walking. the screen is your retina. the keyboard is in your pocket. the future was supposed to be flying cars. instead it is a terminal floating in front of your face.</p>
+  </div>
+
+  <div class="foot">
+    <a href="/">home</a>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
+  </div>
+</div>
+</body>
+</html>

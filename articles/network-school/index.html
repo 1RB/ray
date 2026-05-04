@@ -3,69 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>network school: a live-in startup campus inside a $100b ghost city — ray</title>
-<meta property="og:title" content="network school: a live-in startup campus inside a $100b ghost city">
-<meta property="og:description" content="a live-in school for new societies inside a chinese ghost city">
+<title>network school — ray</title>
+<meta property="og:title" content="network school">
+<meta property="og:description" content="a live-in startup campus inside a hundred-billion-dollar ghost city in malaysia">
 <meta property="og:image" content="https://raysterminal.vercel.app/articles/network-school/forest_city_real.jpg">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#09090b;--text:#b8b3a8;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#1a1a1a}
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-x:hidden}
-body{background:#09090b;color:#e4e0d8;font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
-::selection{background:rgba(194,65,12,0.45);color:#fff}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-
 .page{max-width:640px;margin:0 auto;padding:0 24px}
 
-.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #1f1f1f}
-.h h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;font-weight:400;font-style:italic;letter-spacing:-0.03em;line-height:1;color:#e4e0d8}
-.h .links{font-size:0.62rem;color:#444;display:flex;gap:14px}
-.h .links a{color:#444;transition:color 0.2s}
-.h .links a:hover{color:#c2410c}
+.h{padding:48px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line)}
+.h h1{font-size:2.2rem;font-weight:400;font-style:italic;letter-spacing:-0.02em;line-height:1;color:#d4d0c6;font-family:Georgia,serif}
+.h .links{font-size:0.7rem;color:var(--muted);display:flex;gap:16px}
+.h .links a:hover{color:var(--accent)}
 
 .hero{margin:40px -24px 48px;position:relative;background:#0a0a0a}
 .hero img{width:100%;display:block;max-height:70vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
 .hero img.ok{opacity:1}
 
 .title-wrap{padding:0 0 8px}
-.title-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1.15;color:#e4e0d8;letter-spacing:-0.01em;margin-bottom:6px}
-.title-wrap .sub{font-size:0.72rem;color:#555;letter-spacing:0.03em}
+.title-wrap h2{font-family:Georgia,serif;font-size:2.6rem;font-weight:400;line-height:1.15;color:#d4d0c6;letter-spacing:-0.01em;margin-bottom:6px}
+.title-wrap .sub{font-size:0.75rem;color:var(--dim);letter-spacing:0.02em}
 
-.body-text p{margin-bottom:1.6em;color:#b8b3a8;font-weight:300}
-.body-text a{color:#c2410c;border-bottom:1px solid transparent;transition:border-color 0.15s}
-.body-text a:hover{border-bottom-color:#c2410c}
+.body-text p{margin-bottom:1.7em;font-weight:300}
+.body-text a{color:var(--accent)}
 
-.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f}
-.pull p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
+.pull{margin:2.4em 0;padding:1.6em 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pull p{font-family:Georgia,serif;font-size:1.4rem;font-weight:400;font-style:italic;line-height:1.45;color:#d4cfc6;margin:0}
 
 .img-wrap{margin:2.8em -24px;background:#0a0a0a;position:relative}
 .img-wrap img{width:100%;display:block;max-height:60vh;object-fit:cover;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1)}
 .img-wrap img.ok{opacity:1}
-.caption{padding:10px 24px 0;font-size:0.65rem;color:#444;letter-spacing:0.02em}
+.caption{padding:10px 24px 0;font-size:0.65rem;color:var(--muted);letter-spacing:0.02em}
 
-.share{margin:2em 0;padding:1.2em 0;border-top:1px solid #1f1f1f;border-bottom:1px solid #1f1f1f;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.share .label{font-size:0.62rem;color:#444;text-transform:uppercase;letter-spacing:0.08em;margin-right:4px}
-.share button,.share a{font-size:0.72rem;color:#888;background:#151515;border:1px solid #1e1e1e;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif}
-.share button:hover,.share a:hover{background:#1c1c1c;color:#e4e0d8;border-color:#2a2a2a}
-.share a.ok{background:#c2410c;color:#fff;border-color:#c2410c}
-
-.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid #1f1f1f;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:#444;flex-wrap:wrap;gap:12px}
-.foot a{color:#555;transition:color 0.2s}
-.foot a:hover{color:#c2410c}
+.foot{margin-top:64px;padding:32px 0 64px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;color:#222;flex-wrap:wrap;gap:12px}
+.foot a{color:#333;transition:color 0.15s}
+.foot a:hover{color:var(--accent)}
 
 @media(max-width:600px){
   .page{padding:0 18px}
   .hero,.img-wrap{margin:32px -18px}
-  .h h1{font-size:2rem}
+  .h h1{font-size:1.9rem}
   .title-wrap h2{font-size:2rem}
   .caption{padding:8px 18px 0}
   body{font-size:15.5px}
-  .share{gap:8px}
-  .share .label{width:100%;margin-bottom:4px}
 }
 </style>
 </head>
@@ -82,63 +68,40 @@ a{color:inherit;text-decoration:none}
 
   <div class="title-wrap">
     <h2>network school</h2>
-    <div class="sub">a live-in school for new societies inside a chinese ghost city</div>
+    <div class="sub">a live-in startup campus inside a hundred-billion-dollar ghost city</div>
   </div>
 
   <div class="body-text">
-    <p>There is a guy running a live-in school for people who want to build new societies. It is inside a Chinese ghost city in Malaysia.</p>
+    <p>balaji srinivasan started network school, a live-in school where people build startups and prototype new societies. the idea is you live, learn, and build together while figuring out how new countries could actually work. it is inside forest city, an abandoned hundred-billion-dollar chinese ghost city in malaysia where the buildings are literally sinking. fifteen hundred dollars a month covers your room, meals, gym, and community.</p>
 
-    <p>Forest City was supposed to be a hundred-billion-dollar Belt and Road project, a city built from nothing on four artificial islands off the coast of Johor. The road signs are in Chinese. The schools teach Mandarin. It was designed for wealthy Chinese buyers who wanted to park money offshore, away from capital controls and political risk back home.</p>
+    <p>forest city was built by a chinese developer as a luxury residential project for wealthy mainland buyers. it was supposed to be a green, smart, futuristic metropolis on artificial islands off the coast of johor. then the chinese government restricted capital outflows, the buyers disappeared, and the project stalled. what remains is a collection of high-rise towers, empty shopping malls, overgrown gardens, and a golf course that is slowly being reclaimed by the jungle. the buildings are sinking because they were built on reclaimed land that is compacting faster than predicted. it is, by most measures, a failed development. it is also the perfect place to experiment with new forms of community.</p>
 
-    <p>Then Xi Jinping capped foreign currency outflows at fifty thousand dollars per year. The buyers disappeared. By 2023, Forest City had eight thousand residents instead of the projected seven hundred thousand. The reclaimed land started sinking. Buildings cracked. The developer, Country Garden, defaulted on eleven billion dollars in offshore bonds. Foreign Policy called the whole thing a "massive boondoggle."</p>
+    <div class="pull">
+      <p>"the buildings are sinking because they were built on reclaimed land that is compacting faster than predicted. it is, by most measures, a failed development. it is also the perfect place to experiment."</p>
+    </div>
 
-    <p>The project was not even supposed to exist where it does. The area is protected as an Environmentally Sensitive Area Rank 1, home to the largest seagrass meadow in Malaysia and the Pulai River Mangrove Forest Reserve, a wetland of international importance under the Ramsar Convention. An environmental impact assessment acknowledged that the seagrass ecosystem had been split in two and would be heavily impacted. Silt curtains were supposed to protect the buffers. Photographs showed they were absent.</p>
+    <p>the first intake was september to december 2024, with one hundred twenty-eight people from over eighty countries, selected from four thousand applicants. in march 2025 they started a full-year cohort with two hundred fifty-six members. new people arrive monthly for orientation. the selection process is not fully transparent but appears to weight demonstrated ability to build things over credentials. the demographic is young, technical, and globally distributed.</p>
 
-    <p>Now Balaji Srinivasan runs something called Network School out of a luxury hotel in the middle of this empty development.</p>
+    <p>the program structure is a hybrid of startup accelerator, intentional community, and experimental governance lab. participants work on their own projects or join others, attend lectures on topics ranging from cryptocurrency to charter cities to biotech, and participate in governance experiments where they vote on community decisions using various mechanisms. the goal is not just to build companies but to test the infrastructure of new societies at small scale.</p>
 
-    <p>For fifteen hundred dollars a month you get a room, meals, gym access, WiFi, cleaning, and a community of people who are all living there full-time, building startups, and earning crypto. The program has a fitness culture that starts on day one with shirtless fitness tests. Someone takes your photo in front of everyone. Your results get logged publicly and retested monthly. Bryan Johnson — the guy trying to live forever — designed the nutrition and workout protocol.</p>
+    <p>cohorts start on the first of every month. this is a rolling admission model that keeps the community fresh and prevents the formation of closed social circles that often happen in fixed cohorts. the downside is less continuity between groups, but the upside is a constant influx of new energy and skills. the year-long members provide institutional memory while the monthly arrivals prevent stagnation.</p>
 
     <div class="img-wrap">
       <img src="ns_4.png" decoding="async" alt="Network School cohort" onload="this.classList.add('ok')">
-      <div class="caption">network school v2 cohort, forest city, 2025</div>
+      <div class="caption">members of the first network school cohort, forest city, malaysia</div>
     </div>
 
-    <p>One woman brought her one-and-a-half-year-old son and signed a year-long contract. She said she chose it because she never has to cook or clean again. She had tried to live a normal life and it did not work. She wanted to be around people trying to build something different.</p>
+    <p>the location is part of the concept. forest city is a physical metaphor for the kind of society network school wants to build: something ambitious that failed under one set of assumptions but might succeed under another. the buildings are structurally sound, the internet is fast, the cost of living is low, and the regulatory environment is permissive. the sinking is a problem but not an immediate one. the towers will be standing for decades. the question is whether anyone will be in them.</p>
 
-    <div class="pull">
-      <p>"I am not a tree. Life is a series of trial and error."</p>
-    </div>
+    <p>the broader vision is a network of such campuses, each testing different models of governance, education, and economic organization. forest city is the first. if it works, the model replicates. if it fails, the lessons are documented and the next iteration is adjusted. this is iterative society-building, treated with the same methodology as iterative product development. the hypothesis is that the nation-state is a legacy product that has not had meaningful competition for centuries, and that startups should therefore apply to governance.</p>
 
-    <p>The first cohort ran from September to December 2024. One hundred twenty-eight people from more than eighty countries got in out of four thousand applicants. The second cohort started in March 2025 with two hundred fifty-six members living there for a full year.</p>
-
-    <p>Balaji's roadmap is methodical. Version three will be a permanent campus. Version four will be open-source blueprints so anyone can clone the model anywhere. Version five is when alumni start founding their own societies. He compares the whole project to Harvard in 1636 — the idea of founding a new institution before the current one even existed, back when there was no template for what a university should be.</p>
-
-    <p>Meanwhile, Malaysia just made the entire sinking island a tax-free special financial zone.</p>
-
-    <p>So you have Mandarin road signs and buildings sinking into seagrass beds and shirtless fitness tests and a live-in school prototyping new countries inside a defaulted hundred-billion-dollar Chinese boondoggle that was built on protected wetlands and is now a tax-free zone. The signage is still in Chinese. The seagrass is still split in two. The land is still subsiding. And a few hundred people are living in a luxury hotel trying to figure out how to start new societies from first principles.</p>
-  </div>
-
-  <div class="share">
-    <span class="label">share</span>
-    <button onclick="copyLink(this)">copy link</button>
-    <a href="https://x.com/intent/tweet?text=network+school+-+a+live-in+school+for+new+societies+inside+a+chinese+ghost+city&url=https://raysterminal.vercel.app/articles/network-school/" target="_blank" rel="noopener">post to x</a>
-    <a href="https://t.me/share/url?url=https://raysterminal.vercel.app/articles/network-school/&text=network+school+-+a+live-in+school+for+new+societies+inside+a+chinese+ghost+city" target="_blank" rel="noopener">post to telegram</a>
+    <p>whether this is naive or visionary depends on your priors. building societies is harder than building apps. the feedback loops are longer, the stakes are higher, and the users are not optional. but the alternative is to accept the current set of institutions as permanent, which history suggests they never are. network school is an attempt to accelerate the cycle. it might work. it might not. but it is happening in a sinking chinese ghost city in malaysia, which is at least more interesting than another coworking space in san francisco.</p>
   </div>
 
   <div class="foot">
-    <span><a href="https://ns.com?utm_source=raysterminal" target="_blank" rel="noopener">ns.com</a></span>
-    <span><a href="https://balajis.com/p/network-school-2025?utm_source=raysterminal" target="_blank" rel="noopener">balajis.com/p/network-school-2025</a></span>
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>ray</div>
   </div>
 </div>
-
-<script>
-function copyLink(el){
-  navigator.clipboard.writeText('https://raysterminal.vercel.app/articles/network-school/').then(()=>{
-    el.textContent='copied';
-    el.classList.add('ok');
-    setTimeout(()=>{el.textContent='copy link';el.classList.remove('ok')},1500);
-  });
-}
-</script>
 </body>
 </html>

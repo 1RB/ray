@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>muse spark — ray</title>
+<meta property="og:title" content="muse spark">
+<meta property="og:description" content="meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal benchmarks.">
+<meta property="og:type" content="article">
+<style>
+:root{--bg:#0a0a0a;--text:#b0aba0;--muted:#3d3d3d;--dim:#555;--accent:#8a3b12;--line:#151515}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.page{max-width:700px;margin:0 auto;padding:0 28px}
+
+.h{padding:48px 0 20px;font-size:0.75rem;color:var(--muted);display:flex;gap:20px;border-bottom:1px solid var(--line)}
+.h a:hover{color:var(--accent)}
+
+.meta-bar{margin:40px 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:32px;flex-wrap:wrap;font-size:0.78rem;color:var(--dim)}
+.meta-item{display:flex;flex-direction:column;gap:2px}
+.meta-key{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+.meta-val{color:#d4d0c6}
+
+.title{font-size:1.6rem;font-weight:400;color:#d4d0c6;margin-bottom:6px;letter-spacing:-0.01em;line-height:1.25}
+.sub{font-size:0.85rem;color:var(--dim);margin-bottom:40px}
+
+.body p{margin-bottom:1.6em;font-weight:300}
+.body strong{color:#d4d0c6;font-weight:400}
+
+.table{margin:32px 0}
+.table-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #0f0f0f;font-size:0.85rem;align-items:center}
+.table-row:first-child{padding-top:0;border-bottom:1px solid var(--line);font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+.table-row:last-child{border-bottom:none}
+.table-name{color:#d4d0c6}
+.table-val{color:var(--dim)}
+
+.note{font-size:0.78rem;color:var(--muted);margin-top:16px;line-height:1.5}
+
+.foot{padding:48px 0 80px;border-top:1px solid var(--line);font-size:0.7rem;color:#222;display:flex;justify-content:space-between}
+.foot a:hover{color:var(--accent)}
+
+@media(max-width:560px){
+  .page{padding:0 20px}
+  .table-row{grid-template-columns:1fr 1fr;gap:8px;padding:10px 0}
+  .table-row:first-child{display:none}
+  .table-row span:nth-child(1){grid-column:1/-1;color:#d4d0c6;font-size:0.9rem}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="h">
+    <a href="/">ray</a>
+    <a href="https://t.me/raysterminal">telegram</a>
+  </div>
+
+  <div class="meta-bar">
+    <div class="meta-item"><span class="meta-key">org</span><span class="meta-val">meta superintelligence labs</span></div>
+    <div class="meta-item"><span class="meta-key">model</span><span class="meta-val">muse spark</span></div>
+    <div class="meta-item"><span class="meta-key">release</span><span class="meta-val">may 2026</span></div>
+    <div class="meta-item"><span class="meta-key">weights</span><span class="meta-val">not released</span></div>
+  </div>
+
+  <div class="title">muse spark</div>
+  <div class="sub">meta superintelligence labs' first model. leads or ties opus 4.6 and gpt 5.4 on multimodal perception, health queries, and visual reasoning.</div>
+
+  <div class="body">
+    <p>meta has a division called <strong>superintelligence labs</strong>. it sounds like something from a science fiction novel where the antagonist is a well-meaning research group that accidentally ends the world. in reality it is meta's attempt to build foundation models that compete with the closed labs: openai, anthropic, google deepmind. muse spark is their first public result, and the benchmarks suggest they are not starting from zero.</p>
+
+    <p>the model leads or ties on three categories: multimodal perception, health queries, and visual reasoning. multimodal perception means the model can process images, video, audio, and text together and answer questions that require cross-referencing between them. health queries means medical questions, symptom analysis, drug interaction checks. visual reasoning means puzzles, charts, diagrams, spatial relationships. these are the categories where current frontier models are strongest, so matching them on the first attempt is significant.</p>
+
+    <div class="table">
+      <div class="table-row">
+        <span>benchmark</span><span>muse spark</span><span>opus 4.6</span><span>gpt 5.4</span>
+      </div>
+      <div class="table-row">
+        <span class="table-name">multimodal perception</span>
+        <span class="table-val">leads</span><span class="table-val">tied</span><span class="table-val">tied</span>
+      </div>
+      <div class="table-row">
+        <span class="table-name">health queries</span>
+        <span class="table-val">leads</span><span class="table-val">—</span><span class="table-val">tied</span>
+      </div>
+      <div class="table-row">
+        <span class="table-name">visual reasoning</span>
+        <span class="table-val">tied</span><span class="table-val">tied</span><span class="table-val">leads</span>
+      </div>
+    </div>
+
+    <p class="note">benchmark data from meta superintelligence labs technical report, may 2026. "leads" indicates highest score. "tied" indicates within reported confidence intervals. opus 4.6 and gpt 5.4 are the most recent public releases from anthropic and openai respectively.</p>
+
+    <p>the name muse spark follows meta's naming convention for creative or cultural references. the model is not yet available through any public api. the announcement was made on x with a link to a technical report that includes the benchmark tables, some example outputs, and a discussion of the architecture. the report is thin on training details, which is typical for a first release from a new lab. they want to establish capability before they reveal methodology.</p>
+
+    <p>what makes this release interesting is not the absolute scores but the trajectory. meta has historically been strong in open research, releasing llama and subsequent models with weights available for download. but their frontier capabilities have lagged behind the closed labs by six to twelve months. if superintelligence labs is competitive on the first release, the gap may be closing. meta has more training data than anyone except google, more gpus than anyone except possibly microsoft, and more money than almost anyone. the only question was whether they could focus it.</p>
+
+    <p>the health queries benchmark is particularly notable. medical llms have been a niche within a niche, dominated by specialized models like med-paLM and gpt-4's medical evaluations. a general-purpose model that leads on health queries without being specifically trained for medicine suggests strong general reasoning that transfers across domains. or it suggests that the benchmark is not as hard as it looks. benchmark gaming is common enough that any first-party claim should be treated as directional, not definitive.</p>
+
+    <p>the visual reasoning tie is less surprising. gpt-5.4 has been the leader in visual tasks since its release, with a multimodal architecture that processes images natively rather than through an external vision module. muse spark matching it suggests meta has solved the native image processing problem, which is a known hard challenge. images are high-dimensional. processing them in the same transformer stack as text without destroying either modality requires careful architecture. if muse spark has solved this, the technique will be valuable regardless of the model's other capabilities.</p>
+
+    <p>the release strategy is cautious. no api, no weights, no pricing. just a technical report and a promise of more to come. this is the playbook anthropic used for its early releases: establish credibility with benchmarks, then open access gradually. the difference is that meta has a history of open-weight releases, so the community expects them to publish eventually. if they do not, the goodwill they have built with the open-source ai community will erode. if they do, and the weights are competitive, the landscape shifts.</p>
+
+    <p>for now, muse spark is a signal. it tells the other labs that meta is not just playing with open models for developer goodwill. they are building serious frontier capability in a dedicated research group with serious resources. the name is silly. the benchmarks are not. in this industry, the benchmarks are what matter. everything else is marketing.</p>
+  </div>
+
+  <div class="foot">
+    <a href="/">home</a>
+    <a href="https://t.me/raysterminal">@raysterminal</a>
+  </div>
+</div>
+</body>
+</html>
