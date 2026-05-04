@@ -290,36 +290,24 @@
 
 <script src="/ray.js"></script>
 <script>
-// prefetch + view-transition names on hover
+// view-transition names + prefetch on interaction
 (function(){
-  let lastCard = null;
   const prefetchCache = new Set();
 
-  function setVT(card){
-    if(lastCard && lastCard !== card){
-      lastCard.querySelectorAll('[style*="view-transition-name"]').forEach(el => {
-        el.style.viewTransitionName = '';
-      });
-    }
-    lastCard = card;
-    const img = card.querySelector('.thumb img, .hero-media img');
+  function assignVT(card){
+    document.querySelectorAll('.card [style*="view-transition-name"], .hero-card [style*="view-transition-name"]').forEach(el => {
+      el.style.viewTransitionName = '';
+    });
+    const media = card.querySelector('.thumb, .hero-media');
     const title = card.querySelector('.title, .hero-title');
-    if(img) img.style.viewTransitionName = 'vt-hero';
+    if(media) media.style.viewTransitionName = 'vt-hero';
     if(title) title.style.viewTransitionName = 'vt-title';
   }
 
-  function clearVT(card){
-    if(lastCard === card){
-      card.querySelectorAll('[style*="view-transition-name"]').forEach(el => {
-        el.style.viewTransitionName = '';
-      });
-      lastCard = null;
-    }
-  }
-
   document.querySelectorAll('.card, .hero-card').forEach(card => {
+    card.addEventListener('mousedown', () => assignVT(card));
+    card.addEventListener('focus', () => assignVT(card));
     card.addEventListener('mouseenter', () => {
-      setVT(card);
       const href = card.getAttribute('href');
       if(href && !prefetchCache.has(href)){
         prefetchCache.add(href);
@@ -329,9 +317,6 @@
         document.head.appendChild(link);
       }
     });
-    card.addEventListener('mouseleave', () => clearVT(card));
-    card.addEventListener('focus', () => setVT(card));
-    card.addEventListener('blur', () => clearVT(card));
   });
 })();
 

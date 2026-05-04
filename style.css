@@ -268,19 +268,47 @@ sub,sup{font-family:var(--font-mono);font-size:0.75em}
 .compare-note{padding:12px 18px;font-size:0.75rem;color:var(--text-faint);background:var(--elevated);border-top:1px solid var(--line);font-style:italic}
 
 /* VIEW TRANSITIONS */
-@view-transition{navigation:auto}
+@view-transition {
+  navigation: auto;
+}
 
-::view-transition-group(root){animation-duration:0.35s}
-::view-transition-old(root){animation:vtFadeOut 0.35s cubic-bezier(0.4,0,0.2,1) both}
-::view-transition-new(root){animation:vtFadeIn 0.35s cubic-bezier(0.4,0,0.2,1) both}
+::view-transition-group(root) {
+  animation-duration: 0.45s;
+}
 
-::view-transition-old(vt-hero){animation:vtScaleOut 0.4s cubic-bezier(0.4,0,0.2,1) both}
-::view-transition-new(vt-hero){animation:vtScaleIn 0.4s cubic-bezier(0.4,0,0.2,1) both}
-::view-transition-old(vt-title){animation:vtSlideUpOut 0.3s cubic-bezier(0.4,0,0.2,1) both}
-::view-transition-new(vt-title){animation:vtSlideUpIn 0.3s cubic-bezier(0.4,0,0.2,1) both}
+::view-transition-old(root) {
+  animation: vtRootOut 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
 
-@keyframes vtFadeOut{from{opacity:1}to{opacity:0}}
-@keyframes vtFadeIn{from{opacity:0}to{opacity:1}}
+::view-transition-new(root) {
+  animation: vtRootIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-old(vt-hero) {
+  animation: vtScaleOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(vt-hero) {
+  animation: vtScaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-old(vt-title) {
+  animation: vtSlideUpOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(vt-title) {
+  animation: vtSlideUpIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes vtRootOut {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.98) translateY(-8px); }
+}
+
+@keyframes vtRootIn {
+  from { opacity: 0; transform: scale(1.02) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
 @keyframes vtScaleOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(0.96)}}
 @keyframes vtScaleIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:scale(1)}}
 @keyframes vtSlideUpOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-12px)}}
