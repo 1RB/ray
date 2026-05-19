@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>post — ray</title>
+<meta name="description" content="notes from @raysterminal">
+<link rel="stylesheet" href="/style.css">
+<style>
+.post-layout{max-width:720px;margin:0 auto;padding:0 28px}
+.post-back{display:inline-flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text-dim);margin:24px 0 16px;transition:color 0.15s}
+.post-back:hover{color:var(--accent)}
+.article-body{font-size:16px;line-height:1.75;color:var(--text);padding:0 0 48px}
+.article-body p{margin-bottom:1.2em;white-space:pre-wrap}
+.article-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(160,64,32,0.4)}
+.article-body a:hover{text-decoration-color:var(--accent)}
+.post-photos{display:grid;grid-template-columns:1fr;gap:12px;margin:24px 0}
+.post-photos img{width:100%;border-radius:var(--radius);border:1px solid var(--line);cursor:pointer;transition:transform 0.2s}
+.post-photos img:hover{transform:scale(1.01)}
+.post-videos video{width:100%;border-radius:var(--radius);border:1px solid var(--line);margin:24px 0}
+.post-meta{font-size:0.75rem;color:var(--text-faint);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.post-error{text-align:center;padding:80px 28px;color:var(--text-dim)}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
+  </div>
+</header>
+
+<div class="post-layout">
+  <a href="/" class="post-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 7H4M4 7l2.5-2.5M4 7l2.5 2.5"/></svg>
+    back
+  </a>
+
+  <div id="post-root">
+    <div class="post-error">loading...</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">ray</a> — <a href="https://t.me/raysterminal">telegram</a></div>
+    <div>notes on tools, systems, and things that should not work but do.</div>
+  </div>
+</footer>
+
+<script src="/ray.js"></script>
+<script>
+(async function(){
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const root = document.getElementById('post-root');
+
+  if(!id){
+    root.innerHTML = '<div class="post-error">no post id</div>';
+    return;
+  }
+
+  try{
+    const r = await fetch('/posts.json');
+    const posts = await r.json();
+    const post = posts.find(p => p.id === id);
+
+    if(!post){
+      root.innerHTML = '<div class="post-error">post not found</div>';
+      return;
+    }
+
+    const lines = post.text.split('\n').filter(l => l.trim());
+    const title = lines[0] || 'untitled';
+    const body = lines.slice(1).join('\n\n');
+
+    let html = '';
+    html += '<div class="article-header">';
+    html += '<h1>' + escapeHtml(title) + '</h1>';
+    html += '<div class="post-meta">#' + id + ' &middot; @raysterminal</div>';
+    html += '</div>';
+
+    html += '<div class="article-body">';
+    if(body){
+      html += '<p>' + linkify(escapeHtml(body)) + '</p>';
+    }
+
+    if(post.photos && post.photos.length){
+      html += '<div class="post-photos">';
+      post.photos.forEach(url => {
+        html += '<img src="' + escapeHtml(url) + '" alt="" loading="lazy" onclick="openLightbox(this.src)">';
+      });
+      html += '</div>';
+    }
+
+    if(post.videos && post.videos.length){
+      post.videos.forEach(url => {
+        html += '<div class="post-videos"><video controls preload="metadata" src="' + escapeHtml(url) + '"></video></div>';
+      });
+    }
+
+    html += '</div>';
+
+    root.innerHTML = html;
+
+    document.title = title.slice(0, 60) + ' — ray';
+
+  }catch(e){
+    root.innerHTML = '<div class="post-error">failed to load post</div>';
+    console.error(e);
+  }
+
+  function escapeHtml(s){
+    const div = document.createElement('div');
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  function linkify(s){
+    return s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  }
+
+  window.openLightbox = function(src){
+    let box = document.getElementById('lightbox');
+    if(!box){
+      box = document.createElement('div');
+      box.id = 'lightbox';
+      box.innerHTML = '<span class="close">&times;</span><img src="" alt="">';
+      document.body.appendChild(box);
+      box.addEventListener('click', () => box.classList.remove('active'));
+    }
+    box.querySelector('img').src = src;
+    box.classList.add('active');
+  };
+})();
+</script>
+
+</body>
+</html>

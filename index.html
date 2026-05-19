@@ -8,6 +8,16 @@
 <meta property="og:title" content="ray">
 <meta property="og:description" content="notes on tools, systems, and things that should not work but do.">
 <link rel="stylesheet" href="/style.css">
+<style>
+.search-bar{max-width:360px;margin:0 0 20px}
+.search-bar input{width:100%;padding:10px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);color:var(--text);font-size:0.85rem;outline:none;transition:border-color 0.15s}
+.search-bar input:focus{border-color:var(--accent)}
+.search-bar input::placeholder{color:var(--text-faint)}
+.card.no-thumb .thumb{background:linear-gradient(135deg,#0a0a0f 0%,var(--surface) 100%)}
+.loading-skeleton{height:200px;background:linear-gradient(90deg,var(--surface) 25%,var(--elevated) 50%,var(--surface) 75%);background-size:200% 100%;animation:skeleton 1.2s ease infinite;border-radius:var(--radius)}
+@keyframes skeleton{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.empty-state{text-align:center;padding:60px 28px;color:var(--text-dim);font-size:0.9rem}
+</style>
 </head>
 <body>
 
@@ -39,244 +49,31 @@
 
   <div class="section-head">
     <h2>latest</h2>
-    <span class="count">16 articles</span>
+    <span class="count" id="count">loading...</span>
   </div>
 
-  <div class="cat-strip">
-    <a href="#" class="on">all</a>
-    <a href="#">analysis</a>
-    <a href="#">product</a>
-    <a href="#">tool</a>
-    <a href="#">video</a>
-    <a href="#">essay</a>
-    <a href="#">news</a>
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="search..." autocomplete="off">
   </div>
 
-  <div class="card-grid">
+  <div class="cat-strip" id="catStrip">
+    <a href="#" class="on" data-cat="all">all</a>
+    <a href="#" data-cat="analysis">analysis</a>
+    <a href="#" data-cat="product">product</a>
+    <a href="#" data-cat="tool">tool</a>
+    <a href="#" data-cat="video">video</a>
+    <a href="#" data-cat="essay">essay</a>
+    <a href="#" data-cat="news">news</a>
+    <a href="#" data-cat="review">review</a>
+    <a href="#" data-cat="tutorial">tutorial</a>
+    <a href="#" data-cat="longform">longform</a>
+  </div>
 
-    <a href="/articles/zed-1-0/" class="card wide" data-slug="zed-1-0">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/GgzoU847rmkBHvScp5QX3-pulnxWPzx3pDSfn5OpbVcquns_KiS50aOJDQYkauAUOHIN9dG-zZ7DouoADRkZv0luJ-zgCnSXbIYTFLGvwFPfpXRb2OsPTLYa9B4oSH0-ZM7wXTP1FMcoQt1uhq_nnl3seLNxV278Dql518hgjf1gJhjMqwxhf9PRMgvYXi24o-wmX-gOM8Y9M5YYfDLo8v7L6ydlNx_zFpu1zS-rR-61fBbK4k4rpOIZHZWHdPmzkYJbBjP4LKWIsyduHlQlWqQTO-dP5FKyb6h6fz2XzSS_aaCIsfF-RmqalHiq_QEpTbChT2FgZfG4YpyFZP191w.jpg" alt="zed 1.0" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">ZED</span>
-      </div>
-      <div class="info">
-        <div class="title">zed 1.0</div>
-        <div class="meta">
-          <span>the code editor built by the atom team, out of beta</span>
-          <span class="tag">review</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/realities-terminal/" class="card tall" data-slug="realities-terminal">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/kVxIxrxxOEU7qCO2G6t5xpMYhzptdIA9FncIhtAbCps2nLqyaR1lgf2dQmTe1rXR5L3WAcdlkv1oFshxkSdfx47MvsKPeoGEg3F91oD6289QvY1-4ZuZH6Al3sRjqd0_RitzLJVhKxuaLPhWvXvL8tZYBwt-lgKSyvCb_JYQSvz_q-N9rMqNccWK2gU4iDuCpHgPXc0BM5frQk4iSjnt9UUBNpAn4yHoYxpNKGuH0SNuKZ-9RY87zPFqkSsOEXGkg0AXXTnJ2PSP8bVMxH80_L3j3-wPLXAvQp1oQdG0N_Dy2-KHTvOyIKuIn9ova3wO31fnbuE4n5o2zam_2lIqdQ.jpg" alt="realities terminal" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">REALITIES</span>
-        <span class="dur">video</span>
-      </div>
-      <div class="info">
-        <div class="title">vibe coding straight to your eyeballs</div>
-        <div class="meta">
-          <span>realities terminal. the vr headset that runs ai in your field of view.</span>
-          <span class="tag">video</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/warp-open-source/" class="card" data-slug="warp-open-source">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/kZMDI0LH_1N1xGNZwoZQUfrRPWHuS-w0LBl5w5jfSPe3OQyV_Z30pq-elDHqrw2NBmJhobqL6eE6Qxf-YgcW_ts4m_76Zie5bnq0R7Igv-HRa8iebJHJjoAAcU3lQC8kETTrdtCs6XDJyF_h1w7PY4tSRU0jLBqZNTJMeeVPy_wjipg95-BFNBvcQ7Q5Qfm-qmWY4b0JUdquGSumeVmzAAZxXovRKqqr3ZvEIcbE30ofnmpAQX0tF_Enqr-WapGP8_kidInWFJ_mTthAB-nKwue6pKphZS2KJ5urFbPCQ3mzHFBnVgFprJo2mS0W_tlVqbfKaESPM0Jo90xk2VUMZA.jpg" alt="warp" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">WARP</span>
-      </div>
-      <div class="info">
-        <div class="title">warp goes open source</div>
-        <div class="meta">
-          <span>$70M in venture funding, now fully open source</span>
-          <span class="tag">news</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/gemma-4-phone/" class="card" data-slug="gemma-4-phone">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/QDFMFLBnPrOy6KmAd3lVjI_DCEe1ebfzUZhitd1Rta8MJ8qGiCauBAyLNHZvSBhgvV8RNw0yFuIiJYXSgjUTJQKcivF0rnfD_Np_P8GrdwN5oXK6KIh6DZ7j8L2Ujw-CVW66VbY7ScmByca03aPvSvfpCshxGRqP3P2zS2hankXVNG12zgy1S9NtEj85PUl5r8Yrb9JNo4NXHhwM2K80duTmksmZMlP4FonX_iu54lBXTfxvi96Kt5e4wMGFIkCR717b-AptZgAmArFURat6yPmJEjXmiZJjpjoYAKNIIrFUpRDTBMl0p2SL8bH2tT9-YLwtVskTrqFXA1KVG3HeLA.jpg" alt="gemma 4" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">GEMMA</span>
-        <span class="dur">video</span>
-      </div>
-      <div class="info">
-        <div class="title">gemma 4 on your phone</div>
-        <div class="meta">
-          <span>google's official app for fully offline open-source ai</span>
-          <span class="tag">product</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/browser-use-hermes/" class="card wide" data-slug="browser-use-hermes">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/tCciM0s1gSSw-l4vYEtybEl7S9eGsacI9o4MXvnMPaUNIQ6H4rcBTcSCGQraoEk3Jqv-fKSqxy4gswW22hpHdjgFlTc5-92-ev7pkRi-38gD4y_eLRZ9v7U4ncDyZZg9zCcgNHmBIye1YuEMllerA83-RsFom5UZbyDdysy92AariyXtkg4qkujvjUyGfN4i0VDuaXH2JKCqtMg9flhuE2zyzasqCcgZwx30IGPquShLwCEbkAbqr5_lHaYkL2T-5Hh3bC1g6_0sORG_Lutx_oUVilcpySt41T0Y4nJd-KgySPDskUpZRpMEMj2e2FW-SRYymQuqYY1ftODZWzvtfQ.jpg" alt="browser use" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">BROWSER</span>
-        <span class="dur">video</span>
-      </div>
-      <div class="info">
-        <div class="title">browser use + hermes agent</div>
-        <div class="meta">
-          <span>free cloud browser automation. unlimited hours. no setup.</span>
-          <span class="tag">tutorial</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/fieldtheory-cli/" class="card" data-slug="fieldtheory-cli">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/rV6J3jhPq9_NHscs0574zYBxay1FD5oz6u8HvVbWlb4itwz2ymQlQr-b1foJk7NNKJKSHqiB03efYb9p7kaOVqVBVI6g5JDqtHca5pwvv-oVESDtcs2uVfXpwi9MXhF9qT9NVsr54cOSbmLvraxJjleuLWgcvYVA6RhPcwdxHazY47bZgHh5Vx0vwWbPzOESPZ9SHoefAZz_Z2i6S4TLmP-dyXBTLJpagL2htKGpl4hrRFMSpwVtWCBTeKbgFin1p4_OTaIr7_WaLOr4wg1VN2vG6wtDwr69RAToyJcQe28i3BTua3VfrZ3aNh-Zd5cRsrgbmtmFelfIS35zWnQKDQ.jpg" alt="fieldtheory" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">FIELD</span>
-        <span class="dur">video</span>
-      </div>
-      <div class="info">
-        <div class="title">fieldtheory cli</div>
-        <div class="meta">
-          <span>sync your x bookmarks locally. no api. no oauth.</span>
-          <span class="tag">tool</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/digital-whip/" class="card tall" data-slug="digital-whip">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/CNMXAx5TljZsHtZmQ4-ApQpk2wqWnlSGVF3U_TnijaGdGg11Rdckwv5mxDqFfAgL_NNUVi-8w6GZITFIDyd50QU5CmKd4tv17Nkrl3nhf2wn9CIqKDskRIJ0ZaFLQJOc_rDfBf5aEnPawkiHCtdoX0p8reWeY67bFwnbS-L8ZUYfOXjUKIK0bqQE8pn0_8SWZZHEycAE3nd7EcJjwOJ8UFcnDowBQprRJGCZK22jULCTqvXzdTIQ2FF-MpIlpCtL1B9aFJmJrmwOwyM_Mn1nvYfGCFl0jtDzMfzQuEb36H2Al2T_dax8yZaZLn1Llcv5wAwlh3SDFcv5FyHRYX347w.jpg" alt="digital whip" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">WHIP</span>
-        <span class="dur">video</span>
-      </div>
-      <div class="info">
-        <div class="title">digital whip</div>
-        <div class="meta">
-          <span>someone built a usb device to make claude work faster</span>
-          <span class="tag">hardware</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/yc-wishlist-2026/" class="card" data-slug="yc-wishlist-2026">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/rutb62QEOXgEnJdiNUPgHQElAWtKzuqBWCnFXwwspWN71l_n33Mq7xH6FBZ1jAgzNW4RXOSdbWG25XmeJLJnd4fA4nuGFXVNaNUD1cHRieqKoahrGsQMxZQ2RvvgW4VQ2Dc7U9tvPZ4woeziFUagmAc76fgShT0tnZls-UzsEu-ACv94NsFSS_j8qaxGILIfj4dbQ31Pu4C15r7u9lCgHzB-qLB7X3AuAzNl1JG8yBqZLOUC8XTWJYTL3zJ7sbWigZ_N3IXMpZExYkMFQrLS_FvpJ8OjSMTyknDDHge-aKjGpgxc47LnA6Q9E-dn8qK1lRe2ASD5NBrB7e5kZY-T1w.jpg" alt="yc" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">YC</span>
-      </div>
-      <div class="info">
-        <div class="title">YC summer 2026 startup wishlist</div>
-        <div class="meta">
-          <span>what the biggest accelerator wants to fund this year</span>
-          <span class="tag">analysis</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/meta-muse-spark/" class="card" data-slug="meta-muse-spark">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/bX2mjHyVcj5VR6v0UtP3uK0IyKLTkGff4QS_sjgUm6GmhTGseimRORj3l0bdSCM6EHhbFZZ8E3joDlQ40i8rWnox9t27EM9oxKn0w-p_6hJfIpMa34QaNQ2hipbDYn39KiVjjtid3ovbsU9tZOFl1ASwDptB5a6jJRbYWVkE9-JRB0N1AFyAyay3RRoaeVwL56XY4UL5Hci_-_08qcnXiV3TIqb2AvSBNOwl_0xp_99DhR16q2kKXaGK_QE6UpTqYfZJq3TSDChwJDQCVyKY17x8JHiV-TI5iFAmVDW8lbjpyOtEriw1Tqi-SqSRNQoKS0QwPNA3T428YHwfZ9aIqQ.jpg" alt="muse spark" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">MUSE</span>
-      </div>
-      <div class="info">
-        <div class="title">muse spark</div>
-        <div class="meta">
-          <span>meta superintelligence labs' first model. leads on multimodal benchmarks.</span>
-          <span class="tag">news</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/toyota-seat/" class="card" data-slug="toyota-seat">
-      <div class="thumb">
-        <img src="https://cdn4.telesco.pe/file/DxQ5k89R7uf2gzQVO_tySLqn4unO5W60hEW5eTm7j7lG88p7FpRF0MuZgs2YQFf8SjGoX5C3ZDAyX1dDt2bnowc7I8OpCNDaeQtpaKadH8DEsvsc6vMihiT3ZfNw9-zah0tZCZqcvUTlV9EJ0x7chkZp6-hRS4GCSQwEJ37SCBpEdxcJ111zwTzqb3_iOY9fgjOZ828WLhkl4ZtrDza3BkHwjP2hr_fv9NL0DfjnEoMEjTq1OPndpZIK6jIL1kfveWUdTPLiJK8pnQWE30SwUQjpe68xKcYrCRdnhftwGI3F1j0Cv2x4njJ3izaODCuPSozMavEKgiZX290d46gwhA.jpg" alt="toyota seat" onerror="this.onerror=null;this.remove()" decoding="async">
-        <span class="thumb-wordmark" aria-hidden="true">TOYOTA</span>
-      </div>
-      <div class="info">
-        <div class="title">toyota is selling car seats as desk chairs</div>
-        <div class="meta">
-          <span>$3,100 and the seatbelt buckle is a usb hub</span>
-          <span class="tag">product</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/claude-mythos/" class="card wide" data-slug="claude-mythos">
-      <div class="thumb" style="background:linear-gradient(135deg,#1a0f0a 0%,#0a0a0a 100%);">
-        <span class="thumb-wordmark serif" aria-hidden="true">CLAUDE</span>
-      </div>
-      <div class="info">
-        <div class="title">claude mythos</div>
-        <div class="meta">
-          <span>how a single unverified screenshot became a full-blown ai security panic</span>
-          <span class="tag">essay</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/cobe-globe/" class="card" data-slug="cobe-globe">
-      <div class="thumb" style="background:radial-gradient(circle at 30% 50%,#1a1a2e 0%,#050505 70%);">
-        <span class="thumb-wordmark" aria-hidden="true">COBE</span>
-      </div>
-      <div class="info">
-        <div class="title">cobe globe</div>
-        <div class="meta">
-          <span>a spinning webgl globe in 330 bytes</span>
-          <span class="tag">tool</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/nvidia-five-trillion/" class="card" data-slug="nvidia-five-trillion">
-      <div class="thumb" style="background:linear-gradient(180deg,#0a1a0a 0%,#050505 100%);">
-        <span class="thumb-wordmark mono" aria-hidden="true">$5T</span>
-      </div>
-      <div class="info">
-        <div class="title">nvidia five trillion</div>
-        <div class="meta">
-          <span>on chip design at five trillion dollar scale</span>
-          <span class="tag">analysis</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/pascal-editor/" class="card" data-slug="pascal-editor">
-      <div class="thumb" style="background:#0a0a0f;">
-        <span class="thumb-wordmark mono" aria-hidden="true">PASCAL</span>
-      </div>
-      <div class="info">
-        <div class="title">pascal editor</div>
-        <div class="meta">
-          <span>a code editor in pascal, for pascal</span>
-          <span class="tag">tool</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/joe-liemandt-education/" class="card" data-slug="joe-liemandt-education">
-      <div class="thumb" style="background:linear-gradient(135deg,#1a1510 0%,#0a0a0a 100%);">
-        <span class="thumb-wordmark serif" aria-hidden="true">EDUCATION</span>
-      </div>
-      <div class="info">
-        <div class="title">joe liemandt education</div>
-        <div class="meta">
-          <span>on education as a system for producing credentials</span>
-          <span class="tag">essay</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="/articles/dogfood/" class="card" data-slug="dogfood">
-      <div class="thumb" style="background:linear-gradient(45deg,#1a0a0a 0%,#0f0a05 100%);">
-        <span class="thumb-wordmark mono" aria-hidden="true">QA</span>
-      </div>
-      <div class="info">
-        <div class="title">dogfood</div>
-        <div class="meta">
-          <span>exploratory qa of web apps: find bugs, evidence, reports</span>
-          <span class="tag">tool</span>
-        </div>
-      </div>
-    </a>
-
+  <div class="card-grid" id="grid">
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
   </div>
 
 </div>
@@ -290,68 +87,264 @@
 
 <script src="/ray.js"></script>
 <script>
-// view-transition names + aggressive preload/prerender
 (function(){
-  const preloadCache = new Set();
-  const prerenderCache = new Set();
+  const KNOWN_TAGS = new Set(['news','product','tool','analysis','essay','review','tutorial','video','hardware','longform']);
+  let allItems = [];
+  let filtered = [];
+  let activeCat = 'all';
+  let searchQ = '';
 
-  function assignVT(card){
-    document.querySelectorAll('.card [style*="view-transition-name"], .hero-card [style*="view-transition-name"]').forEach(el => {
-      el.style.viewTransitionName = '';
-    });
-    const media = card.querySelector('.thumb, .hero-media');
-    const title = card.querySelector('.title, .hero-title');
-    if(media) media.style.viewTransitionName = 'vt-hero';
-    if(title) title.style.viewTransitionName = 'vt-title';
+  async function load(){
+    try{
+      const [postsR, articlesR] = await Promise.all([
+        fetch('/posts.json').then(r => r.json()),
+        fetch('/articles.json').then(r => r.json().catch(() => []))
+      ]);
+
+      // Curate posts: skip bare links and very short text
+      const curated = postsR.filter(p => {
+        const text = p.text.trim();
+        if(text.length < 20) return false;
+        if(/^https?:\/\/[^\s]+$/.test(text)) return false;
+        if(text.startsWith('https://fixupx.com') || text.startsWith('https://x.com')) return false;
+        return true;
+      });
+
+      const postItems = curated.map(p => {
+        const lines = p.text.split('\n').map(l => l.trim()).filter(Boolean);
+        const title = lines[0] || 'untitled';
+        const desc = lines.slice(1).join(' ').slice(0, 120) || '';
+        const last = (lines[lines.length - 1] || '').toLowerCase();
+        let tag = '';
+        for(const t of KNOWN_TAGS){
+          if(last === t || last.endsWith(' '+t)){ tag = t; break; }
+        }
+        if(!tag){
+          for(const t of KNOWN_TAGS){
+            if(p.text.toLowerCase().includes(t)){ tag = t; break; }
+          }
+        }
+        const hasVideo = p.videos && p.videos.length > 0;
+        const hasPhoto = p.photos && p.photos.length > 0;
+        const isLong = lines.length > 4 || p.text.length > 300;
+        return {
+          type: 'post',
+          id: p.id,
+          title,
+          desc,
+          tag,
+          thumb: hasPhoto ? p.photos[0] : '',
+          hasVideo,
+          hasPhoto,
+          isLong,
+          url: '/post/?id=' + p.id
+        };
+      });
+
+      const articleItems = (articlesR || []).map(a => ({
+        type: 'article',
+        slug: a.slug,
+        title: a.title,
+        desc: a.desc,
+        tag: a.tag || 'longform',
+        thumb: a.thumb || '',
+        hasVideo: false,
+        hasPhoto: !!a.thumb,
+        isLong: true,
+        url: '/articles/' + a.slug + '/'
+      }));
+
+      // Sort: posts by id desc (newest), then articles by recency
+      postItems.sort((a,b) => parseInt(b.id) - parseInt(a.id));
+      articleItems.sort((a,b) => (b.mtime || 0) - (a.mtime || 0));
+
+      // Merge: show recent posts first, then articles
+      allItems = [...postItems, ...articleItems];
+
+      applyFilter();
+      setupInteractions();
+
+    }catch(e){
+      console.error(e);
+      document.getElementById('grid').innerHTML = '<div class="empty-state">failed to load posts</div>';
+    }
   }
 
-  document.querySelectorAll('.card, .hero-card').forEach(card => {
-    const href = card.getAttribute('href');
-    if(!href) return;
-
-    // Prefetch on hover (lightweight)
-    card.addEventListener('mouseenter', () => {
-      if(!preloadCache.has(href)){
-        preloadCache.add(href);
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.href = href;
-        document.head.appendChild(link);
+  function applyFilter(){
+    filtered = allItems.filter(item => {
+      if(activeCat !== 'all' && item.tag !== activeCat) return false;
+      if(searchQ){
+        const q = searchQ.toLowerCase();
+        return (item.title + ' ' + item.desc).toLowerCase().includes(q);
       }
+      return true;
     });
 
-    // Prerender on mousedown (full render in hidden tab)
-    card.addEventListener('mousedown', () => {
-      assignVT(card);
-      if(!prerenderCache.has(href)){
-        prerenderCache.add(href);
-        const link = document.createElement('link');
-        link.rel = 'prerender';
-        link.href = href;
-        document.head.appendChild(link);
-      }
-    });
+    render();
+  }
 
-    card.addEventListener('focus', () => assignVT(card));
-  });
+  function render(){
+    const grid = document.getElementById('grid');
+    const count = document.getElementById('count');
+    count.textContent = filtered.length + ' items';
 
-  // Backup: pageswap fires synchronously before the old page is captured
-  window.addEventListener('pageswap', () => {
-    const active = document.activeElement;
-    if(active && (active.classList.contains('card') || active.classList.contains('hero-card'))){
-      assignVT(active);
+    if(!filtered.length){
+      grid.innerHTML = '<div class="empty-state">no posts found</div>';
+      return;
     }
-  });
-})();
 
-let lastY=0;
-const header=document.getElementById('siteHeader');
-window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  if(y>lastY && y>100){header.classList.add('hidden');}
-  else{header.classList.remove('hidden');}
-  lastY=y;
-},{passive:true});
+    let html = '';
+    filtered.forEach((item, i) => {
+      let cls = 'card';
+      // Bento sizing heuristics
+      if(item.type === 'article' && item.tag === 'longform') cls += ' wide';
+      else if(item.hasVideo) cls += ' tall';
+      else if(item.isLong && i % 5 === 0) cls += ' wide';
+      else if(item.hasPhoto && i % 7 === 3) cls += ' tall';
+
+      const thumbStyle = !item.thumb ? ' style="background:linear-gradient(135deg,#0a0a0f 0%,var(--surface) 100%)"' : '';
+      const wordmark = item.title.slice(0, 12).toUpperCase();
+      const durBadge = item.hasVideo ? '<span class="dur">video</span>' : '';
+      const thumbHtml = item.thumb
+        ? `<img src="${esc(item.thumb)}" alt="${esc(item.title)}" onerror="this.onerror=null;this.remove()" decoding="async">`
+        : '';
+
+      html += `<a href="${esc(item.url)}" class="${cls}" data-slug="${esc(item.slug || item.id)}">`;
+      html += `<div class="thumb"${thumbStyle}>`;
+      html += thumbHtml;
+      html += `<span class="thumb-wordmark" aria-hidden="true">${esc(wordmark)}</span>`;
+      html += durBadge;
+      html += `</div>`;
+      html += `<div class="info">`;
+      html += `<div class="title">${esc(item.title)}</div>`;
+      html += `<div class="meta">`;
+      html += `<span>${esc(item.desc)}</span>`;
+      if(item.tag) html += `<span class="tag">${esc(item.tag)}</span>`;
+      html += `</div></div></a>`;
+    });
+
+    grid.innerHTML = html;
+
+    // Re-apply read tracking from ray.js
+    if(window.rayRead && document.querySelector('.card-grid')){
+      const st = window.rayRead.getState();
+      document.querySelectorAll('.card[data-slug], .hero-card[data-slug]').forEach(card => {
+        const slug = card.dataset.slug;
+        const info = st[slug];
+        if(!info) return;
+        if(info.read){
+          const badge = document.createElement('span');
+          badge.className = 'read-badge';
+          badge.textContent = 'read';
+          const meta = card.querySelector('.meta');
+          if(meta) meta.appendChild(badge);
+          card.classList.add('is-read');
+        } else if(info.progress > 0){
+          const prog = document.createElement('span');
+          prog.className = 'read-progress';
+          prog.textContent = info.progress + '%';
+          const meta = card.querySelector('.meta');
+          if(meta) meta.appendChild(prog);
+          card.classList.add('is-partial');
+        }
+      });
+    }
+
+    // Re-bind prefetch/prerender for new cards
+    bindPrefetch();
+  }
+
+  function setupInteractions(){
+    // Category filter
+    document.getElementById('catStrip').addEventListener('click', e => {
+      if(e.target.tagName !== 'A') return;
+      e.preventDefault();
+      document.querySelectorAll('#catStrip a').forEach(a => a.classList.remove('on'));
+      e.target.classList.add('on');
+      activeCat = e.target.dataset.cat || 'all';
+      applyFilter();
+    });
+
+    // Search
+    const searchInput = document.getElementById('search');
+    let debounce;
+    searchInput.addEventListener('input', e => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        searchQ = e.target.value.trim();
+        applyFilter();
+      }, 150);
+    });
+  }
+
+  function esc(s){
+    const div = document.createElement('div');
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  function bindPrefetch(){
+    const preloadCache = new Set();
+    const prerenderCache = new Set();
+
+    function assignVT(card){
+      document.querySelectorAll('.card [style*="view-transition-name"], .hero-card [style*="view-transition-name"]').forEach(el => {
+        el.style.viewTransitionName = '';
+      });
+      const media = card.querySelector('.thumb, .hero-media');
+      const title = card.querySelector('.title, .hero-title');
+      if(media) media.style.viewTransitionName = 'vt-hero';
+      if(title) title.style.viewTransitionName = 'vt-title';
+    }
+
+    document.querySelectorAll('.card, .hero-card').forEach(card => {
+      const href = card.getAttribute('href');
+      if(!href) return;
+
+      card.addEventListener('mouseenter', () => {
+        if(!preloadCache.has(href)){
+          preloadCache.add(href);
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = href;
+          document.head.appendChild(link);
+        }
+      });
+
+      card.addEventListener('mousedown', () => {
+        assignVT(card);
+        if(!prerenderCache.has(href)){
+          prerenderCache.add(href);
+          const link = document.createElement('link');
+          link.rel = 'prerender';
+          link.href = href;
+          document.head.appendChild(link);
+        }
+      });
+
+      card.addEventListener('focus', () => assignVT(card));
+    });
+
+    window.addEventListener('pageswap', () => {
+      const active = document.activeElement;
+      if(active && (active.classList.contains('card') || active.classList.contains('hero-card'))){
+        assignVT(active);
+      }
+    });
+  }
+
+  // Header hide on scroll
+  let lastY=0;
+  const header=document.getElementById('siteHeader');
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    if(y>lastY && y>100){header.classList.add('hidden');}
+    else{header.classList.remove('hidden');}
+    lastY=y;
+  },{passive:true});
+
+  load();
+})();
 </script>
 
 </body>
