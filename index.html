@@ -109,6 +109,9 @@
         if(text.length < 20) return false;
         if(/^https?:\/\/[^\s]+$/.test(text)) return false;
         if(text.startsWith('https://fixupx.com') || text.startsWith('https://x.com')) return false;
+        // skip very short text-only posts (reactions, quotes) with no media
+        const hasMedia = (p.photos && p.photos.length) || (p.videos && p.videos.length);
+        if(!hasMedia && text.length < 60 && !text.includes('http')) return false;
         const lower = text.toLowerCase();
         if(SKIP_KW.some(sk => lower.includes(sk))) return false;
         const firstLine = text.split('\n')[0].trim().toLowerCase();
@@ -124,15 +127,23 @@
         const lines = p.text.split('\n').map(l => l.trim()).filter(Boolean);
         const title = lines[0] || 'untitled';
         const desc = lines.slice(1).join(' ').slice(0, 120) || '';
-        const last = (lines[lines.length - 1] || '').toLowerCase();
-        // only extract tag from last line if it's a known tag
+        const last = (lines[lines.length - 1] || '').toLowerCase().replace(/#/g, '');
         let tag = '';
         for(const t of KNOWN_TAGS){
           if(last === t || last.endsWith(' '+t)){ tag = t; break; }
         }
+        // if last line is a url, check second-to-last line for tag
+        if(!tag && last.startsWith('http') && lines.length > 1){
+          const prev = (lines[lines.length - 2] || '').toLowerCase().replace(/#/g, '');
+          for(const t of KNOWN_TAGS){
+            if(prev === t || prev.endsWith(' '+t)){ tag = t; break; }
+          }
+        }
         const hasVideo = p.videos && p.videos.length > 0;
         const hasPhoto = p.photos && p.photos.length > 0;
         const isLong = lines.length > 4 || p.text.length > 300;
+        // if no explicit tag but post has video, tag as video
+        if(!tag && hasVideo) tag = 'video';
         return {
           type: 'post',
           id: p.id,
