@@ -84,7 +84,7 @@ a{color:inherit;text-decoration:none}
 .thumb-wordmark.mono{font-family:var(--font-mono);letter-spacing:0.15em;font-size:clamp(1rem,2vw,1.4rem);color:rgba(228,224,216,0.09)}
 
 /* NO-THUMB CARDS */
-.card.no-thumb .thumb{background:linear-gradient(135deg,#111118 0%,#1a1a22 50%,#111118 100%);border-bottom:1px solid var(--line)}
+.card.no-thumb .thumb{background:linear-gradient(135deg,#111118 0%,#1a1a22 50%,#111118 100%) !important;border-bottom:1px solid var(--line)}
 .card.no-thumb .thumb-wordmark{color:rgba(228,224,216,0.22);font-size:clamp(0.9rem,2vw,1.4rem)}
 .card.no-thumb:hover .thumb-wordmark{color:rgba(228,224,216,0.35)}
 
