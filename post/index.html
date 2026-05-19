@@ -107,7 +107,8 @@
 
     root.innerHTML = html;
 
-    document.title = title.slice(0, 60) + ' — ray';
+    document.title = title.slice(0, 60) + ' \u2014 ray';
+    document.querySelector('meta[name="description"]')?.setAttribute('content', body.slice(0,160) || title);
 
   }catch(e){
     root.innerHTML = '<div class="post-error">failed to load post</div>';
