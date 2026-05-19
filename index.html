@@ -102,7 +102,7 @@
       ]);
 
       // Curate posts: skip bare links, very short text, skip keywords, dedupe
-      const SKIP_KW = ['trump','netanyahu','spain','ireland','palestine','cease and desist','vaccines','duality of man','andrew tate','lovable','hired a dev','deprecated now','cursor now truncates','windows/office','massgrave','cineby','zuckerberg paid','kagi.com','ultramock','nestle.cam','bicycle42','meta superintelligence','muse spark','mattrothenberg','anthropic running','how anthropic be talking','digital whip','trump says','trade with spain'];
+      const SKIP_KW = ['trump','netanyahu','spain','ireland','palestine','cease and desist','vaccines','duality of man','andrew tate','lovable','hired a dev','deprecated now','cursor now truncates','windows/office','massgrave','cineby','zuckerberg paid','kagi.com','ultramock','nestle.cam','bicycle42','meta superintelligence','muse spark','mattrothenberg','anthropic running','how anthropic be talking','digital whip','trump says','trade with spain','if the united states saw','dumbest people you know'];
       const seenFirst = new Set();
       const curated = postsR.filter(p => {
         const text = p.text.trim();
