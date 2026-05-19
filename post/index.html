@@ -92,7 +92,7 @@
     if(post.photos && post.photos.length){
       html += '<div class="post-photos">';
       post.photos.forEach(url => {
-        html += '<img src="' + escapeHtml(url) + '" alt="" loading="lazy" onclick="openLightbox(this.src)">';
+        html += '<img src="' + escapeHtml(url) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" onclick="openLightbox(this.src)">';
       });
       html += '</div>';
     }
