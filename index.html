@@ -101,12 +101,19 @@
         fetch('/articles.json').then(r => r.json().catch(() => []))
       ]);
 
-      // Curate posts: skip bare links and very short text
+      // Curate posts: skip bare links, very short text, skip keywords, dedupe
+      const SKIP_KW = ['trump','netanyahu','spain','ireland','palestine','cease and desist','vaccines','duality of man','andrew tate','lovable','hired a dev','deprecated now','cursor now truncates','windows/office','massgrave','cineby','zuckerberg paid','kagi.com','ultramock','nestle.cam','bicycle42','meta superintelligence','muse spark','mattrothenberg','anthropic running','how anthropic be talking','digital whip','trump says','trade with spain'];
+      const seenFirst = new Set();
       const curated = postsR.filter(p => {
         const text = p.text.trim();
         if(text.length < 20) return false;
         if(/^https?:\/\/[^\s]+$/.test(text)) return false;
         if(text.startsWith('https://fixupx.com') || text.startsWith('https://x.com')) return false;
+        const lower = text.toLowerCase();
+        if(SKIP_KW.some(sk => lower.includes(sk))) return false;
+        const first = text.split('\n')[0].trim().toLowerCase().slice(0,55);
+        if(seenFirst.has(first)) return false;
+        seenFirst.add(first);
         return true;
       });
 
@@ -115,14 +122,10 @@
         const title = lines[0] || 'untitled';
         const desc = lines.slice(1).join(' ').slice(0, 120) || '';
         const last = (lines[lines.length - 1] || '').toLowerCase();
+        // only extract tag from last line if it's a known tag
         let tag = '';
         for(const t of KNOWN_TAGS){
           if(last === t || last.endsWith(' '+t)){ tag = t; break; }
-        }
-        if(!tag){
-          for(const t of KNOWN_TAGS){
-            if(p.text.toLowerCase().includes(t)){ tag = t; break; }
-          }
         }
         const hasVideo = p.videos && p.videos.length > 0;
         const hasPhoto = p.photos && p.photos.length > 0;
