@@ -111,9 +111,12 @@
         if(text.startsWith('https://fixupx.com') || text.startsWith('https://x.com')) return false;
         const lower = text.toLowerCase();
         if(SKIP_KW.some(sk => lower.includes(sk))) return false;
-        const first = text.split('\n')[0].trim().toLowerCase().slice(0,55);
-        if(seenFirst.has(first)) return false;
-        seenFirst.add(first);
+        const firstLine = text.split('\n')[0].trim().toLowerCase();
+        if(seenFirst.has(firstLine)) return false;
+        // also dedup by first 120 chars in case of minor formatting differences
+        const firstShort = firstLine.slice(0,120);
+        if([...seenFirst].some(s => s.startsWith(firstShort) || firstShort.startsWith(s))) return false;
+        seenFirst.add(firstLine);
         return true;
       });
 
