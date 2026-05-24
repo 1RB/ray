@@ -30,7 +30,6 @@ a{color:inherit;text-decoration:none}
 .site-header .inner{max-width:1200px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
 .site-header .logo{font-size:1.15rem;font-weight:500;letter-spacing:-0.02em;color:#e4e0d8}
 .site-header nav{display:flex;gap:22px;font-size:0.78rem;color:var(--text-dim)}
-.site-header nav a{min-height:44px;display:inline-flex;align-items:center}
 .site-header nav a:hover{color:var(--accent)}
 
 /* HOME */
@@ -101,9 +100,9 @@ a{color:inherit;text-decoration:none}
 .read-progress{background:var(--elevated);color:var(--text-dim);border:1px solid var(--line)}
 
 /* CATEGORY STRIP */
-.cat-strip{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 16px 0;scrollbar-width:none;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.cat-strip{display:flex;gap:8px;overflow-x:auto;padding:4px 0 16px;scrollbar-width:none}
 .cat-strip::-webkit-scrollbar{display:none}
-.cat-strip a{white-space:nowrap;padding:12px 16px;border-radius:20px;font-size:0.78rem;color:var(--text-dim);background:var(--elevated);border:1px solid var(--line);transition:all 0.15s;scroll-snap-align:start;min-height:44px;display:inline-flex;align-items:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.cat-strip a{white-space:nowrap;padding:8px 16px;border-radius:20px;font-size:0.78rem;color:var(--text-dim);background:var(--elevated);border:1px solid var(--line);transition:all 0.15s}
 .cat-strip a:hover,.cat-strip a.on{color:#e4e0d8;border-color:var(--accent);background:rgba(160,64,32,0.1)}
 
 /* ARTICLE SHARED */
@@ -122,8 +121,7 @@ a{color:inherit;text-decoration:none}
 .article-header .label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px}
 .article-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:500;color:#e4e0d8;line-height:1.15;letter-spacing:-0.02em;margin-bottom:12px}
 .article-header .subtitle{font-size:1.05rem;color:var(--text-dim);line-height:1.55;margin-bottom:16px}
-.article-header .meta{font-size:0.78rem;color:var(--text-faint);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-.article-header .meta a{min-height:44px;display:inline-flex;align-items:center}
+.article-header .meta{font-size:0.78rem;color:var(--text-faint);display:flex;gap:16px;flex-wrap:wrap}
 
 .article-body{font-size:16px;line-height:1.75;color:var(--text)}
 .article-body p{margin-bottom:1.7em;font-weight:300}
@@ -133,7 +131,7 @@ a{color:inherit;text-decoration:none}
 /* SIDEBAR */
 .side-section{margin-bottom:28px}
 .side-title{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:12px;font-weight:500}
-.up-next-item{display:flex;gap:12px;cursor:pointer;padding:12px 8px;border-radius:var(--radius);transition:background 0.15s;margin-bottom:4px;text-decoration:none;min-height:44px;align-items:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.up-next-item{display:flex;gap:12px;cursor:pointer;padding:8px;border-radius:var(--radius);transition:background 0.15s;margin-bottom:4px;text-decoration:none}
 .up-next-item:hover{background:var(--elevated)}
 .up-next-item .tn{width:96px;height:54px;border-radius:6px;overflow:hidden;flex-shrink:0;background:#000;border:1px solid var(--line)}
 .up-next-item .tn img{width:100%;height:100%;object-fit:cover}
@@ -145,13 +143,12 @@ a{color:inherit;text-decoration:none}
 .site-footer{border-top:1px solid var(--line);padding:40px 28px;margin-top:64px}
 .site-footer .inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--text-faint);flex-wrap:wrap;gap:12px}
 .site-footer a:hover{color:var(--accent)}
-.site-footer a{min-height:44px;display:inline-flex;align-items:center}
 
 /* LIGHTBOX */
 #lightbox{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;cursor:pointer}
 #lightbox.active{display:flex}
 #lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px}
-#lightbox .close{position:absolute;top:20px;right:24px;color:#fff;font-size:2rem;opacity:0.6;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#lightbox .close{position:absolute;top:20px;right:24px;color:#fff;font-size:2rem;opacity:0.6}
 
 /* UTILS */
 .mt-1{margin-top:8px}.mt-2{margin-top:16px}.mt-3{margin-top:24px}
@@ -347,19 +344,3 @@ sub,sup{font-family:var(--font-mono);font-size:0.75em}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp 0.6s ease both}
-
-/* MOBILE BOTTOM SHEET — article sidebar below 768px */
-@media(max-width:767px){
-  .mobile-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);border-radius:16px 16px 0 0;z-index:200;transform:translateY(calc(100% - 56px));transition:transform 0.35s cubic-bezier(0.32,0,0.24,1);box-shadow:0 -8px 32px rgba(0,0,0,0.6);max-height:70vh;display:flex;flex-direction:column;overflow:hidden}
-  .mobile-sheet.open{transform:translateY(0)}
-  .mobile-sheet .sheet-handle{height:56px;min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none}
-  .mobile-sheet .sheet-handle::before{content:'';width:36px;height:5px;border-radius:3px;background:var(--line-hover);display:block}
-  .mobile-sheet .sheet-handle span{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim)}
-  .mobile-sheet .sheet-content{padding:0 20px 24px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-  .mobile-sheet .side-title{display:none}
-  .mobile-sheet .up-next-item{min-height:44px;padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:0;border-radius:0}
-  .mobile-sheet .up-next-item:last-child{border-bottom:none}
-  .mobile-sheet .up-next-item .tn{width:80px;height:45px}
-  .mobile-sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:199;opacity:0;pointer-events:none;transition:opacity 0.3s}
-  .mobile-sheet-backdrop.active{opacity:1;pointer-events:auto}
-}
