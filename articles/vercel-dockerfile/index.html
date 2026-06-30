@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>docker on vercel — ray</title>
+<meta property="og:title" content="docker on vercel">
+<meta property="og:description" content="vercel now runs any dockerfile. bring a go binary, a rails app, a spring boot api, or a web server behind nginx. if it speaks http, it deploys.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://raysterminal.vercel.app/articles/vercel-dockerfile/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .article-header h1{font-family:var(--font-mono);font-weight:400;letter-spacing:-0.03em;font-size:clamp(1.8rem,4vw,2.8rem)}
+  .article-header .subtitle{font-family:var(--font-mono);font-size:0.9rem;color:var(--text-dim)}
+
+  .article-body{font-size:15px;line-height:1.8}
+
+  .terminal-block{
+    background:#0c0c0c;border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 24px;margin:2em 0;overflow-x:auto;font-family:var(--font-mono);
+    font-size:0.82rem;line-height:1.7;
+  }
+  .terminal-block .prompt{color:var(--accent)}
+  .terminal-block .comment{color:var(--text-faint)}
+  .terminal-block .cmd{color:#e4e0d8}
+  .terminal-block .ok{color:#6a9a5a}
+  .terminal-block .arrow{color:var(--text-faint)}
+
+  .file-label{
+    font-family:var(--font-mono);font-size:0.72rem;color:var(--text-faint);
+    margin-bottom:6px;text-transform:lowercase;letter-spacing:0.02em;
+  }
+
+  .feature-row{
+    display:grid;grid-template-columns:140px 1fr;gap:20px;padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .feature-row:last-child{border-bottom:none}
+  .feature-row .key{
+    font-family:var(--font-mono);font-size:0.78rem;color:var(--accent);
+    text-transform:lowercase;letter-spacing:0.01em;padding-top:2px;
+  }
+  .feature-row .val{font-size:0.92rem;line-height:1.65;color:var(--text)}
+
+  .pullquote{
+    border-left:2px solid var(--accent);padding:4px 0 4px 20px;
+    margin:2.5em 0;font-size:1.05rem;line-height:1.6;color:#e4e0d8;
+    font-style:italic;
+  }
+
+  .article-hero{margin:0 0 32px;border-radius:var(--radius);overflow:hidden}
+  .article-hero img{width:100%;filter:grayscale(40%) contrast(1.08)}
+</style>
+<script>
+(function(){
+  if(!document.querySelector('link[rel="prerender"][href="/"]')){
+    const link=document.createElement('link');
+    link.rel='prerender';
+    link.href='/';
+    document.head.appendChild(link);
+  }
+  window.addEventListener('pagereveal',(e)=>{
+    if(e.viewTransition){/* browser handles cross-doc VT */}
+  });
+})();
+</script>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="inner">
+    <a href="/" class="logo">ray</a>
+    <nav>
+      <a href="https://t.me/raysterminal">telegram</a>
+      <a href="https://github.com/1RB">github</a>
+    </nav>
+  </div>
+</header>
+
+<div class="article-layout">
+  <main class="article-main">
+    <article class="article-wrapper">
+
+      <header class="article-header" style="padding-top:40px">
+        <div class="label">infrastructure</div>
+        <h1 style="view-transition-name:vt-title">docker on vercel</h1>
+        <div class="subtitle">vercel now runs any dockerfile. if it speaks http, it deploys.</div>
+        <div class="meta">
+          <span class="reading-time">4 min read</span>
+          <span>from <a href="https://t.me/raysterminal">@raysterminal</a></span>
+        </div>
+      </header>
+
+      <div class="article-hero">
+        <img src="hero.jpg" alt="dark gradient placeholder" loading="eager">
+      </div>
+
+      <div class="article-body">
+
+<p>vercel built its name on zero-config frontend deploys. you push a next.js app, they read the framework, they derive the infrastructure, you get a url. no dockerfile, no build script, no yaml. that model works for most web apps, and it is still the fastest way to ship a frontend.</p>
+
+<p>but there was always a gap. if you had a go service, a rails app, a spring boot api, or a web server behind nginx, you were on your own. you'd run it on a vps, or fargate, or fly.io, or render, or a kubernetes cluster you babysat on weekends. the frontend lived on vercel and the backend lived somewhere else, and the two talked over the public internet like distant cousins at a holiday dinner.</p>
+
+<p>that gap is now closed. you add a file called <code style="font-family:var(--font-mono);font-size:0.88rem;color:var(--accent)">Dockerfile.vercel</code> to your project, run <code style="font-family:var(--font-mono);font-size:0.88rem;color:var(--accent)">vercel deploy</code>, and vercel builds the image, stores it in a project-level registry, ships it to their fluid compute platform, and hands you a production url. one command, one platform, one bill.</p>
+
+<div class="file-label">Dockerfile.vercel</div>
+<div class="terminal-block">
+<span class="comment"># build stage</span><br>
+<span class="cmd">FROM golang:1.24-alpine AS build</span><br>
+<span class="cmd">WORKDIR /src</span><br>
+<span class="cmd">COPY . .</span><br>
+<span class="cmd">RUN go build -o /server main.go</span><br>
+<br>
+<span class="comment"># runtime stage</span><br>
+<span class="cmd">FROM alpine:3.20</span><br>
+<span class="cmd">COPY --from=build /server /server</span><br>
+<span class="cmd">CMD ["/server"]</span>
+</div>
+
+<div class="file-label">terminal</div>
+<div class="terminal-block">
+<span class="prompt">$</span> <span class="cmd">vercel deploy</span><br>
+<span class="arrow">▲</span> <span class="comment">Vercel CLI</span><br>
+<span class="ok">✓</span> <span class="cmd">Building image from Dockerfile.vercel</span><br>
+<span class="ok">✓</span> <span class="cmd">Stored image in your project's registry</span><br>
+<span class="ok">✓</span> <span class="cmd">Deployed to Fluid compute</span><br>
+<span class="comment">Production: https://my-server.vercel.app</span>
+</div>
+
+<p>the only contract is that your server listens on <code style="font-family:var(--font-mono);font-size:0.88rem;color:var(--accent)">$PORT</code>, which defaults to 80. if it speaks http, it deploys. rails, spring boot, express, laravel, asp.net, fastapi, nginx proxies, and anything else that opens a socket and returns a response. the blog post says "yes, even java" and "yes, even php," which reads like someone at vercel has been waiting a long time to type those words.</p>
+
+<p>what you get is the same deployment model that frontends have had for years. every <code style="font-family:var(--font-mono);font-size:0.88rem;color:var(--accent)">git push</code> builds the image and produces an immutable preview url you can share, open, and roll back to. autoscaling works in both directions: traffic arrives and instances spin up, traffic stops and they wind down. you never size a fleet or pick a concurrency number.</p>
+
+<p>the pricing model is what makes this interesting. vercel calls it active cpu pricing. fluid compute bills for the time your code is actually running, not the wall time the container is alive. a server parked on a slow database query or waiting on an upstream api response is not burning cpu while it waits. you pay for execution, not occupancy. for i/o-bound services this is materially cheaper than paying for a container that sits idle 90 percent of the time.</p>
+
+<div class="pullquote">
+a container is now a first-class citizen, running on the same system as everything else.
+</div>
+
+<p>the integration story is the real pitch. your container sits beside your frontend in the same project, on the same domain, and talks to it privately over the vercel network. logs, traces, and metrics for the container live in the same dashboard as your frontend. your full stack ships as a single deploy. this is the thing that fly.io and render got partially right, but neither had the frontend story. vercel had the frontend story and was missing the backend. now they have both.</p>
+
+<p>startup speed is the question everyone asks about containers on serverless platforms. vercel addresses this by storing each image as an "optimized boot image," a compressed snapshot of the container's disk tuned for fast startup. when a container boots, they stream the snapshot and decompress on demand rather than downloading the full image before anything runs. the server can start handling requests before the entire image is in place. once an instance is running, fluid compute keeps it warm and serves many requests from it, so you get the responsiveness of a long-lived server with the billing profile of one that sleeps when idle.</p>
+
+<p>containers are stateless processes. they take a request, return a response, and keep nothing in between. persistent state lives in a backing service you attach, like a database or cache from the vercel marketplace. because an instance holds nothing that has to survive, vercel can add instances when traffic arrives and retire them when it stops. the blog mentions durable storage attached to containers is coming, which would unlock stateful workloads, but for now the model is stateless-first.</p>
+
+<p>the "why now" framing in the blog is honest. vercel's first platform let you deploy a dockerfile with a single command a decade ago, but the infrastructure to make it great didn't exist yet. they spent the years since building the primitives that power builds, functions, sandboxes, and now containers. framework detection remains the front door for most apps, because when vercel recognizes your framework, they can read your code and derive the infrastructure automatically. a dockerfile is the escape hatch for everything else: a service that needs a system library like ffmpeg or chromium, a framework they don't auto-detect yet, or an app you want to bring exactly as it already runs.</p>
+
+<div class="feature-row">
+  <div class="key">build</div>
+  <div class="val">vercel reads Dockerfile.vercel and builds the image automatically. no daemon, no local docker, no registry setup.</div>
+</div>
+<div class="feature-row">
+  <div class="key">deploy</div>
+  <div class="val">image ships to fluid compute. one command. production url. every push gets a preview.</div>
+</div>
+<div class="feature-row">
+  <div class="key">scale</div>
+  <div class="val">autoscaling in both directions. no fleet sizing, no concurrency tuning. instances arrive with traffic and retire when it stops.</div>
+</div>
+<div class="feature-row">
+  <div class="key">price</div>
+  <div class="val">active cpu pricing. you pay for execution time, not wall time. idle containers waiting on i/o don't burn money.</div>
+</div>
+<div class="feature-row">
+  <div class="key">observe</div>
+  <div class="val">logs, traces, and metrics in the same dashboard as your frontend. one platform, one view.</div>
+</div>
+<div class="feature-row">
+  <div class="key">network</div>
+  <div class="val">container talks to your frontend privately over the vercel network. same project, same domain, one deploy.</div>
+</div>
+
+<p>the positioning is clear. this is not "vercel is now a generic container host." it is "your backend now ships the way your frontend does." framework detection handles the 90 percent case where vercel can infer everything from your code. the dockerfile handles the 10 percent where they can't, or where you don't want them to. the two paths converge on the same platform, the same billing, the same observability, and the same deployment workflow.</p>
+
+<p>for teams already on vercel, this removes the last reason to run a separate backend somewhere else. for teams not on vercel, the pitch is simpler than it used to be: bring a dockerfile, get the same deploy experience for your server that next.js users have had for years. whether that's enough to pull people off fly.io, render, or their own kubernetes cluster depends on workload, pricing, and how much they care about having frontend and backend in one place. but the gap that made vercel a frontend-only platform is gone.</p>
+
+      </div>
+    </article>
+  </main>
+  <aside class="article-side">
+    <div class="side-section">
+      <div class="side-title">up next</div>
+      <a href="warp-open-source/" class="up-next-item">
+        <div class="de">
+          <div class="t">warp open source</div>
+          <div class="a">the rust terminal goes fully open source</div>
+        </div>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><a href="/">home</a> · <a href="https://t.me/raysterminal">@raysterminal</a></div>
+    <div>ray</div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const scrolled=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight);
+  document.getElementById('progress-bar').style.width=(scrolled*100)+'%';
+},{passive:true});
+
+let lastY=0;
+const header=document.getElementById('siteHeader');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY && y>100) header.classList.add('hidden');
+  else header.classList.remove('hidden');
+  lastY=y;
+},{passive:true});
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+
+<script src="/ray.js"></script>
+</body>
+</html>
